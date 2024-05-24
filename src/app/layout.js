@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { Providers } from "@/providers";
+import ActiveSectionContextProvider from "@/context/activeSection";
+import { NextUIProvider } from "@nextui-org/react";
+// Import the Inter font and specify subsets
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -10,8 +13,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+          <body className={`${inter.className} relative h-fit `} suppressHydrationWarning={true}>
+          <Providers themeProps={{ attribute: "class" }}>
+              <ActiveSectionContextProvider>
+              <NextUIProvider>
+                <Providers>
+                    {children}
+                </Providers>
+                </NextUIProvider>
+              </ActiveSectionContextProvider>
+
+            </Providers>
+          </body>
+        </html>
+        </>
+  
   );
 }
