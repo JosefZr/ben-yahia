@@ -1,7 +1,6 @@
 "use server"
 
-import { PrismaClient,PrismaClientKnownRequestError  } from '@prisma/client';
-import { redirect } from 'next/navigation';
+import {PrismaClientKnownRequestError  } from '@prisma/client';
 import prisma from '../lib/prisma';
 
 // Initialize the Prisma client instance

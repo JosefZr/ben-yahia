@@ -50,7 +50,6 @@ export async function getUserIdFromToken() {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decodedToken.sub; // Assuming the user ID is stored in the 'sub' field
 
-        console.log('User ID:', userId);
         return userId;
     } catch (error) {
         console.error('Error getting user ID from token:', error);

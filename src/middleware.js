@@ -1,27 +1,36 @@
-import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
-import * as jose from "jose"
-import prisma from "@/app/lib/prisma";
-// This function can be marked `async` if using `await` inside
+import { NextResponse } from 'next/server';
+import * as jose from 'jose';
+import { NextRequest } from 'next/server';
+
 export async function middleware(request) {
-    //check for kooke 
-    const cookie = cookies().get('Authorization')
-    if(!cookie){
-        return NextResponse.redirect(new URL("/login",request.url));
-    }
-     //validate it 
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET)
-    const jwt =cookie.value;  
-    try{
-        const {payload}  = await jose.jwtVerify(jwt, secret, {})
-        console.log("payload",payload);
-        console.log("id",payload.sub) ;
-    }catch(e){
-        return NextResponse.redirect(new URL("/login",request.url));
-    }   
+  // Check for the Authorization cookie
+  const cookie = request.cookies.get('Authorization');
+  if (!cookie) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Validate the JWT
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const jwt = cookie.value;
+
+  try {
+    const { payload } = await jose.jwtVerify(jwt, secret);
+    console.log('payload', payload);
+    console.log('id', payload.sub);
+
+    // Inject user ID and role in the request by adding headers
+    const response = NextResponse.next();
+    response.headers.set('X-User-Id', payload.sub);
+    response.headers.set('X-User-Role', payload.role);
+
+    return response;
+  } catch (e) {
+    console.error('JWT verification failed:', e);
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
 }
 
-// See "Matching Paths" below to learn more
+// Apply middleware to specific paths
 export const config = {
-    matcher: '/admin/:path*',
-}
+  matcher: ['/admin/:path*'],
+};

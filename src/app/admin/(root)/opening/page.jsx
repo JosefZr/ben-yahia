@@ -10,7 +10,7 @@ import  {capitalize, classNames, weekdayIndexToName} from "../../../user/utils/h
 import prisma from '@/app/lib/prisma.js'
 import '../../../user/style/calendar.css'
 import { useMutation, useQuery } from 'react-query'
-import { changeOpeningHours, closeDay, getClosedDays, openDay } from '@/server/trpc/router/opening.js'
+// import { changeOpeningHours, closeDay, getClosedDays, openDay } from '@/server/trpc/router/opening.js'
 
 export default function Opening(){
     const [enabled, setEnabled] = useState(false);
