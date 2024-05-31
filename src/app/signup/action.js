@@ -2,11 +2,13 @@
 
 import {PrismaClientKnownRequestError  } from '@prisma/client';
 import prisma from '../lib/prisma';
+import { formatDate } from 'date-fns';
 
 // Initialize the Prisma client instance
 
 // Define the signup function to handle user registration
 export async function signup({ formData }) {
+    const age = parseInt(formData.age, 10);
     try {
          // Check if the email address is already in use
         const existingUser = await prisma.user.findUnique({
@@ -19,13 +21,16 @@ export async function signup({ formData }) {
         if (existingUser) {
             return { error: "Email address is already in use.", success: false };
         }
+
         // Create a user in the database with the provided form data
         const user = await prisma.user.create({
             data: {
                 name: formData.name,
                 family_name: formData.lastname,
                 email: formData.email,
-                password: formData.password
+                password: formData.password,
+                age : age,
+                phone: formData.phone
             }
         });
 

@@ -36,7 +36,7 @@ export default function Signup() {
         setFormData({ ...formData, [name]: value });
     };
     return (
-        <div className='container max-w-unit-9xl mx-auto'>
+        <div className='container mx-auto max-w-2xl'>
             <motion.div className="container scroll-mt-28 mt-10 p-10 bg-slate-100 dark:bg-slate-800 rounded-xl">
             <div className='flex flex-col justify-center items-center gap-3'>
                 <Image src={image} alt="logo" height={150} />
@@ -76,6 +76,40 @@ export default function Signup() {
                             />
                         </div>
                     </div>
+                    <div className='flex flex-row justify-between'>
+                        <div className='flex flex-col gap-3'>
+                            <label htmlFor="name">Age :</label>
+                            <Input
+                                key="age"
+                                type="text"
+                                name='age'
+                                id='age'
+                                variant='bordered'
+                                size='lg'
+                                autoComplete='current-age'
+                                placeholder='Age'
+                                radius='lg'
+                                onChange={handleChange}
+                                value={formData.age}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-3'>
+                            <label htmlFor="lastname">N° Telephone :</label>
+                            <Input
+                                key="phone"
+                                type="text"
+                                name='phone'
+                                id='phone'
+                                variant='bordered'
+                                size='lg'
+                                autoComplete='current-phone'
+                                placeholder='Telephone'
+                                radius='lg'
+                                onChange={handleChange}
+                                value={formData.phone}
+                            />
+                        </div>
+                    </div>
                     <label htmlFor="email">E-mail :</label>
                     <Input
                         key="email"
@@ -90,7 +124,7 @@ export default function Signup() {
                         onChange={handleChange}
                         value={formData.email}
                     />
-                                        {signupError && <p className="text-red-500">{signupError}</p>}
+                    {signupError && <p className="text-red-500">{signupError}</p>}
                     <label htmlFor="password">Password :</label>
                     <Input
                         key="password"

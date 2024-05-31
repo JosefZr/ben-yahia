@@ -25,7 +25,7 @@ export async function handleLogin(email, password) {
             // Log the token value for debugging
             console.log('JWT token:', json.token);
 
-            return { success: true , role : json.role };
+            return { success: true , role : json.role, userId:json.userId };
         } else {
             const errorData = await res.json();
             console.error('Error:', errorData.error);

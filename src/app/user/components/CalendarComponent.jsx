@@ -1,52 +1,50 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import { format, formatISO, isBefore, parse } from 'date-fns';
-import { getOpeningTimes, roundNearestMinutes } from '../utils/helpers';
+import { format, formatISO } from 'date-fns';
+import { getOpeningTimes } from '../utils/helpers';
 import { createReservation } from '../api/appointment';
 import toast from 'react-hot-toast';
+import { useQueryClient, useMutation } from 'react-query';
+import { Button } from '@nextui-org/react';
+import CustomButton from '@/app/components/Button';
 
-export default function CalendarComponent({ days = [], closeDays = [] }) {
+export default function CalendarComponent({ days = [], closeDays = [], onCloseModal }) {
     const [date, setDate] = useState({
         justDate: null,
-        dateTime: null,
+        time: null,
     });
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch("/api/getID", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
+    const queryClient = useQueryClient();
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch user data');
-            }
+    const mutation = useMutation(createReservation, {
+        onSuccess: () => {
+            // Invalidate and refetch appointments query
+            queryClient.invalidateQueries('appointments');
+            toast.success('Reservation is set correctly');
+            if (onCloseModal) onCloseModal(); // Close the modal if provided
+        },
+        onError: (error) => {
+            console.error('Error occurred during reservation:', error);
+            toast.error('Reservation is not set correctly');
+        }
+    });
 
-            const userData = response;
-            console.log(userData)
-            const time= date.dateTime
-            if (date.dateTime) {
-                try {
-                    // Get the user ID from the token
-                    console.log('Selected Date and Time:', date.dateTime);
-                    const response = await createReservation({ time } , userData);
-                    
-                    if (response.success) {
-                        toast.success('reservation is set correctly')
-                    } else {
-                        toast.error('reservation is not set correctly')
-                    }
-                } catch (error) {
-                    console.error('Error occurred during reservation:', error);
-                }
-            }
-        };
-        fetchData();
-    }, [date.dateTime]);
+    const handleCreateReservation = () => {
+        const userId = localStorage.getItem("id");
+        if (!userId) {
+            console.error('User ID is missing');
+            return;
+        }
+
+        const { justDate, time } = date;
+        if (justDate && time) {
+            const formattedDate = format(justDate, 'yyyy-MM-dd');
+            console.log('Selected Date and Time:', { formattedDate, time });
+            mutation.mutate({ date: formattedDate, time, userId: parseInt(userId) });
+        }
+    };
 
     const times = date.justDate && getOpeningTimes(date.justDate, days);
 
@@ -56,8 +54,10 @@ export default function CalendarComponent({ days = [], closeDays = [] }) {
                 <div className='flex flex-row flex-wrap gap-4'>
                     {times?.map((time, i) => (
                         <div key={`time-${i}`} className='rounded-full bg-gray-100 p-2'>
-                            <button type='button' onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}>
-                                {format(time, 'kk:mm')}
+                            <button type='button' onClick={() => {
+                                setDate((prev) => ({ ...prev, time: format(time, 'HH:mm') }));
+                            }}>
+                                {format(time, 'HH:mm')}
                             </button>
                         </div>
                     ))}
@@ -75,6 +75,12 @@ export default function CalendarComponent({ days = [], closeDays = [] }) {
                     Calendar
                 </Calendar>
             )}
+            <div className='w-[80%] flex flex-row-reverse gap-5 items-start pt-4 justify-start '>
+                <Button onClick={onCloseModal} variant='solid' color='danger'  className=' rounded-2xl'>Cancel</Button>
+                {date.justDate && date.time && (
+                    <Button onClick={handleCreateReservation} color='success' className=' rounded-2xl'>Confirm</Button>
+                )}
+            </div>
         </div>
     );
 }

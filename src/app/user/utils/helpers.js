@@ -1,5 +1,5 @@
 import { add, addMinutes, getHours, getMinutes, isBefore, isEqual, parse } from 'date-fns';
-
+import toast from 'react-hot-toast';
 export const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export function weekdayIndexToName(index) {
@@ -43,9 +43,8 @@ export const getOpeningTimes = (startDate, dbDays = []) => {
     // Round the current time to the nearest interval. If there are no more bookings today, then throw an error
     const rounded = roundNearestMinutes(new Date(), 30);
     const tooLate = !isBefore(rounded, closing);
-    if (tooLate) throw new Error('No more bookings today');
-    console.log('rounded', rounded);
-
+    if (tooLate) toast.error('No more bookings today')
+    
     const isBeforeOpening = isBefore(rounded, opening);
 
     hours = getHours(isBeforeOpening ? opening : rounded);

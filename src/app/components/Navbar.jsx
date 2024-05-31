@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
+import Link from "next/link"
 import {AcmeLogo} from "./AcmeLogo.jsx";
 import CustomButton from "./Button.jsx";
 import { FaRegUser } from "react-icons/fa";
@@ -35,8 +36,9 @@ function MyNavbar() {
                 {links.map((link)=>(
                     <motion.NavbarItem key={link.hash} className="text-nowrap">
                         <Link 
-                            color={`${link.name===activeSection?"primary":"foreground"}`} 
                             href={link.hash}
+                            passHref
+                            className={`${link.name===activeSection?"text-primary":"text-foreground"}`} 
                             onClick={()=>{
                                 setActiveSection(link.name)
                                 setTimeOfLastClick(Date.now())
@@ -53,6 +55,7 @@ function MyNavbar() {
 
                 <NavbarItem className=" sm:flex">
                     <CustomButton 
+                        passHref
                         as={Link} 
                         color="danger" 
                         variant='shadow' 
@@ -74,6 +77,7 @@ function MyNavbar() {
                             className="w-full"
                             href="/"
                             size="lg"
+                            passHref
                         >
                             {item}
                         </Link>

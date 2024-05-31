@@ -3,7 +3,7 @@ import CustomButton from '@/app/components/Button';
 import { Input } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react'; // Import useEffect
+import React, { useState } from 'react'; // Import useEffect
 import image from "../../../public/_0990d51c-9f15-4894-bfc9-da15152c1185-removebg.png";
 import Image from 'next/image';
 import { handleLogin } from './action';
@@ -18,10 +18,11 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { success, error , role } = await handleLogin(email, password);
+        const { success, error , role,userId } = await handleLogin(email, password);
         if (success) {
             setLoginSuccess(true)
             setRole(role)
+            localStorage.setItem("id",userId);
         } else {
             console.error('Login Error:', error);
             // Handle login error

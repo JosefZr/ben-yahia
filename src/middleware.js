@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import * as jose from 'jose';
-import { NextRequest } from 'next/server';
 
 export async function middleware(request) {
   // Check for the Authorization cookie
@@ -32,5 +31,5 @@ export async function middleware(request) {
 
 // Apply middleware to specific paths
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*','/user/:path*'],
 };

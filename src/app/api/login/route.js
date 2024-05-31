@@ -37,7 +37,7 @@ export async function POST(request) {
     .sign(secret);
 
   // If the user is found and the password is correct, return success response
-  return new Response(JSON.stringify({ token: jwt, role: user.role }), {
+  return new Response(JSON.stringify({ token: jwt, role: user.role, userId:user.id }), {
     status: 200,
   });
 }
