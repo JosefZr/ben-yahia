@@ -23,7 +23,7 @@ const ImageComp = styled.div`
 `;
 
 const closeDays = [
-    formatISO(new Date(2024, 5, 25)), // Example closed day
+    formatISO(new Date(2024, 6, 1)), // Example closed day
     // Add other closed days here
 ];
 

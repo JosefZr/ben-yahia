@@ -10,7 +10,7 @@ export async function createReservation({ date, time, userId }) {
     
         try {
         // Combine date and time into a single ISO 8601 string
-        const dateTimeString = `${date}T${time}:00.000Z`; // Adjust this if the timezone offset is required
+        const dateTimeString = `${date}`; // Adjust this if the timezone offset is required
         const dateTime = new Date(dateTimeString);
     
         // Ensure the date object is valid
@@ -63,6 +63,31 @@ export async function getAppointments({ userId }) {
         throw new Error("An error occurred while fetching appointments.");
     }
 }
+export async function getAppointmentsByDate(date) {
+    try {
+        const formattedDate = new Date(date);
+        console.log("Querying appointments for date:", date);
+
+        const appointments = await prisma.appointment.findMany({
+            where: {
+                date: {
+                    equals: formattedDate,
+                },
+            },
+        });
+        
+        appointments.forEach(appointment => {
+            console.log("Appointment date in DB:", appointment.date);
+        });
+
+        console.log("Fetched appointments by date:", appointments);
+        return appointments;
+    } catch (err) {
+        console.error("Error fetching appointments by date:", err);
+        throw new Error("An error occurred while fetching appointments.");
+    }
+}
+
 export async function deleteAppointment(id){
     let res=await  prisma.appointment.delete({where:{id}});
     if (res) {
