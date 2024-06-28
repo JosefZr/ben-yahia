@@ -23,7 +23,7 @@ const navList= [{
 },
 {
     title:"rendez-vous",
-    url:"/rendez-vous",
+    url:"/admin/rendez-vous",
     icon:<SlCalender />,
 },  {
     title:"docteur",

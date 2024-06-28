@@ -1,4 +1,3 @@
-import React from 'react'
 import { useMutation, useQueryClient } from 'react-query';
 import { editPatientInfo } from '../(root)/patient/apiPatinet';
 import toast from 'react-hot-toast';

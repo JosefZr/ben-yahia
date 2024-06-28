@@ -1,5 +1,4 @@
 "use client"
-import React from 'react'
 import styled from 'styled-components'
 import CustomButton from '../components/Button'
 import Modal from '../components/Modal';
@@ -9,6 +8,7 @@ import Explanation from './components/Explanation';
 import Footer from './components/Footer';
 import { formatISO } from 'date-fns';
 import "./style/calendar.css";
+
 
 const ImageComp = styled.div`
     background-image: url("/pexels-goumbik-1419923.jpg");
@@ -37,10 +37,9 @@ export default function User() {
         { dayOfWeek: 5, openTime: '08:00', closeTime: '18:00' }, // Friday
         { dayOfWeek: 6, openTime: '08:00', closeTime: '18:00' }, // Saturday
     ];
-
     return (
         <div className='flex flex-auto flex-row'>
-            <main className='flex flex-col items-center w-full gap-7 mx-10'>
+            <main className='flex flex-col items-center w-full gap-7 '>
                 <ImageComp className='flex flex-col text-black font-extrabold lg:text-4xl text-xl text-center lg:gap-20 gap-10 justify-center items-center'>
                     <h1 className=''>Reduire le tamps de consultation avec un seule click</h1>
                     <Modal>

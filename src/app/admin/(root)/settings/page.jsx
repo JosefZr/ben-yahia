@@ -6,7 +6,6 @@ import useUpdateSettings from './useUpdateSettings';
 
 export default function Settings() {
     const { isLoading, settings } = GetSettings();
-
     const {
         maxAppointmentPerDay,
         dimanche,
@@ -17,10 +16,7 @@ export default function Settings() {
         vendredi,
         samedi
     } = settings || {};
-    const {isUpdating,updateSettings} = useUpdateSettings()
-    
-
-
+    const { isUpdating, updateSettings } = useUpdateSettings(settings ? settings.id : null);    
     if (isLoading) return <div>Loading...</div>;
 
     function handleUpdate(e,field){

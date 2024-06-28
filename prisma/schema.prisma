@@ -62,10 +62,19 @@ model Appointment {
   id        Int      @id @default(autoincrement())
   date      DateTime
   time      String
-  status Status @default(en_attent)
+  note      String  @default("douleur")
+  status    Status    @default(en_attent)
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
   createdAt DateTime @default(now())
 
   @@index([userId])
+}
+model Rating{
+  id        Int      @id @default(autoincrement())
+  rating     Int
+  email      String
+  comment    String
+  name       String
+  createdAt DateTime @default(now())
 }

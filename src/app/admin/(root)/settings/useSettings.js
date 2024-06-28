@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 export function GetSettings() {
     const { isLoading, data: settings, error } = useQuery({
         queryKey: ["settings"], // unique cache key
-        queryFn: () => findSettings(), // returns a promise
+        queryFn: () => findSettings(),
     });
     
     return { isLoading, error, settings };

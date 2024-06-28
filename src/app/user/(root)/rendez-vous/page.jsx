@@ -100,6 +100,10 @@ export default function Rendez() {
                     {appointment.status}
                   </h1>
                 </div>
+                <div className="flex flex-row items-center justify-between">
+                  <h3>description: </h3>
+                  <h1 className="justify-end font-semibold px-2">{appointment.note}</h1>
+                </div>
               </CardBody>
 
               <CardFooter className="flex items-start justify-center">
@@ -153,6 +157,7 @@ export default function Rendez() {
                       {appointment.time}
                     </h1>
                   </div>
+                  
                   <div className="flex flex-row items-center justify-between">
                     <h3>Status: </h3>
                     <h1 className={`justify-end font-semibold px-2 py-1 rounded-full ${
@@ -163,6 +168,10 @@ export default function Rendez() {
                       {appointment.status}
                     </h1>
                   </div>
+                  <div className="flex flex-row items-center justify-between">
+                  <h3>description: </h3>
+                  <h1 className="justify-end font-semibold px-2">{appointment.note}</h1>
+                </div>
                 </CardBody>
 
                 <CardFooter className="flex items-start justify-center">

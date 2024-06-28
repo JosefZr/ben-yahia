@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
                 staleTime: 60* 1000,},
         }
     }); // Create a new instance of QueryClient
+    
     return (
         <QueryClientProvider client={queryClient}>
             <Providers>

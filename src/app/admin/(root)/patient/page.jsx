@@ -1,16 +1,15 @@
 "use client"
-import { createContext, useState } from "react";
+import { Children, createContext, useState } from "react";
 import { useQuery } from "react-query";
 import { getPatients } from "./apiPatinet";
 import TableUi from "../../global/TableUi";
 import AddPatient from "./AddPatient";
 import PatientTableOpertations from "../../global/PatientTableOpertations";
+import Spinner from "@/app/components/Spinner";
 
-export const Context = createContext("");
 
 export default function Patient() {
 
-    const [searchParams, setSearchParams] = useState();
 
     const [patients, setPatients] = useState([]);
 
@@ -23,20 +22,20 @@ export default function Patient() {
         },
     });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Spinner/>;
+
     if (isError) return <div>Error: {error.message}</div>;
 
     return ( 
-        <Context.Provider value={[searchParams, setSearchParams]}>
+        <>
         <div className="flex flex-row items-center justify-between p-4">
             <h1 className=" text-3xl font-semibold">All pateints</h1>
-            <PatientTableOpertations />
 
         </div>
         <div className="flex flex-col p-4">
             <TableUi data={data}/>
             <AddPatient/>
         </div>
-        </Context.Provider>
+        </>
     );
 }

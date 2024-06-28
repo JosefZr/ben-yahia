@@ -31,7 +31,7 @@ function About() {
 
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ["0 1", "1.33 1"]
+        offset: ["0 1", "0 0.5"]
     });
     const scalProgress = useTransform(scrollYProgress, [0,1], [0.8, 1]);
     const opacityProgress = useTransform(scrollYProgress, [0,1], [0.6, 1]);
@@ -40,29 +40,29 @@ function About() {
         <motion.div 
             ref={ref}
             style={{ scale: scalProgress, opacity: opacityProgress }}
-            className='text-center scroll-mt-28 container mx-auto bg-primary-50 rounded-3xl'
+            className='text-center scroll-mt-28 container  mx-auto  rounded-3xl'
             id='nous'
         >
-            <section ref={refView} className=' flex xl:flex-row flex-col justify-around mx-auto max-w-8xl gap-10 px-20 py-10 items-center'>
+            <section ref={refView} className='bg-transparent flex xl:flex-row flex-col justify-around max-sm:mx-5 mx-auto gap-10 md:px-10 md:py-10 pb-10 items-center rounded-xl'>
                 <div>
                     <Image  
                         src='https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                         alt='cabin'
-                        height={300}
-                        width="100%"/>
+                        height={400}
+                        />
                 </div>
-                <div className='flex flex-col text-start gap-5'>
-                    <h1 className=' capitalize  font-bold text-6xl whitespace-normal'> why choose us for <br />all your dental tratments? </h1>
-                    <h2 className='text-lg capitalize text-gray-500'>we use only the best quality materials on the market in order to provide the best products to our patiens</h2>
+                <div className='flex flex-col text-start gap-7 px-4'>
+                    <h1 className=' capitalize  font-bold sm:text-6xl text-4xl whitespace-normal'> why choose us for <br />all your dental tratments? </h1>
+                    <h2 className='text-lg capitalize text-default-700'>we use only the best quality materials on the market in order to provide the best products to our patiens</h2>
                         {qualitys.map((text)=>{
                             return(
                                 <div key={text.key} className='flex flex-row items-center text-2xl capitalize gap-4 '>
                                     <RiShieldCheckLine className=' text-blue-600 text-4xl'/>
-                                    <span key={text.text}>{text.text}</span>
+                                    <span key={text.text} className=' text-xl font-medium'>{text.text}</span>
                                 </div>
                             ) 
                         })}
-                    <CustomButton as={Link} href="/login" color='primary' size="lg" className="xl:w-72">Book an Appointment</CustomButton>
+                    <CustomButton as={Link} href="/login" color='primary' size="lg" className="xl:w-60 ">Book an Appointment</CustomButton>
                 </div>
 
                 {/* <Card

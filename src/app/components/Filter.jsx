@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
-import { Context } from "../admin/(root)/patient/page";
+import { Context } from "../admin/(root)/patient/page"; // Adjust this path according to your project structure
 import { useContext } from "react";
+import { FilterContext } from "@/context/filterContext";
 
 const FilterButton = styled.button`
   background-color: white;
@@ -10,7 +11,7 @@ const FilterButton = styled.button`
   font-size: 1rem;
   padding: 0.44rem 0.8rem;
   transition: all 0.3s;
-  
+
   ${(props) =>
     props.active &&
     css`
@@ -43,11 +44,11 @@ const FilterButton = styled.button`
 `;
 
 export default function Filter() {
-  const [filter, setFilter] = useContext(Context);
-  const currentFilter = filter;
+  const [searchParams, setSearchParams] = useContext(FilterContext); // use the context
+  const currentFilter = searchParams;
 
   function handleClick(value) {
-    setFilter(value);
+    setSearchParams(value);
   }
 
   return (

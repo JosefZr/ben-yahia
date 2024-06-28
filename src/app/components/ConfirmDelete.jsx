@@ -1,13 +1,13 @@
 import { Button } from "@nextui-org/react";
 
 
-function ConfirmDelete({ resource, onConfirm, disabled, onCloseModal }) {
+function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
 
     return (
         <div className=" max-w-2xl flex flex-col justify-end gap-6">
-        <h1 className="text-3xl font-bold dark:text-black">Supprimer {resource}</h1>
+        <h1 className="text-3xl font-bold dark:text-black">Supprimer {resourceName}</h1>
         <p className=" text-gray-500 mb-5">
-            Êtes-vous sûr de vouloir supprimer définitivement cette {resource} ? Cette action
+            Êtes-vous sûr de vouloir supprimer définitivement {resourceName} ? Cette action
             ne peut pas être défait.
         </p>
 

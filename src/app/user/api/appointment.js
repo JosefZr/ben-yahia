@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/app/lib/prisma";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-export async function createReservation({ date, time, userId }) {
+export async function createReservation({ date, time, userId,note }) {
         const userIdInt = parseInt(userId, 10);
     
         if (!prisma) {
@@ -22,7 +22,8 @@ export async function createReservation({ date, time, userId }) {
             data: {
             date: dateTime,
             time: time,
-            userId: userIdInt
+            userId: userIdInt,
+            note:note,
             }
         });
     

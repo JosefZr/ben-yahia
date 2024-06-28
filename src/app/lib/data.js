@@ -15,8 +15,12 @@ export const links = [
         hash:"#services"
     },
     {
-        name:"rendez-vous",
-        hash:"#rendez-vous"
+        name:"Témoignages",
+        hash:"#Témoignages"
+    },
+    {
+        name:"Contact",
+        hash:"#Contact"
     },
 ]
 export const footer = [

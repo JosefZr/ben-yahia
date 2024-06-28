@@ -7,7 +7,6 @@ import CreatePatientForm from "@/app/admin/global/CreatePatientForm";
 import { useDeletePatient } from "./useDeletePatient";
 import  Modal  from '@/app/components/Modal'; // Import the Modal component and Open component
 import ConfirmDelete from "@/app/components/ConfirmDelete";
-import { Context } from "../(root)/patient/page";
 const columns = [
     { name: "ID", uid: "id" },
     { name: "PRENOM", uid: "name" },
@@ -23,17 +22,7 @@ export default function TableUi({ data }) {
     const [showForm, setShowForm] = useState(false);
     const [selectedPatientId, setSelectedPatientId] = useState();
     const {isDeleting, deletePatient} = useDeletePatient();
-    const [filter] = useContext(Context);
 
-    console.log(filter)
-
-    // const [searchParams]= useSearchParams();
-
-        // const filterValue = searchParams.get("status");
-        //     console.log("Filter Value:", filterValue);
-        let filteredPatients = filter
-        ? data.filter((patient) => patient.status === filter)
-        : data;
     return (    
         <>
         <Table aria-label="Example table with custom cells" >
@@ -44,7 +33,7 @@ export default function TableUi({ data }) {
                     </TableColumn>
                 ))}
             </TableHeader>
-            <TableBody items={filteredPatients}>
+            <TableBody items={data}>
                 {(item) => (
                     <TableRow key={item.id}>
                         {columns.map((column) => (
@@ -71,7 +60,7 @@ export default function TableUi({ data }) {
                                             <Modal.Window name="delete">
                                                 <ConfirmDelete 
                                                     onConfirm={() => deletePatient(item.id)}
-                                                    resourceName='patient' 
+                                                    resourceName={item.name}
                                                     disabled={isDeleting} 
                                                 />
                                             </Modal.Window>

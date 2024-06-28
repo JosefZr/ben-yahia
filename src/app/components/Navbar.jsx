@@ -10,29 +10,28 @@ import { links } from "../lib/data.js";
 import '../globals.css'
 import { useActiveSectionContext } from "../../context/activeSection.jsx";
 import { ThemeSwitcher } from "./ThemeSwitcher.jsx";
-const menuItems = [
-    "home",
-    "about me",
-    "services",
-    "Log Out",
-];
+import { Image } from "@nextui-org/react";
 function MyNavbar() {
     const[isMenuOpen, setIsMenuOpen] = useState()
     const {activeSection, setActiveSection, setTimeOfLastClick} = useActiveSectionContext();
     return (
-        // <motion.div initial={{y:-100, opacity:0}} animate={{y:0, opacity:1}}>
-            <Navbar  onMenuOpenChange={setIsMenuOpen} >
-            <NavbarContent>
+        <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-24">
+            <NavbarContent >
                 <NavbarMenuToggle
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                className="sm:hidden"
+                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    className="md:hidden"
                 />
-            <NavbarBrand>
-                <AcmeLogo/>
-                <p className="font-bold text-inherit">ACME</p>
-            </NavbarBrand>
+                <NavbarBrand className=" flex flex-row justify-center items-center font-bold text-md">
+                    <Image
+                        src="/logo/Remove background project.png"
+                        alt="Logo" 
+                        width={80}
+                        className=" min-w-10"
+                    /> 
+                    <h1 className="md:max-[920px]:hidden max-[500px]:hidden">Light STOMATOLOGY</h1>
+                </NavbarBrand>
             </NavbarContent>
-            <NavbarContent className="hidden sm:flex gap-3 items-center basis-full">
+            <NavbarContent className="hidden md:flex gap-2 items-center basis-full">
                 {links.map((link)=>(
                     <motion.NavbarItem key={link.hash} className="text-nowrap">
                         <Link 
@@ -49,43 +48,42 @@ function MyNavbar() {
                     </motion.NavbarItem>
                 ))}
             </NavbarContent>
-            
-            <NavbarContent justify="end">
-            <ThemeSwitcher/>
 
+            <NavbarContent justify='center'>
+                <ThemeSwitcher/>
+            </NavbarContent>
+
+            <NavbarContent justify="end">
                 <NavbarItem className=" sm:flex">
                     <CustomButton 
                         passHref
                         as={Link} 
-                        color="danger" 
+                        color="success" 
                         variant='shadow' 
                         href="/login" 
-                        icon={<FaRegUser />} 
+                        className="font-semibold"
+                        // icon={<FaRegUser />} 
                     >
-                        Login
+                        Make Appointment
                     </CustomButton>
                 </NavbarItem>
             </NavbarContent>
 
             <NavbarMenu>
-                {menuItems.map((item,index)=>(
-                    <NavbarMenuItem key={`${index}-${index}`}>
+                {links.map((link)=>(
+                    <NavbarMenuItem key={link.hash}>
                         <Link 
-                            color={
-                                index ===1 ? "primary" : index ===menuItems.length -1 ? "danger" : "foreground"
-                            }
                             className="w-full"
-                            href="/"
+                            href={link.hash}
                             size="lg"
                             passHref
                         >
-                            {item}
+                            {link.name}
                         </Link>
                     </NavbarMenuItem>
                 ))}
             </NavbarMenu>
         </Navbar>
-        // </motion.div>
         
     )
 }

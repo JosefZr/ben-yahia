@@ -13,7 +13,6 @@ export default function TopBar() {
             <div className='flex gap-2 items-center'>
                 <User/>
                 <ThemeSwitcher/>
-                <IoSettingsSharp className=' text-3xl' />
             </div>
         </div>
     )

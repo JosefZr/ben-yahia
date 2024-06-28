@@ -30,9 +30,9 @@ function Window({ children,name }) {
 
     return createPortal(
         
-        <div className=' fixed top-0 left-0 w-full h-full backdrop-blur-sm z-50 transition-all '>
-            <div ref={ref} style={{ width: '80%', maxWidth: '600px' }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg transition-all">
-                <div className="bg-white rounded-lg p-6">
+        <div className=' fixed top-0 left-0 w-full h-full backdrop-blur-sm z-50 transition-opacity duration-300 ease-in-out'style={{opacity: openName === name ? 1 : 0}} >
+            <div ref={ref} style={{ width: '80%', maxWidth: '600px' , minHeight:'200px' }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-default-50 rounded-lg shadow-lg transition-transform duration-300 ease-in-out">
+                <div className="bg-default-50 rounded-lg p-6">
                     <button className="absolute top-2 right-2" onClick={close}>
                         <HiXMark className=' text-xl'/>
                     </button>
