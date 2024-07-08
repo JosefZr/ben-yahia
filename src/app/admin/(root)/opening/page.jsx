@@ -1,6 +1,6 @@
 "use client"
 import { Button } from '@chakra-ui/react'
-import TimeSelector from '@/app/components/TimeSelector'
+import TimeSelector from '@/app/components/TimeSelector.jsx'
 import { Switch } from '@headlessui/react'
 import { formatISO } from 'date-fns'
 import {useEffect, useState } from 'react'

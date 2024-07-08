@@ -34,7 +34,6 @@ export default function Patient() {
         </div>
         <div className="flex flex-col p-4">
             <TableUi data={data}/>
-            <AddPatient/>
         </div>
         </>
     );

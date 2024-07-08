@@ -2,8 +2,11 @@
 import prisma from "@/app/lib/prisma";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 export async function createReservation({ date, time, userId,note }) {
+        if(!userId){
+            throw new Error("userId is required")
+        }
         const userIdInt = parseInt(userId, 10);
-    
+
         if (!prisma) {
         throw new Error("Prisma not initialized");
         }

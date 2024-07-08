@@ -91,7 +91,7 @@ export default function Sidbar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState("accueil");
     return (
-        <div className={`flex flex-col dark:bg-gray-900 bg-gray-100 ${!isCollapsed ? 'min-w-56' : ''}`}>
+        <aside className={`flex flex-col bg-default-50 ${!isCollapsed ? 'min-w-56' : ''}`}>
             <div className='flex items-center ml-4 text-2xl cursor-pointer'>
                 <IoMenu onClick={() => setIsCollapsed(!isCollapsed)} />
             </div>
@@ -126,6 +126,6 @@ export default function Sidbar() {
                     </nav>
                 </>
             )}
-        </div>
+        </aside>
     );
 }

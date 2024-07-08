@@ -6,6 +6,8 @@ import { RiShieldCheckLine } from "react-icons/ri";
 import { Image,} from "@nextui-org/react";
 import CustomButton from './Button';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+
 function About() {
     const qualitys =[{
         key:"1",
@@ -26,7 +28,8 @@ function About() {
 
     }    
 ] 
-    const { ref: refView } = useSectionInView("à propos de nous",0.5);
+    const r = useTranslations('Navbar')
+    const { ref: refView } = useSectionInView(r("us.name"),0.5);
     const ref = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -40,7 +43,7 @@ function About() {
         <motion.div 
             ref={ref}
             style={{ scale: scalProgress, opacity: opacityProgress }}
-            className='text-center scroll-mt-28 container  mx-auto  rounded-3xl'
+            className='text-center scroll-mt-28 container mx-auto rounded-3xl'
             id='nous'
         >
             <section ref={refView} className='bg-transparent flex xl:flex-row flex-col justify-around max-sm:mx-5 mx-auto gap-10 md:px-10 md:py-10 pb-10 items-center rounded-xl'>

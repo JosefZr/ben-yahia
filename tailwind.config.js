@@ -1,17 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-const {nextui} = require("@nextui-org/react");
-module.exports = {
-  important: true,
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-
-    extend: {},
+import { nextui } from "@nextui-org/react";
+export const important = true;
+export const content = [
+  "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+  "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+  "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+];
+export const theme = {
+  extend: {
+    colors: {
+      "light-green": "var(--light-green)",
+      "bold-green": "var(--bold-green)",
+      "success": "var(--success)"
+    },
   },
-  darkMode: "class",
-  plugins: [nextui()],
 };
+export const darkMode = "class";
+export const plugins = [nextui()];

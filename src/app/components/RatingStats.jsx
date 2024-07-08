@@ -14,7 +14,6 @@ export default function RatingStats() {
         queryKey:"rating",
         queryFn: () => getTotalRatings(),
         onSuccess:(data)=>{
-            console.log("Data fetched successfully!", data);
             setTotalRating(data);
         }
     })

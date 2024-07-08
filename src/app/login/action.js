@@ -1,7 +1,6 @@
 "use server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
+import prisma from "../lib/prisma";
 export async function handleLogin({ email, password }) {
     try {
         const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/login', {
@@ -53,5 +52,22 @@ export async function handleLogout() {
     } catch (error) {
         console.error('Error:', error);
         return { success: false };
+    }
+}
+export async function handleEmailName({ name, email }) {
+    if (!email || !name) {
+        return { error: "Missing email or name", success: false };
+    }
+    try {
+        const existingUser = await prisma.user.findUnique({
+            where: { email },
+        });
+        if (!existingUser) {
+            return { error: "Email address is not found", success: false };
+        }
+        return { userId: existingUser.id, success: true };
+    } catch (err) {
+        console.log(err);
+        return { error: "An error occurred", success: false };
     }
 }

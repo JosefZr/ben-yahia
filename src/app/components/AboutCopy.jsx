@@ -6,11 +6,12 @@ import { Button, Input, Textarea} from "@nextui-org/react";
 import image from "../../../public/services/pexels-shkrabaanthony-5215024.jpg"
 import Image from 'next/image';
 import CustomButton from './Button';
+import { useTranslations } from 'next-intl';
 function AboutCopy() {
   
-    const { ref: refView } = useSectionInView("Contact",0.5);
+    const r = useTranslations('Navbar')
+    const { ref: refView } = useSectionInView(r("contact.name"),0.5);
     const ref = useRef(null);
-
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["0 1", "0 0.5"]
@@ -37,7 +38,7 @@ function AboutCopy() {
                         width="600"
                         height="450"
                         className='border-0  rounded-lg w-[70%]'
-                        allowFullScreen="true"
+                        // allowFullScreen="true"
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                     />

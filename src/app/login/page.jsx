@@ -8,14 +8,20 @@ import Image from 'next/image';
 import { handleLogin } from './action';
 import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import image from "../../../public/_0990d51c-9f15-4894-bfc9-da15152c1185-removebg.png";
+import image from "../../../public/logo/logo2.png"
+
+import { IoIosMail } from "react-icons/io";
+import { EyeSlashFilledIcon } from '../components/EyeSlashFilledIcon';
+import { EyeFilledIcon } from '../components/EyeFilledIcon';
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [rrole, setRole] = useState('');
+    const [role, setRole] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
     const [loginError, setLoginError] = useState('');  // State to manage login error message
+    const [isVisible, setIsVisible] = useState(false);
 
+    const toggleVisibility = () => setIsVisible(!isVisible);
     const onSubmit = async (data) => {
         const { email, password } = data;
         const { success, error, role, userId } = await handleLogin({ email, password });
@@ -35,31 +41,43 @@ export default function Login() {
     };
 
     return (
-        <div className='max-w-2xl mx-auto my-auto max-h-full'>
-            <motion.div className="scroll-mt-28 mt-10 p-10 bg-slate-100 dark:bg-slate-800 rounded-xl">
+        <div className='max-w-xl mx-auto my-auto max-h-full'>
+            <motion.div className="scroll-mt-28 mt-10 p-10 bg-slate-100 dark:bg-slate-800 rounded-xl px-20">
                 <div className='flex flex-col justify-center items-center gap-3'>
                     <Image src={image} alt="logo" height={150} />
-                    <h1 className='capitalize text-2xl font-semibold'>Sign in to your account</h1>
+                    <div className=' flex items-start w-full pb-5'>
+                        <h1 className='capitalize text-2xl font-semibold'>Log in</h1>
+                    </div>
                     <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col gap-3 w-full mx-auto'>
-                        <label htmlFor="email">E-mail :</label>
                         <Input
                             {...register("email", { required: "Cette case est obligatoire" })}
                             id='email'
                             type="email"
-                            placeholder='name@example.com'
+                            placeholder='Entrer votre Email'
                             variant='bordered'
+                            endContent={<IoIosMail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
+                            label="Email"
                             autoComplete='email'
                             size='lg'
                             radius='lg'
                         />
                         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-                        <label htmlFor="password">Password :</label>
                         <Input
                             {...register("password", { required: "Cette case est obligatoire" })}
-                            type="password"
                             autoComplete="current-password"
                             id="password"
                             placeholder='Enter your password'
+                            label="Password"
+                            endContent={
+                                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                                    {isVisible ? (
+                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                    ) : (
+                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                    )}
+                                </button>
+                            }
+                            type={isVisible ? "text" : "password"}
                             variant='bordered'
                             size='lg'
                             radius='lg'
@@ -68,16 +86,17 @@ export default function Login() {
                         {loginError && <p className="text-red-500">{loginError}</p>} {/* Display login error */}
                         <div className='flex flex-row'>
                         vous n&apos;avez pas de compte ?  
-                            <Link href="\signup" className='text-primary'>
-                                    s&apos;inscrire                            </Link>
+                            <Link href="\signup" className='text-light-green'>
+                                    s&apos;inscrire                           
+                            </Link>
                         </div>
                         <div className='container'>
-                            <CustomButton type="submit" size="lg" variant="shadow" color="primary" className="w-full mx-auto">
+                            <CustomButton type="submit" size="lg" variant="shadow"  className="w-full mx-auto bg-light-green text-white">
                                 Log in to your account
                             </CustomButton>
                         </div>
-                        {(loginSuccess && rrole === "USER") && redirect("/user")}
-                        {(loginSuccess && rrole === "ADMIN") && redirect("/admin")}
+                        {(loginSuccess && role === "USER") && redirect("/user")}
+                        {(loginSuccess && role === "ADMIN") && redirect("/admin")}
                     </form>
                 </div>
             </motion.div>

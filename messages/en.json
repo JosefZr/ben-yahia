@@ -1,0 +1,82 @@
+{
+    "Index": {
+      "title": "We care About Ur Smile!",
+      "subtitle": "Taking care of your oral health means more than just a bright smile! It's about keeping your teeth strong, gums healthy, and preventing problems before they start. Small steps like brushing and flossing regularly, eating a balanced diet, and visiting your dentist can make a big difference in your overall well-being. Invest in your smile – it's worth it!s"
+    },
+    "callAction":{
+      "text":"Make Appointment"
+    },
+    "Navbar":
+    {
+      "home":{
+        "name":"Home",
+        "hash":"#accueil"
+      },
+      "services":{
+        "name":"Services",
+        "hash":"#services"
+      },
+      "us":{
+        "name":"Why Us?",
+        "hash":"#nous"
+      },
+      "contact":{
+        "name":"Contact",
+        "hash":"#Contact"
+      },
+      "ЛБ":{
+        "name":"ЛБ",
+        "hash":"#"
+      }
+    },
+    "Services":
+    {
+      "Implant":{
+        "title":"Dental Implant",
+        "description":" Improve ur oral health. Natural looking. Feel proud of your smile. A permanent solution"
+      },
+      "Braces":{
+        "title":"Braces And Aligners",
+        "description":"Achieve the smile you've always dreamed of with our custom braces and aligners. We offer a range of options to fit your needs and budget, so you can straighten your teeth with confidence."
+      },
+      "Crown":{
+        "title":"Dental Crown",
+        "description":"Restore Your Smile with a Natural-Looking Crown. Improved Appearance. Enhanced StrengthProtection. Long-Lasting"
+      },
+      "Filling":{
+        "title":"dental filling",
+        "description":"Think of a dental filling as a tiny superhero cape for your tooth. It swoops in to patch up the boo-boos and keeps your smile super strong!"
+      },
+      "Bridges":{
+        "title":"Dental Bridges",
+        "description":"are fixed prosthetic devices that fill the gap created by one or more missing teeth. Anchored to your natural teeth or dental implants, bridges provide a natural-looking and durable solution to complete your smile."
+      },
+      "Check":{
+        "title":"routine dental check up",
+        "description":"Embrace a radiant smile and enduring health with our comprehensive dental check-ups – your gateway to preventative care and oral wellness."
+      },
+      "Whitening":{
+        "title":"teeth whitening",
+        "description":"Get a brighter smile with our easy teeth clean-up. It's quick, safe, and makes your teeth shine!"
+      },
+      "Scaling":{
+        "title":"Scaling and Polishing",
+        "description":"Keep your smile healthy and bright with our gentle cleaning and shine service for your teeth."
+      },
+      "Root":{
+        "title":"Root Canal Treatment ",
+        "description":"Fix a hurt tooth from the inside out to stop the pain and keep your tooth healthy"
+      },
+      "Wisdom":{
+        "title":"Wisdom Tooth Extraction",
+        "description":"Wave goodbye to your shy back-of-the-mouth tooth with a gentle tug! It's like the tooth fairy's grown-up cousin doing the magic."
+      },
+      "Denture":{
+        "title":"Full Denture China Dental Lab Dental  Outsourcing",
+        "description":"Dentures are like dress-up for your mouth, giving you a full set of dazzling pretend teeth for a winning smile!"
+      },
+      "header":{
+        "title":"High quality services for you "
+      }
+    }
+  }

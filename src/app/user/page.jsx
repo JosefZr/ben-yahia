@@ -8,7 +8,7 @@ import Explanation from './components/Explanation';
 import Footer from './components/Footer';
 import { formatISO } from 'date-fns';
 import "./style/calendar.css";
-
+import "../[locale]/globals.css"
 
 const ImageComp = styled.div`
     background-image: url("/pexels-goumbik-1419923.jpg");
@@ -23,7 +23,7 @@ const ImageComp = styled.div`
 `;
 
 const closeDays = [
-    formatISO(new Date(2024, 6, 1)), // Example closed day
+    formatISO(new Date(2024, 6, 30)), // Example closed day
     // Add other closed days here
 ];
 

@@ -1,3 +1,6 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+ 
+const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images:{
@@ -5,8 +8,10 @@ const nextConfig = {
         'utfs.io',
         'img.clerk.com',
         'subdomain',
-        'files.stripe.com',] ,// Add the required hostnames here
+        'files.stripe.com',] ,// Add the required hostnamesz here
     }
+    
 };
 
-export default nextConfig;
+
+export default withNextIntl(nextConfig);

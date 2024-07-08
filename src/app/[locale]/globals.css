@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root ,
+#root,
+#docs-root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --light-green:#19592A;
+  --bold-green:#214030;
+  --success:#17c964
+
+}
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;

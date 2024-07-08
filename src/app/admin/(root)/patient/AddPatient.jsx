@@ -1,32 +1,25 @@
-"use client"
-import CustomButton from '@/app/components/Button'
-import CreatePatientForm from '../../global/CreatePatientForm'
-import  Modal  from '@/app/components/Modal'; // Import the Modal component and Open component
+"use client";
+import CustomButton from '@/app/components/Button';
+import CreatePatientForm from '../../global/CreatePatientForm';
+import Modal from '@/app/components/Modal'; // Import the Modal component and Open component
+import { MdAdd } from "react-icons/md";
+import { classNames } from '@/app/user/utils/helpers';
 
-export default function AddPatient(){
+export default function AddPatient() {
     return (
         <div>
-        <Modal>
-            <Modal.Open opens ='patient-form'>
-                <CustomButton variant="solid" color='primary' className=' w-full mx-auto '>Ajouter un nouveau patient</CustomButton>
-            </Modal.Open>
-            <Modal.Window name='patient-form'>
-                <CreatePatientForm />
-            </Modal.Window>
-        </Modal>
+            <Modal>
+                <Modal.Open opens='patient-form'>
+                    <CustomButton variant="solid" className='w-full mx-auto text-md font-semibold bg-light-green text-white flex items-center justify-center'>
+                        {/* Use Tailwind's responsive utilities to show/hide the text */}
+                        <span className="hidden sm:inline">Ajouter un patient</span>
+                        <MdAdd  className=' text-xl'/>
+                    </CustomButton>
+                </Modal.Open>
+                <Modal.Window name='patient-form'>
+                    <CreatePatientForm />
+                </Modal.Window>
+            </Modal>
         </div>
-
-    )
+    );
 }
-// export default function AddPatient() {
-//     const [showModal, setShowModal] = useState(false);
-
-//     return (
-//         <div>
-//             <CustomButton className=" w-[90%] px-4 mx-auto text-center" color="primary" onClick={()=> setShowModal(!showModal)}> ajouter un patient</CustomButton>
-//             <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-//                 <CreatePatientForm onCloseModal={() => setShowModal(false)}/>
-//             </Modal>
-//         </div>
-//     )
-// }

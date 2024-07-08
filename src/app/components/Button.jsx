@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from "@nextui-org/react";
 import Link from 'next/link';
 
-function CustomButton({ radius, type, disabled, className, children, size, color, as, href, onClick, isLoading, variant, icon }) {
+function CustomButton({ endContent,radius, type, disabled, className, children, size, color, as, href, onClick, isLoading, variant, icon }) {
     return (
         <Button
             color={color}
@@ -17,6 +17,7 @@ function CustomButton({ radius, type, disabled, className, children, size, color
             type={type}
             disabled={disabled}
             radius={radius}
+            endContent={endContent}
         >
             {children}
         </Button>
