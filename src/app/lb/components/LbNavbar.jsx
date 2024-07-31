@@ -18,9 +18,6 @@ function LbNavbar() {
   const links = useLbNavbarLinks();
   const [applyTransform, setApplyTransform] = useState(false);
   const [applyButton, setApplyButton] = useState(false);
-  const handleJoinClick = () => {
-    window.location.href = 'https://t.me/lbstoma1';
-};
 
   useEffect(() => {
     const handleResize = () => {
@@ -73,7 +70,7 @@ function LbNavbar() {
           <CustomButton
             passHref
             variant="shadow"
-            onPress={handleJoinClick}
+            onPress={()=>   window.open( 'https://t.me/lbstoma1'," _blank")}
             icon={applyButton && <FaTelegram  size={24} />}
             className="font-semibold  bg-black text-gray-100 min-w-0"
           >

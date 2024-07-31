@@ -92,5 +92,9 @@
       "more":"For More",
       "work":"Work",
       "contact":"Contact Me"
+    },
+    "Error":{
+      "title":"This service will be soon available." ,
+      "description":"Please stay updated for more to come. We appreciate your patience!"
     }
   }

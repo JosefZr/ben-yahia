@@ -1,13 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import {  useRef, useState } from 'react';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import image from "../../../../public/logo/White Black Simple Illustration Dental Clinic Logo.png";
 import CustomButton from '../../components/Button';
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
-import { FaPlay } from "react-icons/fa";
 import {slideInButtonsPlay,banner} from "../../lib/Animation"
 
 function HeroLb() {
@@ -90,39 +87,41 @@ function HeroLb() {
                             exit="exit"
                         >
                             <CustomButton 
-                            as={Link} 
-                            href="#" 
                             size="lg" 
+                            onPress={onOpen}
                             className="rounded-2xl bg-black text-[#F3EEF3] font-semibold"
                             >
                             Make an Appointment
                             </CustomButton>
+                            <Modal size='lg' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
+                                <ModalContent>
+                                {(onClose) => (
+                                    <>
+                                    <ModalHeader className="flex flex-col gap-1 items-center">       
+                                        <Image
+                                            src="/logo/White Black Simple Illustration Dental Clinic Logo.png"
+                                            alt='logo'
+                                            width={200}
+                                            height={200}
+                                            className=' rounded-full'
+                                            quality={90}
+                                        />
+                                    </ModalHeader>
+                                    <ModalBody className="flex flex-col items-center text-center">
+                                        <h1 className=' text-3xl font-semibold mb-4'>This service will be soon available.</h1>
+                                        <p className='text-lg'>Please stay updated for more to come. We appreciate your patience!</p>
+                                    </ModalBody>
+                                    <ModalFooter className="flex justify-center">
+                                        <Button color="danger" variant="light" onPress={onClose}>
+                                        Close
+                                        </Button>
+                                    </ModalFooter>
+                                    </>
+                                )}
+                                </ModalContent>
+                            </Modal>
                         </motion.div>
                         </div>
-                        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
-                        <ModalContent>
-                            {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-                                <ModalBody className='px-0 py-0'>
-                                <iframe 
-                                    width="100%" 
-                                    height="315" 
-                                    src="https://www.youtube.com/embed/hFGDJlPFAt0?si=_ibl-dtmT8Uism1O" 
-                                    title="YouTube video player" 
-                                    frameBorder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerPolicy="strict-origin-when-cross-origin" 
-                                    allowFullScreen
-                                ></iframe>
-                                </ModalBody>
-                                <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>Close</Button>
-                                </ModalFooter>
-                            </>
-                            )}
-                        </ModalContent>
-                        </Modal>
                     </motion.div>
                     </div>
             </motion.div>

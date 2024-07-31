@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Image } from "@nextui-org/react";
 import { CiUser } from "react-icons/ci";
@@ -25,6 +25,8 @@ function MyNavbar() {
   const links = useLbNavbarLinks()
   const [applyTransform, setApplyTransform] = useState(false);
   const [applyButton, setApplyButton] = useState(false);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const e = useTranslations("Error")
 
   useEffect(() => {
     const handleResize = () => {
@@ -101,15 +103,42 @@ function MyNavbar() {
         <NavbarItem>
           <CustomButton
             passHref
-            as={Link}
+            // as={Link}
             variant="shadow"
-            href="/login"
+            // href="/login"
+            onPress={onOpen}
             icon={applyButton && <CiUser size={24}  />}
             className="font-semibold bg-light-green text-gray-100 min-w-0"
           >
-            {applyButton ?"":"Make Appointment"}
+            {applyButton ?"":`${action("text")}`}
           </CustomButton>
-          
+          <Modal size='lg' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
+                <ModalContent>
+                {(onClose) => (
+                    <>
+                    <ModalHeader className="flex flex-col gap-1 items-center">       
+                        <Image
+                            src="/logo/White Black Simple Illustration Dental Clinic Logo.png"
+                            alt='logo'
+                            width={200}
+                            height={200}
+                            className=' rounded-full'
+                            quality={90}
+                        />
+                    </ModalHeader>
+                    <ModalBody className="flex flex-col items-center text-center">
+                        <h1 className=' text-3xl font-semibold mb-4'>{e("title")}</h1>
+                        <p className='text-lg'>{e("description")}</p>
+                    </ModalBody>
+                    <ModalFooter className="flex justify-center">
+                        <Button color="danger" variant="light" onPress={onClose}>
+                        Close
+                        </Button>
+                    </ModalFooter>
+                    </>
+                )}
+                </ModalContent>
+            </Modal>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="flex flex-col  gap-5 justify-start overflow-hidden pt-10 pl-10">

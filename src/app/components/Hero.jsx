@@ -17,7 +17,7 @@ export default function Hero() {
   const heroTitle = t('title');
 
   const styledHeroTitle = heroTitle.split(' ').map((word, index) => 
-    word.toLowerCase() === 'care' || word.toLowerCase() === "soucions"
+    word.toLowerCase() === 'care' || word.toLowerCase() === "souriez"
       ? <span key={index} className='text-bold-green font-bold'>{word}</span>
       : word
   ).reduce((prev, curr) => [prev, ' ', curr]);

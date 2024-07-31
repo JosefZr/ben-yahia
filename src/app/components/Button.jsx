@@ -2,9 +2,10 @@ import React from 'react';
 import { Button } from "@nextui-org/react";
 import Link from 'next/link';
 
-function CustomButton({ endContent,radius, type, disabled, className, children, size, color, as, href, onClick, isLoading, variant, icon }) {
+function CustomButton({onPress, endContent,radius, type, disabled, className, children, size, color, as, href, onClick, isLoading, variant, icon }) {
     return (
         <Button
+            onPress={onPress}
             color={color}
             onClick={onClick}
             isLoading={isLoading}
