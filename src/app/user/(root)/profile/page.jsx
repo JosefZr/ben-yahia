@@ -2,8 +2,8 @@
 import CreatePatientForm from '@/app/admin/global/CreatePatientForm';
 import React from 'react';
 import useUserId from '../../hooks/useUserId';
-import EditProfile from '../../components/editProfile';
 import Spinner from '@/app/components/Spinner';
+import EditProfile from '../../components/EditProfile';
 export default function Profile() {
   const { userInfo, isError, isLoading } = useUserId();
 
