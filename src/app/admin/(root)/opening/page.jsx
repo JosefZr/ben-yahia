@@ -11,7 +11,6 @@ import prisma from '@/app/lib/prisma.js'
 import '../../../user/style/calendar.css'
 import { useMutation, useQuery } from 'react-query'
 // import { changeOpeningHours, closeDay, getClosedDays, openDay } from '@/server/trpc/router/opening.js'
-
 export default function Opening(){
     const [enabled, setEnabled] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -46,7 +45,7 @@ export default function Opening(){
   ]);
 
   const { mutate: saveOpeningHrs } = useMutation(
-    changeOpeningHours,
+    // changeOpeningHours,
     {
       onSuccess: () => toast.success('Opening hours saved'),
       onError: () => toast.error('Something went wrong'),
