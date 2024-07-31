@@ -1,9 +1,7 @@
 'use client'
 import { useCallback, useEffect, useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
 import Avatar from './avatar'
 export default function AccountForm({ user }) {
-    const supabase = createClient()
     const [loading, setLoading] = useState(true)
     const [fullname, setFullname] = useState(null)
     const [username, setUsername] = useState(null)
@@ -35,7 +33,7 @@ export default function AccountForm({ user }) {
         } finally {
         setLoading(false)
         }
-    }, [user, supabase])
+    }, [user,])
 
     useEffect(() => {
         getProfile()

@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaPlay } from "react-icons/fa";
 import Image from 'next/image';
 import CustomButton from './Button';
 import image from "../../../public/logo/White Black Simple Illustration Dental Clinic Logo.png";
