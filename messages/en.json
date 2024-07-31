@@ -1,7 +1,7 @@
 {
     "Index": {
       "title": "We care About Ur Smile!",
-      "subtitle": "Taking care of your oral health means more than just a bright smile! It's about keeping your teeth strong, gums healthy, and preventing problems before they start. Small steps like brushing and flossing regularly, eating a balanced diet, and visiting your dentist can make a big difference in your overall well-being. Invest in your smile – it's worth it!s"
+      "subtitle": "Taking care of your oral health means more than just a bright smile! It's about keeping your teeth strong, gums healthy, and preventing problems before they start. our duty towards our patients is to help them to get a healthy smile."
     },
     "callAction":{
       "text":"Make Appointment"
@@ -26,7 +26,7 @@
       },
       "ЛБ":{
         "name":"ЛБ",
-        "hash":"#"
+        "hash":"/lb"
       }
     },
     "Services":
@@ -78,5 +78,19 @@
       "header":{
         "title":"High quality services for you "
       }
+    },
+    "About":{
+      "title":"Meet our leader of the Team" ,
+      "description":"Dr.M.BENYAHIA is an orthodontist with extensive experience in endodontic care, offering a range of basic dental treatments and surgeries. With over 24 years in the field, he is a seasoned dentist providing comprehensive oral healthcare services."
+    },
+    "Email":{
+      "title":"exceptional service demands exceptional patients.",
+      "question":"how we can help u?"
+    },
+    "Footer":{
+      "title":"stay healthy",
+      "more":"For More",
+      "work":"Work",
+      "contact":"Contact Me"
     }
   }

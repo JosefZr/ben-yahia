@@ -1,7 +1,7 @@
 {
     "Index": {
-      "title": "Nous nous soucions de votre sourire!",
-      "subtitle": "Prendre soin de sa santé buccodentaire signifie bien plus qu’un simple sourire éclatant ! Il s'agit de garder des dents fortes, des gencives saines et de prévenir les problèmes avant qu'ils ne surviennent. De petites mesures comme se brosser les dents et utiliser régulièrement la soie dentaire, avoir une alimentation équilibrée et consulter votre dentiste peuvent faire une grande différence dans votre bien-être général. Investissez dans votre sourire – ça vaut le coup !s"
+      "title": " Souriez tant que vous avez encore de dents",
+      "subtitle": "Prendre soin de sa santé buccodentaire signifie bien plus qu’un simple sourire éclatant ! Il s'agit de garder des dents fortes, des gencives saines et de prévenir les problèmes avant qu'ils ne surviennent. De petites mesures comme se brosser les dents et utiliser régulièrement la soie dentaire, "
     },
     "callAction":{
       "text":"Prendre Rendez-vous"
@@ -26,7 +26,7 @@
       },
       "ЛБ":{
         "name":"ЛБ",
-        "hash":"#"
+        "hash":"/lb"
       }
     },
     "Services":
@@ -78,5 +78,19 @@
       "header":{
         "title":"Services de haute qualité  pour vous "
       }
+    },
+    "About":{
+      "title":"Rencontrez notre chef d'équipe" ,
+      "description":"Le Dr M. BENYAHIA est un orthodontiste possédant une vaste expérience en soins endodontiques, offrant une gamme de traitements dentaires de base et de chirurgies. Avec plus de 24 ans d'expérience dans le domaine, il est un dentiste chevronné fournissant des services complets de soins bucco-dentaires."
+    },
+    "Email":{
+      "title":"un service exceptionnel exige des patients exceptionnels.",
+      "question":"Comment puis-je t'aider?"
+    }, 
+    "Footer":{
+      "title":"Bien-être",
+      "more":"Pour Plus",
+      "work":"De Travail",
+      "contact":"Contacter moi"
     }
   }

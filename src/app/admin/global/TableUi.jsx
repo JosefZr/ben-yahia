@@ -2,7 +2,6 @@ import React, { useState, useMemo, useCallback } from "react";
 import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Button,Tooltip,Input,Pagination,User,Link
 } from "@nextui-org/react";
 import { IoSearch } from "react-icons/io5";
-
 import { DeleteIcon } from "./DeleteIcon";
 import { EyeIcon } from "./EyeIcon";
 import { EditIcon } from "./EditIcon";
@@ -64,12 +63,12 @@ export default function TableUi({ data }) {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col justify-center gap-4 ">
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"
-            placeholder="Search..."
+            placeholder="Search by name or email"
             startContent={<IoSearch />}
             value={filterValue}
             onClear={() => setFilterValue("")}
@@ -96,8 +95,8 @@ export default function TableUi({ data }) {
           </label>
         </div>
       </div>
-
-      <Table aria-label="Example table with custom cells ">
+      <div className=" xl:w-2xl">
+      <Table aria-label="Example table with custom cells" className=" ">
         <TableHeader>
           {columns.map((column) => (
             <TableColumn
@@ -124,10 +123,10 @@ export default function TableUi({ data }) {
                       )}
                     />
                   ) : column.uid === "actions" ? (
-                    <div className="relative flex items-center gap-2">
+                    <div className="relative flex items-center w-fit">
                       <Tooltip content="Details">
                         <Button variant="light" isIconOnly>
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                          <span className="text-lg  text-default-400 cursor-pointer active:opacity-50">
                             <EyeIcon />
                           </span>
                         </Button>
@@ -150,21 +149,27 @@ export default function TableUi({ data }) {
                           />
                         </Modal.Window>
                       </Modal>
-                      <Button
-                        variant="light"
-                        isIconOnly
-                        onClick={() => {
-                          console.log("Item ID:", item.id);
-                          setShowForm((show) => !show);
-                          setSelectedPatientId(item.id);
-                        }}
-                      >
-                        <Tooltip content="Modifier">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                            <EditIcon />
-                          </span>
-                        </Tooltip>
-                      </Button>
+                      <Modal>
+                        <Modal.Open opens="edit">
+                        <Button
+                          variant="light"
+                          isIconOnly
+                          // onClick={() => {
+                          //   setSelectedPatientId(item.id);
+                          // }}
+                        >
+                          <Tooltip content="Modifier">
+                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                              <EditIcon />
+                            </span>
+                          </Tooltip>
+                        </Button>
+                        </Modal.Open>
+                        <Modal.Window name="edit">
+                          <CreatePatientForm patientToEdit={item}/>
+                        </Modal.Window>
+                      </Modal>
+                      
                     </div>
                   ) : (
                     item[column.uid]
@@ -175,6 +180,8 @@ export default function TableUi({ data }) {
           )}
         </TableBody>
       </Table>
+      </div>
+      
 
       <div className="py-2 px-2 flex justify-center items-center">
         <Pagination
@@ -191,11 +198,11 @@ export default function TableUi({ data }) {
         />
       </div>
 
-      {showForm && (
+      {/* {showForm && (
         <CreatePatientForm
           patientToEdit={data.find((patient) => patient.id === selectedPatientId)}
         />
-      )}
+      )} */}
     </>
   );
 }

@@ -70,6 +70,14 @@ model Appointment {
 
   @@index([userId])
 }
+enum AppoinStatus{
+  on
+  off
+}
+model AppontmentStatus {
+  id Int @id 
+  status AppoinStatus @default(off) 
+}
 model Rating{
   id        Int      @id @default(autoincrement())
   rating     Int

@@ -49,6 +49,13 @@ export default function Reserving() {
         { key: 'Braces', label: t("Braces.title") },
         { key: 'Crown', label: t("Crown.title") },
         { key: 'Filling', label: t("Filling.title") },
+        { key: 'Bridges', label: t("Bridges.title") },
+        { key: 'Check', label: t("Check.title") },
+        { key: 'Whitening', label: t("Whitening.title") },
+        { key: 'Scaling', label: t("Scaling.title") },
+        { key: 'Root', label: t("Root.title") },
+        { key: 'Wisdom', label: t("Wisdom.title") },
+        { key: 'Denture', label: t("Denture.title") },
     ];
     return (
         <div className=' bg-default rounded-lg p-8 '>
@@ -70,25 +77,18 @@ export default function Reserving() {
                 <label htmlFor='email'>Email</label>
                 <Input
                     {...register("email", { required: "this information is required" })}
-                    id='email'
+                    id='email csqljkcn qlsdjcn mlqsdjnclkqsnc qsn dlqsvc ùsqnv lùqsnvcùsqnc olùin ùwvnclùxwfvn c c*pck xncù lk'
                     type="email"
                     labelPlacement="outside"
                     placeholder="Enter Your Email"
                     size='lg'
                     variant='faded'
+                    autocomplete="email" // Adding autocomplete attribute
                 />
                 {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
             <div className=' flex flex-col w-full'>
                 <label htmlFor='note'>Service</label>
-                {/* <Input
-                {...register("note", { required: "this information is required" })}
-                    id='note'
-                    type="service"
-                    labelPlacement="outside"
-                    placeholder="Enter Votre Email"
-                    className=' h-10'
-                /> */}
                 <Select 
                 {...register("note", { required: "this information is required" })}
                     label="Select a service" 
@@ -106,21 +106,9 @@ export default function Reserving() {
                 </Select>
                 {errors.note && <p className="text-red-500">{errors.note.message}</p>}
             </div>
-            {/* <div className=' flex flex-col w-full'>
-                <label htmlFor='date'>Date</label>
-                <Input
-                    {...register("date", { required: "this information is required" })}
-                    id='date'
-                    type="date"
-                    labelPlacement="outside"
-                    placeholder="Enter Votre Email"
-                    className=' h-10'
-                />
-                {errors.date && <p className="text-red-500">{errors.date.message}</p>}
-            </div> */}
             <Modal>
                 <Modal.Open opens="calendar">
-                    <CustomButton radius="full" size="lg" className=' self-end min-w-36 bg-light-green' color='primary' type="submit" onClick={()=>handleSubmit(onSubmit, onError)}>
+                    <CustomButton radius="xl" size="lg" className=' self-end min-w-36 bg-light-green' color='primary' type="submit" onClick={()=>handleSubmit(onSubmit, onError)}>
                         Take Appointment
                     </CustomButton>
                 </Modal.Open>
@@ -133,11 +121,7 @@ export default function Reserving() {
                     )}
                 </Modal.Window>
             </Modal>
-            {/* <CustomButton type="submit" radius="full" className=' self-end min-w-32' color='primary' >
-                Take Appointment
-            </CustomButton> */}
         </form>
-            {/* <button onClick={handleVerifyClick}>Verify</button> */}
         </div>
     )
 }

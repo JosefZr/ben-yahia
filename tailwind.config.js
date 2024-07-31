@@ -12,7 +12,18 @@ export const theme = {
     colors: {
       "light-green": "var(--light-green)",
       "bold-green": "var(--bold-green)",
-      "success": "var(--success)"
+      "light-purple": "var(--light-purple)",
+      "bold-purple": "var(--bold-purple)",
+      "word-purple": "var(--word-purple)",
+      "success": "var(--success)",
+      'gray-700': '#303136',
+      'gray-200': '#f4f4f5',
+    },
+    boxShadow: {
+      'moon': 'inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb',
+    },
+    screens: {
+      'xs': '320px',
     },
   },
 };

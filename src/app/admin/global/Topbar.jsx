@@ -1,6 +1,8 @@
 import { ThemeSwitcher } from '@/app/components/ThemeSwitcher'
-import { Input, User } from '@nextui-org/react'
 import React from 'react'
+
+import Header from './Header'
+import HeaderMobile from './header-mobile'
 
 export default function TopBar() {
     return (
@@ -8,9 +10,10 @@ export default function TopBar() {
             {/* <div className='flex rounded-lg'>
                 <Input label="Search"radius='md' startContent={<IoSearch />}/>
             </div> */}
-            <div className='flex gap-2 items-center'>
-                <User/>
+            <div className='flex justify-between gap-2 w-full items-center'>
                 <ThemeSwitcher/>
+                <Header/>
+                <HeaderMobile/>
             </div>
         </div>
     )

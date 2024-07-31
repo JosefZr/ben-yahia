@@ -1,118 +1,158 @@
-"use client"
-import React, { useState } from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
-import Link from "next/link"
-import CustomButton from "./Button.jsx";
-import { motion } from "framer-motion";
-import { useActiveSectionContext } from "../../context/activeSection.jsx";
-import { ThemeSwitcher } from "./ThemeSwitcher.jsx";
+"use client";
+import React, { useEffect, useState } from "react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Image } from "@nextui-org/react";
-import LocalSwitcher from './LocaleSwitcher';
+import { CiUser } from "react-icons/ci";
+import styled from "styled-components";
+
+import { useActiveSectionContext } from "../../context/activeSection.jsx";
+import Link from "next/link";
+import CustomButton from "./Button.jsx";
+import NewSwitcher from "./NewSwitcher.jsx";
+import { useLbNavbarLinks } from '../lib/data'; // Adjust the path as necessary
+import {slideIn, prespective} from "../lib/Animation"
+import LocaleSwitcher from "./LocaleSwitcher.jsx";
+import { ThemeSwitcher } from "./ThemeSwitcher.jsx";
 import { useTranslations } from "next-intl";
-
-
+const NavItem = styled.div`
+  perspective: 120px;
+  perspective-origin: bottom;
+`;
+ 
 function MyNavbar() {
-    const t = useTranslations('Navbar');
-    
-    const links = [
-            {
-            name: t("home.name"),
-            hash: t("home.hash")
-            },
-            {
-            name: t("services.name"),
-            hash: t("services.hash")
-            },
-            {
-            name: t("us.name"),
-            hash: t("us.hash")
-            },
-            {
-            name: t("contact.name"),
-            hash: t("contact.hash")
-            },
-            {
-            name: t("ЛБ.name"),
-            hash: t("ЛБ.hash")
-            }
-        ];
-    const action = useTranslations("callAction")
-    const[isMenuOpen, setIsMenuOpen] = useState()
-    const {activeSection, setActiveSection, setTimeOfLastClick} = useActiveSectionContext();
-    return (
-        <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-18 transition-all ">
-            <NavbarContent justify="start">
-                <NavbarMenuToggle
-                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                    className="md:hidden"
-                />
-                <NavbarBrand className=" flex flex-row justify-center items-center font-extrabold text-md">
-                    <Image
-                        src="/logo/Remove background project.png"
-                        alt="Logo" 
-                        width={80}
-                        className=" min-w-10"
-                    /> 
-                    <h1 className="md:max-[920px]:hidden max-[500px]:hidden ">Light STOMATOLOGY</h1>
-                </NavbarBrand>
-            </NavbarContent>
+  const action = useTranslations("callAction")
+  const links = useLbNavbarLinks()
+  const [applyTransform, setApplyTransform] = useState(false);
+  const [applyButton, setApplyButton] = useState(false);
 
-            <NavbarContent className="hidden md:flex gap-2 items-center basis-full" justify="center">
-                {links.map((link)=>(
-                    <motion.NavbarItem key={link.hash} className="text-nowrap text-lg font-semibold">
-                        <Link 
-                            href={link.hash}
-                            passHref
-                            className={`${link.name===activeSection?"text-light-green border-b-3 border-light-green pb-5":"text-foreground" }
-                            ${link.name === "ЛБ"&& " font-extrabold"}`} 
-                            onClick={()=>{
-                                setActiveSection(link.name)
-                                setTimeOfLastClick(Date.now())
-                            }}
-                        >
-                            {link.name}
-                        </Link>
-                    </motion.NavbarItem>
-                ))}
-            </NavbarContent>
+  useEffect(() => {
+    const handleResize = () => {
+      const shouldApply = window.innerWidth < 500;
+      const shouldApplyButton = window.innerWidth <640
+      setApplyTransform(shouldApply);
+      setApplyButton(shouldApplyButton);
+    };
 
-            <NavbarContent justify='end'>
-                <LocalSwitcher/>
-            </NavbarContent>
-            <NavbarContent justify="end">
-            <ThemeSwitcher/>
-            <localSwitcher/>
-                <NavbarItem className=" sm:flex">
-                    <CustomButton 
-                        passHref
-                        as={Link} 
-                        variant='shadow' 
-                        href="/login" 
-                        className="font-semibold bg-light-green text-gray-100"
-                        // icon={<FaRegUser />} 
-                    >
-                        {action("text")}
-                    </CustomButton>
-                </NavbarItem>
-            </NavbarContent>
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
-            <NavbarMenu>
-                {links.map((link)=>(
-                    <NavbarMenuItem key={link.hash}>
-                        <Link 
-                            className="w-full"
-                            href={link.hash}
-                            size="lg"
-                            passHref
-                        >
-                            {link.name}
-                        </Link>
-                    </NavbarMenuItem>
-                ))}
-            </NavbarMenu>
-        </Navbar>
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  return (
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-18">
+      <NavbarContent justify="start">
+        <AnimatePresence>
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="md:hidden w-fit"
+            />
+        </AnimatePresence>
+      </NavbarContent>
+      <NavbarContent justify={`${applyTransform ? "center" : "start"}`}>
         
-    )
+        <NavbarBrand className="flex flex-row justify-center items-center font-extrabold text-md">
+          <Image
+            src="/logo/Remove background project.png"
+            alt="Logo"
+            width={80}
+            className="min-w-10"
+          />
+          <h1 className="md:max-[920px]:hidden max-[500px]:hidden">
+            Light STOMATOLOGY
+          </h1>
+        </NavbarBrand>
+      </NavbarContent>
+      <NavbarContent className="hidden md:flex gap-2 items-center basis-full" justify="center">
+        {links.map((link, i) => (
+          <motion.div
+            key={link.hash}
+            className="text-nowrap text-lg font-semibold"
+            initial="initial"
+            animate="enter"
+            exit="exit"
+            variants={prespective(i)}
+          >
+            <NavbarItem>
+              <Link
+                href={link.hash}
+                passHref
+                className={`${link.name === activeSection ? "text-light-green border-b-3 border-light-green pb-5" : "text-foreground"} ${link.name === "ЛБ" && "font-extrabold"}`}
+                onClick={() => {
+                  setActiveSection(link.name);
+                  setTimeOfLastClick(Date.now());
+                }}
+              >
+                {link.name}
+              </Link>
+            </NavbarItem>
+          </motion.div>
+        ))}
+      </NavbarContent>
+      <NavbarContent justify="end" className="max-sm:hidden">
+      <ThemeSwitcher/>
+      <LocaleSwitcher/>
+
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <CustomButton
+            passHref
+            as={Link}
+            variant="shadow"
+            href="/login"
+            icon={applyButton && <CiUser size={24}  />}
+            className="font-semibold bg-light-green text-gray-100 min-w-0"
+          >
+            {applyButton ?"":"Make Appointment"}
+          </CustomButton>
+          
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu className="flex flex-col  gap-5 justify-start overflow-hidden pt-10 pl-10">
+        {links.map((link, i) => (
+          <NavItem key={i}>
+            <motion.div variants={prespective(i)} animate='enter' initial="initial" exit="exit">
+              <NavbarMenuItem>
+                <Link className="text-[46px] font-semibold hover:text-light-green" href={link.hash} passHref>
+                  {link.name}
+                </Link>
+              </NavbarMenuItem>
+            </motion.div> 
+          </NavItem>
+        ))}
+        <div className="relative flex flex-row items-center justify-start gap-5 mt-10 ">
+          <NavItem key="new-switcher">
+            <motion.div
+              variants={slideIn(links.length)}
+              animate="enter"
+              initial="initial"
+              exit="exit"
+            >
+              <NavbarMenuItem>
+                <NewSwitcher />
+                <LocaleSwitcher/>
+              </NavbarMenuItem>
+            </motion.div>
+          </NavItem>
+          <NavItem key="locale-switcher">
+            <motion.div
+              variants={slideIn(links.length + 1)}
+              animate="enter"
+              initial="initial"
+              exit="exit"
+            >
+              <NavbarMenuItem>
+              </NavbarMenuItem>
+            </motion.div>
+          </NavItem>
+        </div>
+      </NavbarMenu>
+    </Navbar>
+  );
 }
 
-export default MyNavbar
+export default MyNavbar;

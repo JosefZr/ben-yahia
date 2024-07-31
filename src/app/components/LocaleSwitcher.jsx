@@ -6,14 +6,13 @@ export default function LocaleSwitcher() {
   const [isPending, startTransition] = useTransition();
   const [mounted, setMounted] = useState(false);
   const localeActive = useLocale();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
-
-  const router = useRouter();
 
   const onSelectChange = (e) => {
     const nextLocale = e.target.value;
@@ -31,8 +30,8 @@ export default function LocaleSwitcher() {
         defaultValue={localeActive}
         disabled={isPending}
       >
-        <option value='en'>English</option>
-        <option value='fr'>French</option>
+        <option value='en' className=' bg-default-50 text-md '>English</option>
+        <option value='fr' className=' bg-default-50 text-md '>French</option>
       </select>
     </label>
   );

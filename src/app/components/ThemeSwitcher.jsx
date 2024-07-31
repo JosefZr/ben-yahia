@@ -37,7 +37,7 @@ export function ThemeSwitcher() {
     if (!mounted) return null;
 
     return (
-        <div className="flex items-center transition-opacity hover:opacity-80 cursor-pointer">
+        <div className="flex items-center transition-opacity hover:opacity-80 cursor-pointe max-sm:hidden" >
             <button onClick={toggleTheme} className=" text-3xl">
                 {dark ? <MdDarkMode /> : <PiSunDimFill />}
             </button>

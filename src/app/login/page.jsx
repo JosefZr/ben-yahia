@@ -4,10 +4,11 @@ import { Input } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import Image from 'next/image';
+import { Image } from "@nextui-org/react";
 import { handleLogin } from './action';
 import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { VscKey } from "react-icons/vsc";
 import image from "../../../public/logo/logo2.png"
 
 import { IoIosMail } from "react-icons/io";
@@ -43,31 +44,39 @@ export default function Login() {
     return (
         <div className='max-w-xl mx-auto my-auto max-h-full'>
             <motion.div className="scroll-mt-28 mt-10 p-10 bg-slate-100 dark:bg-slate-800 rounded-xl px-20">
-                <div className='flex flex-col justify-center items-center gap-3'>
-                    <Image src={image} alt="logo" height={150} />
+                <div className='flex flex-col justify-start items-center gap-3'>
+                    <div className='  flex flex-row justify-start items-center font-extrabold text-md'>
+                        <Image
+                            src="/logo/Remove background project.png"
+                            alt="Logo" 
+                            width={80}
+                            className=" min-w-10"
+                        /> 
+                        <h1 className="md:max-[920px]:hidden max-[500px]:hidden ">Light STOMATOLOGY</h1>    
+                    </div>
                     <div className=' flex items-start w-full pb-5'>
                         <h1 className='capitalize text-2xl font-semibold'>Log in</h1>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col gap-3 w-full mx-auto'>
+                        <label htmlFor="email">Email Address</label>
                         <Input
                             {...register("email", { required: "Cette case est obligatoire" })}
                             id='email'
                             type="email"
                             placeholder='Entrer votre Email'
                             variant='bordered'
-                            endContent={<IoIosMail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
-                            label="Email"
+                            startContent={<IoIosMail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                             autoComplete='email'
                             size='lg'
                             radius='lg'
                         />
                         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                        <label htmlFor="password">password</label>
                         <Input
                             {...register("password", { required: "Cette case est obligatoire" })}
                             autoComplete="current-password"
                             id="password"
                             placeholder='Enter your password'
-                            label="Password"
                             endContent={
                                 <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                                     {isVisible ? (
@@ -79,6 +88,7 @@ export default function Login() {
                             }
                             type={isVisible ? "text" : "password"}
                             variant='bordered'
+                            startContent={<VscKey className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                             size='lg'
                             radius='lg'
                         />

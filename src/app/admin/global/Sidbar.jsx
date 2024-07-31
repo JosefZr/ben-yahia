@@ -1,44 +1,10 @@
 "use client"
 import React, { useState } from 'react'
 import Link from 'next/link'
-import image from "../../../../public/_0990d51c-9f15-4894-bfc9-da15152c1185-removebg.png"
 import Image from 'next/image';
 import { IoMenu } from "react-icons/io5";
-import { IoHomeOutline } from "react-icons/io5";
-import { SlCalender } from "react-icons/sl";
-import { IoSettingsOutline } from "react-icons/io5";
-import { FaUserDoctor } from "react-icons/fa6";
-import { LiaUserInjuredSolid } from "react-icons/lia";
-import { FaUserInjured } from "react-icons/fa";
+import { navList } from '@/app/lib/data';
 
-const navList= [{
-    title:"accueil",
-    url: "/admin" ,
-    icon:<IoHomeOutline />,
-},
-{
-    title:"patient",
-    url:"/admin/patient",
-    icon:<FaUserInjured />,
-},
-{
-    title:"rendez-vous",
-    url:"/admin/rendez-vous",
-    icon:<SlCalender />,
-},  {
-    title:"docteur",
-    url:"/admin/docteur",
-    icon:<FaUserDoctor />,
-},{
-    title: "paramétre",
-    icon: <IoSettingsOutline />,
-    subItems: [
-        { title: "Settings", url: "/admin/settings" },
-        { title: "Opening Hours", url: "/admin/opening" },
-        { title: "Menu", url: "/admin/menu" },
-    ],
-},
-];
 // MenuItem component
 const MenuItem = ({ title, to, icon, selected, setSelected,subItems  }) => {
     const [show, setShow] = useState(false);
