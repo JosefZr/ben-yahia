@@ -10,7 +10,14 @@ import  {capitalize, classNames, weekdayIndexToName} from "../../../user/utils/h
 import prisma from '@/app/lib/prisma.js'
 import '../../../user/style/calendar.css'
 import { useMutation, useQuery } from 'react-query'
-// import { changeOpeningHours, closeDay, getClosedDays, openDay } from '@/server/trpc/router/opening.js'
+const closeDay  = [
+  formatISO(new Date(2024, 6, 30)), // Example closed day
+  // Add other closed days here
+];
+const openDay  = [
+  formatISO(new Date(2024, 7, 30)), // Example closed day
+  // Add other closed days here
+];
 export default function Opening(){
     const [enabled, setEnabled] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -33,6 +40,7 @@ export default function Opening(){
         setDays(fetchedDays);
       }
     }, [fetchedDays, queryError]);
+
 
   const [openingHrs, setOpeningHrs] = useState([
     { name: 'sunday', openTime: days[0]?.openTime, closeTime: days[0]?.closeTime },
@@ -58,7 +66,7 @@ export default function Opening(){
   const { mutate: openDayMutation } = useMutation(openDay, {
     onSuccess: () => refetch(), // Refetch data after successful open
   });
-  const { data: closedDays, refetch } = useQuery('closedDays',getClosedDays);
+  // const { data: closedDays, refetch } = useQuery('closedDays',getClosedDays);
 
   const dayIsClosed = selectedDate && closedDays?.includes(formatISO(selectedDate));
 
