@@ -1,7 +1,7 @@
 "use client";
-import { Nunito_Sans } from "next/font/google";
+import { Nunito_Sans } from '@next/font/google';
+
 import React from 'react';
-// import '../../[locale]/globals.css';
 import "../[locale]/globals.css"
 import ClientProviders from "../[locale]/ClientProviders";
 
