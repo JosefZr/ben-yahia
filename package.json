@@ -25,6 +25,7 @@
     "@mui/material": "^5.15.16",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-data-grid": "^7.3.2",
+    "@next/font": "^14.2.5",
     "@nextui-org/date-picker": "^2.1.1",
     "@nextui-org/input": "^2.2.1",
     "@nextui-org/modal": "^2.0.35",

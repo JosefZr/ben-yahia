@@ -1,5 +1,7 @@
 "use client"
 import { Providers } from '@/providers';
+import { Nunito_Sans } from "@next/font/google";
+
 import React from 'react';
 import "../[locale]/globals.css"
 
@@ -8,7 +10,11 @@ import { Toaster } from 'react-hot-toast';
 import SideBar from './components/SideBar';
 import Header from './components/Header';
 import ClientProviders from '../[locale]/ClientProviders';
+
+const nunitoSans = Nunito_Sans({ subsets: ['latin'] });
+
 export default function RootLayout({ children }) {
+
     const queryClient = new QueryClient({
         defaultOptions:{
             queries: {
@@ -18,7 +24,7 @@ export default function RootLayout({ children }) {
 
     return (
         <html lang="en" className="scroll-smooth relative" suppressHydrationWarning>
-            <body  suppressHydrationWarning={true}>
+            <body className={`${nunitoSans.className}`} suppressHydrationWarning={true}>
             
             <ClientProviders>
 
