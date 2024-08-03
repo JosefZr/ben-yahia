@@ -10,7 +10,7 @@ import { useActiveSectionContext } from "../../context/activeSection.jsx";
 import Link from "next/link";
 import CustomButton from "./Button.jsx";
 import NewSwitcher from "./NewSwitcher.jsx";
-import { useLbNavbarLinks, useNavbarLinks } from '../lib/data'; // Adjust the path as necessary
+import { useNavbarLinks } from '../lib/data'; // Adjust the path as necessary
 import {slideIn, prespective} from "../lib/Animation";
 import LocaleSwitcher from "./LocaleSwitcher.jsx";
 import { ThemeSwitcher } from "./ThemeSwitcher.jsx";
@@ -59,7 +59,7 @@ function MyNavbar() {
       <NavbarContent justify={`${applyTransform ? "center" : "start"}`}>
         <NavbarBrand className="flex flex-row justify-center items-center font-extrabold text-md">
           <Image
-            src="/logo/Remove background project.png"
+            src="/logo/Remove background project.webp"
             alt="Logo"
             width={80}
             height={80}

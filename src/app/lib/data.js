@@ -143,7 +143,6 @@ import { IoHomeOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaUserDoctor } from "react-icons/fa6";
-import { LiaUserInjuredSolid } from "react-icons/lia";
 import { FaUserInjured } from "react-icons/fa";
 
 export const navList= [{

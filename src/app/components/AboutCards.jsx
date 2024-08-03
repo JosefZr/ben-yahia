@@ -1,10 +1,9 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, Image, CardFooter } from "@nextui-org/react";
+import { Card, CardHeader, Image, CardFooter } from "@nextui-org/react";
 import { motion } from 'framer-motion';
 import { imageAnimate, iconAnimate, textAnimate } from "../lib/Animation";
 
 export default function AboutCards({ titre, content, image, icon, direction, index }) {
-    // Function to insert <br> after each period
     const formatContent = (text) => {
         return text.split('.').map((sentence, index, array) => {
             if (index < array.length - 1) {
@@ -23,7 +22,7 @@ export default function AboutCards({ titre, content, image, icon, direction, ind
                         initial={"offscreen"}
                         whileInView={"onscreen"}
                         viewport={{ once: false, amount: 0.2 }}
-                        className='raltive w-fit'
+                        className='relative w-fit'
                     >
                         <picture>
                             <source srcSet={`${image}.webp`} type="image/webp" />
@@ -33,11 +32,12 @@ export default function AboutCards({ titre, content, image, icon, direction, ind
                                 width={500}
                                 height={500}
                                 className='object-cover w-full'
+                                priority={false} // Only use priority for critical images
                                 loading="lazy"
                             />
                         </picture>
                     </motion.div>
-                    <div className='absolute z-20 w-fit  bottom-[-4%] left-[50%] transform -translate-x-1/2'>
+                    <div className='absolute z-20 w-fit bottom-[-4%] left-[50%] transform -translate-x-1/2'>
                         <div className="bg-default-50 dark:bg-default-700 p-4 rounded-full border-5 border-default-100 dark:border-default-900 text-start">
                             <motion.div className="w-10 h-10 fill-none text-start"
                                 initial={"offscreen"}
