@@ -1,17 +1,15 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import dynamic from 'next/dynamic';
-const Loader = dynamic(() => import('../components/Loader'));
-
-const SectionDivider = dynamic(() => import('../components/SectionDivider'));
-const Services = dynamic(() => import('../components/Services'));
-const About = dynamic(() => import('../components/About'));
-const AboutCopy = dynamic(() => import('../components/AboutCopy'));
-const Footer = dynamic(() => import('../components/Footer'));
 
 import { motion , AnimatePresence } from "framer-motion";
 import MyNavbar from "../components/Navbar";
 import Intro from "../components/Intro";
+import Loader from "../components/Loader";
+import Services from "../components/Services";
+import SectionDivider from "../components/SectionDivider";
+import About from "../components/About";
+import AboutCopy from "../components/AboutCopy";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [loading, setLoading] = useState(true)
