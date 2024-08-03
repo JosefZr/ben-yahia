@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Card, CardHeader, Image, CardFooter } from "@nextui-org/react";
 import { motion } from 'framer-motion';
 import { imageAnimate, iconAnimate, textAnimate } from "../lib/Animation";
 
-export default function AboutCards({ titre, content, image, icon, direction, index }) {
+// eslint-disable-next-line react/display-name
+const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
     const formatContent = (text) => {
         return text.split('.').map((sentence, index, array) => {
             if (index < array.length - 1) {
@@ -73,4 +74,5 @@ export default function AboutCards({ titre, content, image, icon, direction, ind
             </Card>
         </motion.div>
     );
-}
+});
+export default AboutCards;
