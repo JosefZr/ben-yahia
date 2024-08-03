@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Image } from "@nextui-org/react";
 import { CiUser } from "react-icons/ci";
@@ -10,28 +10,29 @@ import { useActiveSectionContext } from "../../context/activeSection.jsx";
 import Link from "next/link";
 import CustomButton from "./Button.jsx";
 import NewSwitcher from "./NewSwitcher.jsx";
-import { useLbNavbarLinks } from '../lib/data'; // Adjust the path as necessary
-import {slideIn, prespective} from "../lib/Animation"
+import { useLbNavbarLinks, useNavbarLinks } from '../lib/data'; // Adjust the path as necessary
+import {slideIn, prespective} from "../lib/Animation";
 import LocaleSwitcher from "./LocaleSwitcher.jsx";
 import { ThemeSwitcher } from "./ThemeSwitcher.jsx";
 import { useTranslations } from "next-intl";
+import CustomModal from "./CustomModal.jsx";
+
 const NavItem = styled.div`
   perspective: 120px;
   perspective-origin: bottom;
 `;
  
 function MyNavbar() {
-  const action = useTranslations("callAction")
-  const links = useLbNavbarLinks()
+  const action = useTranslations("callAction");
+  const links = useNavbarLinks();
   const [applyTransform, setApplyTransform] = useState(false);
   const [applyButton, setApplyButton] = useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const e = useTranslations("Error")
 
   useEffect(() => {
     const handleResize = () => {
       const shouldApply = window.innerWidth < 500;
-      const shouldApplyButton = window.innerWidth <640
+      const shouldApplyButton = window.innerWidth < 640;
       setApplyTransform(shouldApply);
       setApplyButton(shouldApplyButton);
     };
@@ -44,23 +45,24 @@ function MyNavbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-18">
       <NavbarContent justify="start">
         <AnimatePresence>
-            <NavbarMenuToggle
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="md:hidden w-fit"
-            />
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="md:hidden w-fit"
+          />
         </AnimatePresence>
       </NavbarContent>
       <NavbarContent justify={`${applyTransform ? "center" : "start"}`}>
-        
         <NavbarBrand className="flex flex-row justify-center items-center font-extrabold text-md">
           <Image
             src="/logo/Remove background project.png"
             alt="Logo"
             width={80}
+            height={80}
             className="min-w-10"
           />
           <h1 className="md:max-[920px]:hidden max-[500px]:hidden">
@@ -95,9 +97,8 @@ function MyNavbar() {
         ))}
       </NavbarContent>
       <NavbarContent justify="end" className="max-sm:hidden">
-      <ThemeSwitcher/>
-      <LocaleSwitcher/>
-
+        <ThemeSwitcher/>
+        <LocaleSwitcher/>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -106,42 +107,16 @@ function MyNavbar() {
             // as={Link}
             variant="shadow"
             // href="/login"
-            onPress={onOpen}
-            icon={applyButton && <CiUser size={24}  />}
+            onClick={onOpen}
+            icon={applyButton && <CiUser size={24} />}
             className="font-semibold bg-light-green text-gray-100 min-w-0"
           >
-            {applyButton ?"":`${action("text")}`}
+            {applyButton ? "" : `${action("text")}`}
           </CustomButton>
-          <Modal size='lg' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
-                <ModalContent>
-                {(onClose) => (
-                    <>
-                    <ModalHeader className="flex flex-col gap-1 items-center">       
-                        <Image
-                            src="/logo/White Black Simple Illustration Dental Clinic Logo.png"
-                            alt='logo'
-                            width={200}
-                            height={200}
-                            className=' rounded-full'
-                            quality={90}
-                        />
-                    </ModalHeader>
-                    <ModalBody className="flex flex-col items-center text-center">
-                        <h1 className=' text-3xl font-semibold mb-4'>{e("title")}</h1>
-                        <p className='text-lg'>{e("description")}</p>
-                    </ModalBody>
-                    <ModalFooter className="flex justify-center">
-                        <Button color="danger" variant="light" onPress={onClose}>
-                        Close
-                        </Button>
-                    </ModalFooter>
-                    </>
-                )}
-                </ModalContent>
-            </Modal>
+          <CustomModal isOpen={isOpen} onOpenChange={onOpenChange} />
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="flex flex-col  gap-5 justify-start overflow-hidden pt-10 pl-10">
+      <NavbarMenu className="flex flex-col gap-5 justify-start overflow-hidden pt-10 pl-10 ">
         {links.map((link, i) => (
           <NavItem key={i}>
             <motion.div variants={prespective(i)} animate='enter' initial="initial" exit="exit">
@@ -153,7 +128,7 @@ function MyNavbar() {
             </motion.div> 
           </NavItem>
         ))}
-        <div className="relative flex flex-row items-center justify-start gap-5 mt-10 ">
+        <div className="relative flex flex-row items-center justify-start gap-5 mt-10">
           <NavItem key="new-switcher">
             <motion.div
               variants={slideIn(links.length)}
@@ -163,7 +138,6 @@ function MyNavbar() {
             >
               <NavbarMenuItem>
                 <NewSwitcher />
-                <LocaleSwitcher/>
               </NavbarMenuItem>
             </motion.div>
           </NavItem>
@@ -175,6 +149,7 @@ function MyNavbar() {
               exit="exit"
             >
               <NavbarMenuItem>
+                <LocaleSwitcher/>
               </NavbarMenuItem>
             </motion.div>
           </NavItem>

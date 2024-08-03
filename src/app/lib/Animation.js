@@ -76,8 +76,8 @@
             opacity: 1,
             transition: {
                 type: "spring",
-                duration: 1.5,
-                delay: 0.4
+                duration: .5,
+                delay: 0.1
             }
         }
     };
@@ -85,22 +85,36 @@
     // for the services 
     export const imageAnimate = (direction) => ({
       offscreen: {
-          x: direction === 'left' ? -150 : 150,
+          x: direction === 'left' ? -50 : 50,
           opacity: 0
       },
       onscreen: {
           x: 0,
           opacity: 1,
           transition: {
-              ease: "easeInOut",
+              ease:"easeOut",
               duration: 1
           }
       }
   });
-  
+  export const textAnimate = (direction) => ({
+    offscreen: {
+        x: direction === 'left' ? 50 : -50,
+        opacity: 0
+    },
+    onscreen: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            ease:"easeOut",
+            duration: 0.5,
+        }
+    }
+});
+
   export const iconAnimate = {
       offscreen: {
-          y: 100,
+          y:10,
           opacity: 0
       },
       onscreen: {
@@ -109,28 +123,13 @@
           rotate: [0, 1, 0],
           transition: {
               type: "spring",
-              duration: 1.5,
-              delay: 0.4
+              duration: .5,
+              delay: 0.1
           }
       }
   };
   
-  export const textAnimate = (direction) => ({
-      offscreen: {
-          x: direction === 'left' ? 100 : -100,
-          opacity: 0
-      },
-      onscreen: {
-          x: 0,
-          opacity: 1,
-          transition: {
-              type: "spring",
-              bounce: 0.4,
-              duration: 1.5,
-          }
-      }
-  });
-
+ 
   //for about 
   export const imageAboutAnimate = {
     offscreen: {
@@ -142,25 +141,23 @@
         opacity: 1,
         rotate: [0, 10, 0],
         transition: {
-            type: "spring",
-            bounce: 0.4,
-            duration: 1
+            type: "easeOut",
+            duration: .3
         }
     }
 };
 
 export const textAboutAnimate = {
     offscreen: {
-        x: 200,
+        x: 100,
         opacity: 0
     },
     onscreen: {
         x: 0,
         opacity: 1,
         transition: {
-            type: "spring",
-            bounce: 0.4,
-            duration: 0.5
+            type: "easeOut",
+            duration: 0.3
         }
     }
 };

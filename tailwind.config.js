@@ -24,6 +24,7 @@ export const theme = {
     },
     screens: {
       'xs': '320px',
+      
     },
   },
 };

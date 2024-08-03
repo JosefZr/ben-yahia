@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import CustomButton from './Button';
-import image from "../../../public/logo/White Black Simple Illustration Dental Clinic Logo.png";
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useTranslations } from 'next-intl';
@@ -33,12 +32,13 @@ export default function Hero() {
             transition={{ ease: [0.6, 0.01, -0.05, 0.9], duration: 1.6 }}
           >
             <Image
-              src={image}
+              src="/logo/White Black Simple Illustration Dental Clinic Logo.webp"
               alt='White and Black Simple Illustration Dental Clinic Logo'
               width={400}
               height={400}
-              quality={95}
-              priority
+              priority // Indique que cette image doit être chargée en priorité
+              loading="eager" // Demande au navigateur de charger cette image immédiatement
+              quality={80} // Ajuste la qualité de l'image pour un meilleur compromis entre qualité et taille
               className='md:h-80 md:w-80 xl:h-100 xl:w-100 h-60 w-60 rounded-full object-cover shadow-xl'
             />
           </motion.div>

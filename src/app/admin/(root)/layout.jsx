@@ -2,7 +2,6 @@
 import { Nunito_Sans } from "@next/font/google";
 
 import React from 'react';
-import Sidbar from '../global/Sidbar';
 import TopBar from '../global/Topbar';
 import ClientProviders from '@/app/[locale]/ClientProviders';
 import '../../[locale]/globals.css';

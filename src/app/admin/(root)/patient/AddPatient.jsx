@@ -3,7 +3,6 @@ import CustomButton from '@/app/components/Button';
 import CreatePatientForm from '../../global/CreatePatientForm';
 import Modal from '@/app/components/Modal'; // Import the Modal component and Open component
 import { MdAdd } from "react-icons/md";
-import { classNames } from '@/app/user/utils/helpers';
 
 export default function AddPatient() {
     return (

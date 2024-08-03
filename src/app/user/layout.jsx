@@ -1,12 +1,10 @@
 "use client"
-import { Providers } from '@/providers';
 import { Nunito_Sans } from "@next/font/google";
 
 import React from 'react';
 import "../[locale]/globals.css"
 
-import { QueryClientProvider, QueryClient } from 'react-query'; // Correct import
-import { Toaster } from 'react-hot-toast';
+import { QueryClient } from 'react-query'; // Correct import
 import SideBar from './components/SideBar';
 import Header from './components/Header';
 import ClientProviders from '../[locale]/ClientProviders';

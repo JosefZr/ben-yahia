@@ -36,7 +36,7 @@ function LbNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-24">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-24 max-[400px]:h-20">
       <NavbarContent justify="start">
         <AnimatePresence>
           <NavbarMenuToggle
@@ -48,20 +48,19 @@ function LbNavbar() {
       <motion.div className="flex justify-center items-center font-extrabold text-md">
         <NavbarBrand className="flex flex-row justify-center items-center font-extrabold text-md">
           <motion.div >
-                        <motion.div 
-                            transition={{ ease: [0.6, 0.01, -0.05, 0.9], duration: 1.6 }}
-                            layoutId='main-image-1'
-                        >
-                            <Image
-                            src="/logo/lb-small.png"
-                            alt='White and Black Simple Illustration Dental Clinic Logo'
-                            width={250}
-                            height={250}
-                            quality={90}
-                            className=' rounded-full'
-                            />
-                        </motion.div>
-                        </motion.div>
+            <motion.div 
+                transition={{ ease: [0.6, 0.01, -0.05, 0.9], duration: 1.6 }}
+                layoutId='main-image-1'
+            >
+                <Image
+                src="/logo/lb-small.webp"
+                alt='White and Black Simple Illustration Dental Clinic Logo'
+                width={70}
+                height={50}
+                className=' rounded-full '
+                />
+            </motion.div>
+            </motion.div>
         </NavbarBrand>
       </motion.div>
       <NavbarContent justify="end">

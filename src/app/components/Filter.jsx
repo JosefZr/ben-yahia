@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { Context } from "../admin/(root)/patient/page"; // Adjust this path according to your project structure
 import { useContext } from "react";
 import { FilterContext } from "@/context/filterContext";
 

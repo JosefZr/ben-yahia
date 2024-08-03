@@ -2,8 +2,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useSectionInView } from '@/hooks/useSectionInView';
-import { Button, Input, Textarea } from "@nextui-org/react";
-import image from "../../../public/logo/l7adj-2.jpg";
+import { Input, Textarea } from "@nextui-org/react";
 import Image from 'next/image';
 import CustomButton from './Button';
 import { useTranslations } from 'next-intl';
@@ -12,11 +11,11 @@ import { imageAnimate } from '../lib/Animation';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { handleEmailSubmit } from '../api/email/route';
-import emailjs from "@emailjs/browser"
+
 function AboutCopy() {
     const r = useTranslations('Navbar');
     const t = useTranslations('Email');
-    const { ref: refView } = useSectionInView(r("contact.name"), 0.5);
+    const { ref: refView } = useSectionInView(r("contact.name"), 0.2);
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -51,38 +50,41 @@ function AboutCopy() {
                     initial={"offscreen"}
                     whileInView={"onscreen"}
                     transition={{ staggerChildren: 0.5 }}
-                    viewport={{ once: false, amount: 0.5 }} 
+                    viewport={{ once: false, amount: 0.3 }} 
                     className='flex flex-col justify-center col-span-full text-left max-sm:text-center mx-10 pb-10 gap-5'
                 >
-                    <motion.h1 variants={headerAnimate} className='capitalize text-center font-bold sm:text-6xl text-5xl whitespace-normal text-light-green'>
+                    <motion.h1 variants={headerAnimate} className='capitalize text-center font-bold md:text-6xl text-5xl whitespace-normal text-light-green'>
                         {t("title")}
                     </motion.h1>
                 </motion.header>
-                <div className='flex flex-row-reverse max-md:flex-col-reverse justify-center items-center mx-auto max-md:gap-10 md:h-[450px]'>
+                <div className='flex flex-row-reverse max-md:flex-col-reverse justify-center items-center max-md:gap-2 md:h-[450px] mx-5 max-md:mx-10 max-[440px]:mx-3'>
                     <motion.iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1399.4967976968865!2d4.743600647479474!3d36.07190868443337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128cbd8220c8e483%3A0xec384411432f8300!2sCabinet%20dentaire%20Dr.%20M.%20Benyahia!5e0!3m2!1sar!2sdz!4v1719099444995!5m2!1sar!2sdz"
                         width="600"
                         height="450"
-                        className='rounded-tr-2xl rounded-br-2xl w-[70%]'
+                        className='rounded-tr-2xl rounded-br-3xl w-[70%] sm:w-[600px] max-sm:w-full max-md:rounded-3xl'
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                         initial="offscreen"
+                        title="Carte de localisation du cabinet dentaire Dr. M. Benyahia" // Ajout du titre ici
                         whileInView="onscreen"
-                        viewport={{ once: false, amount: 0.5 }}
+                        viewport={{ once: false, amount: 0.1 }}
                         variants={imageAnimate('right')}
                     />
                     <motion.div 
-                        className='flex flex-col justify-center gap-5 bg-default-200 rounded-bl-2xl rounded-tl-2xl px-10 h-full w-[40%] max-md:w-[70%] max-md:py-5'
+                        className='flex flex-col justify-center gap-5 bg-default-200 rounded-bl-2xl rounded-tl-3xl max-md:rounded-3xl px-10 md:max-lg:px-3 h-full w-[40%] sm:w-[600px] max-sm:w-full  max-[500px]:px-5 max-md:py-5'
                         initial="offscreen"
                         whileInView="onscreen"
-                        viewport={{ once: false, amount: 0.5 }}
+                        viewport={{ once: false, amount: 0.1 }}
                         variants={imageAnimate('left')}
                     >
                         <div className='flex flex-col items-center justify-center text-center'>
                             <Image
-                                src={image}
+                                src="/logo/l7adj-2.webp"
                                 width={120}
+                                height={120}
                                 style={{ width: 'auto', height: 'auto' }}
+                                quality={90}
                                 alt='assistant'
                                 className='rounded-full'
                             />

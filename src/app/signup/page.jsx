@@ -4,7 +4,7 @@ import CustomButton from '../components/Button';
 import { motion } from 'framer-motion';
 import { Input, Select, SelectItem } from '@nextui-org/react';
 import Image from 'next/image';
-import image from "../../../public/logo/logo2.png"
+import image from "../../../public/logo/White Black Simple Illustration Dental Clinic Logo.webp"
 import { redirect } from 'next/navigation'; // Import redirect from Next.js
 import { signup } from './action';
 import { useState } from 'react';

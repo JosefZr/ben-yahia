@@ -3,10 +3,9 @@ import CustomButton from '@/app/components/Button';
 import { Input } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React, {  useState } from 'react'
+import React from 'react'
 import image from "../../../../public/_0990d51c-9f15-4894-bfc9-da15152c1185-removebg.png"
 import Image from 'next/image';
-import { login } from '@/app/login/action';
 
 export default function LoginForm() {
 

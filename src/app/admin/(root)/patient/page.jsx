@@ -1,10 +1,8 @@
 "use client"
-import { Children, createContext, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { getPatients } from "./apiPatinet";
 import TableUi from "../../global/TableUi";
-import AddPatient from "./AddPatient";
-import PatientTableOpertations from "../../global/PatientTableOpertations";
 import Spinner from "@/app/components/Spinner";
 import Header from "@/app/components/Header";
 

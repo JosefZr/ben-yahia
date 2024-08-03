@@ -6,6 +6,7 @@ import { useScroll, useTransform, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { headerAnimate } from '../lib/Animation';
 import { useServices } from '../lib/data';
+
 export default function Services() {
     const services= useServices()
     const r = useTranslations('Navbar');
@@ -35,13 +36,13 @@ export default function Services() {
                 transition={{ staggerChildren: 0.5 }}
                 viewport={{ once: false, amount: 0.5 }}
                 ref={refView}
-                className='flex flex-col justify-center col-span-full text-left max-sm:text-center mx-auto mb-14 gap-10'
+                className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
             >
                 <motion.h1 variants={headerAnimate} className='capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
                     {s("header.title")}
                 </motion.h1>
             </motion.div>
-            <motion.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center mx-auto'>
+            <motion.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center '>
                 {services.map((service, index) => (
                     <AboutCards
                         key={index}

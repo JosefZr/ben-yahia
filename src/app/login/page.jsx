@@ -9,7 +9,6 @@ import { handleLogin } from './action';
 import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { VscKey } from "react-icons/vsc";
-import image from "../../../public/logo/logo2.png"
 
 import { IoIosMail } from "react-icons/io";
 import { EyeSlashFilledIcon } from '../components/EyeSlashFilledIcon';

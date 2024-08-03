@@ -53,83 +53,84 @@ export const useNavbarLinks = () => {
     }
   ];
 };
+// for the  services 
 export const useServices =()=>{
     const t = useTranslations('Services');
         return[
         {
             titre: t("Implant.title"),
             content: t('Implant.description'),
-            image: '/services/implant.jpg',
+            image: '/services/implant.webp',
             icon: "https://img.icons8.com/?size=100&id=GSlkzWZjhPmT&format=png&color=214030",
             direction: "left"
         },
         {
             titre: t("Braces.title"),
             content: t('Braces.description'),
-            image: "/services/braces.jpg",
+            image: "/services/braces.webp",
             icon: "https://img.icons8.com/?size=100&id=ZDLptEjyNsEC&format=png&color=214030",
             direction: "right"
         },
         {
             titre: t("Crown.title"),
             content: t('Crown.description'),
-            image: "/services/crown.jpg",
+            image: "/services/crown.webp",
             icon: "https://img.icons8.com/?size=100&id=2j8774BkNjto&format=png&color=214030",
             direction: "left"
         },
         {
             titre: t("Filling.title"),
             content: t('Filling.description'),
-            image: "/services/filling.jpg",
+            image: "/services/filling.webp",
             icon: "https://img.icons8.com/?size=100&id=9RFbbtSrKPzM&format=png&color=214030",
             direction: "right"
         },
         {
             titre: t("Bridges.title"),
             content: t('Bridges.description'),
-            image: "/services/bridges.jpg",
+            image: "/services/bridges.webp",
             icon: "https://img.icons8.com/?size=100&id=Ax1nHq12vdvJ&format=png&color=214030",
             direction: "left"
         },
         {
             titre: t("Check.title"),
             content: t('Check.description'),
-            image: "/services/check.jpg",
+            image: "/services/check.webp",
             icon: "https://img.icons8.com/?size=100&id=Qynk0dQDDiY4&format=png&color=214030",
             direction: "right"
         },
         {
             titre: t("Whitening.title"),
             content: t('Whitening.description'),
-            image: "/services/whitening.jpg",
+            image: "/services/whitening.webp",
             icon: "https://img.icons8.com/?size=100&id=TEEyuMyShFK0&format=png&color=214030",
             direction: "left"
         },
         {
             titre: t("Scaling.title"),
             content: t('Scaling.description'),
-            image: "/services/scaling.jpg",
+            image: "/services/scaling.webp",
             icon: "https://img.icons8.com/?size=100&id=7A92Y2BcmAqx&format=png&color=214030",
             direction: "right"
         },
         {
             titre: t("Root.title"),
             content: t('Root.description'),
-            image: "/services/root.jpg",
+            image: "/services/root.webp",
             icon: "https://img.icons8.com/?size=100&id=olmK5dbavUrn&format=png&color=214030",
             direction: "left"
         },
         {
             titre: t("Wisdom.title"),
             content: t('Wisdom.description'),
-            image: "/services/wisdom.jpg",
+            image: "/services/wisdom.webp",
             icon: "https://img.icons8.com/?size=100&id=eAO25vPIMU17&format=png&color=214030",
             direction: "right"
         },
         {
             titre: t("Denture.title"),
             content: t('Denture.description'),
-            image: "/services/dentures.jpg",
+            image: "/services/dentures.webp",
             icon: "https://img.icons8.com/?size=100&id=wpfUlRXFcAiU&format=png&color=214030",
             direction: "left"
         },

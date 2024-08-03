@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input } from '@nextui-org/react';
 import Image from 'next/image';
-import { signup } from '@/app/signup/action';
-import { redirect } from 'next/navigation';
 import CustomButton from '@/app/components/Button';
 
 export default function SignupForm() {

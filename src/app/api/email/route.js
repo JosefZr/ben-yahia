@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer');
 export async function handleEmailSubmit({ name, email, comment }) {
     const username = process.env.NEXT_PUBLIC_EMAIL_USERNAME;
     const password = process.env.NEXT_PUBLIC_EMAIL_PASSWORD;
-    const myEmail = process.env.NEXT_PUBLIC_PERSONAL_EMAIL;
 
     if (!email || !name || !comment) {
         return { error: "Missing email, name, or comment", success: false };

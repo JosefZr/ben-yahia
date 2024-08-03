@@ -57,11 +57,10 @@ const LbLoader = ({ setLoading }) => {
         exit="exit"
       >
         <motion.div variants={itemMain} className="transition-image" >
-          <motion.div layoutId="main-image-1" className="w-fit mx-auto flex items-center justify-center" >
+          <motion.div layoutId="main-image-1" className=" mx-auto flex items-center justify-center" >
             <Image 
-              src="/logo/lb-big.jpg" 
+              src="/logo/lb-big.webp" 
               alt="Loading Image" 
-              quality={90} 
               width={400} 
               height={400} 
               className=" rounded-full"/>
