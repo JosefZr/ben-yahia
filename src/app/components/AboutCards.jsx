@@ -33,7 +33,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                 width={500}
                                 height={500}
                                 className='object-cover w-full'
-                                priority={false} // Only use priority for critical images
+                                priority={false}
                                 loading="lazy"
                             />
                         </picture>
@@ -73,6 +73,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                 </CardFooter>
             </Card>
         </motion.div>
+
     );
 });
 export default AboutCards;

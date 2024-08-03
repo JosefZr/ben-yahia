@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useRef } from 'react';
 import AboutCards from './AboutCards';
 import { useSectionInView } from '@/hooks/useSectionInView';
@@ -8,7 +8,7 @@ import { headerAnimate } from '../lib/Animation';
 import { useServices } from '../lib/data';
 
 export default function Services() {
-    const services= useServices()
+    const services = useServices();
     const r = useTranslations('Navbar');
     const { ref: refView } = useSectionInView(r("services.name"), 0.1);
     const ref = useRef(null);
@@ -18,8 +18,8 @@ export default function Services() {
         offset: ["0 1", "0.4 1"]
     });
 
-    const scalProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+    const scalProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
+    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
 
     const s = useTranslations('Services');
 
@@ -33,7 +33,7 @@ export default function Services() {
             <motion.div
                 initial={"offscreen"}
                 whileInView={"onscreen"}
-                transition={{ staggerChildren: 0.5 }}
+                transition={{ staggerChildren: 0.2 }}
                 viewport={{ once: false, amount: 0.5 }}
                 ref={refView}
                 className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
@@ -42,7 +42,7 @@ export default function Services() {
                     {s("header.title")}
                 </motion.h1>
             </motion.div>
-            <motion.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center '>
+            <motion.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center'>
                 {services.map((service, index) => (
                     <AboutCards
                         key={index}
@@ -51,7 +51,7 @@ export default function Services() {
                         image={service.image}
                         icon={service.icon}
                         direction={service.direction}
-                        index={index} // Pass index if needed inside AboutCards
+                        index={index}
                     />
                 ))}
             </motion.div>
