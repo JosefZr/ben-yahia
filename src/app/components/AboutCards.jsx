@@ -60,13 +60,17 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                 </CardHeader>
                 <CardFooter className='flex flex-col gap-3 text-center items-center h-[210px] overflow-y-auto p-5'>
                     <motion.div
-                        initial={"offscreen"}
-                        whileInView={"onscreen"}
-                        transition={{ staggerChildren: 0.3 }}
-                        viewport={{ once: false, amount: 0.3 }}
+                        // initial={"offscreen"}
+                        // whileInView={"onscreen"}
+                        // transition={{ staggerChildren: 0.3 }}
+                        // viewport={{ once: false, amount: 0.3 }}
                     >
-                        <motion.h1 variants={textAnimate(direction)} className='font-semibold text-3xl text-light-green capitalize'>{titre}</motion.h1>
-                        <motion.p variants={textAnimate(direction)} className='text-lg text-wrap text-default-600'>
+                        <motion.h1 
+                            // variants={textAnimate(direction)} 
+                            className='font-semibold text-3xl text-light-green capitalize'>{titre}</motion.h1>
+                        <motion.p 
+                            // variants={textAnimate(direction)} 
+                            className='text-lg text-wrap text-default-600'>
                             {formatContent(content)}
                         </motion.p>
                     </motion.div>
