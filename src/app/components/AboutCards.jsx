@@ -33,8 +33,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                 width={500}
                                 height={500}
                                 className='object-cover w-full'
-                                priority={false} // Only use priority for critical images
-                                loading="lazy"
+                                priority
                             />
                         </picture>
                     </motion.div>
