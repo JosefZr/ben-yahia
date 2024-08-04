@@ -74,11 +74,10 @@
         onscreen: {
             y: 0,
             opacity: 1,
-            // transition: {
-            //     type: "spring",
-            //     duration: .5,
-            //     delay: 0.1
-            // }
+            transition: {
+                type: "spring",
+                duration: .3,
+            }
         }
     };
    
@@ -91,10 +90,10 @@
       onscreen: {
           x: 0,
           opacity: 1,
-          // transition: {
-          //     ease:"easeOut",
-          //     duration: 1
-          // }
+          transition: {
+              ease:"easeOut",
+              duration: .3
+          }
       }
   });
   export const textAnimate = (direction) => ({
@@ -105,10 +104,10 @@
     onscreen: {
         x: 0,
         opacity: 1,
-        // transition: {
-        //     ease:"easeOut",
-        //     duration: 0.5,
-        // }
+        transition: {
+            ease:"easeOut",
+            duration: 0.2,
+        }
     }
 });
 
@@ -121,11 +120,10 @@
           y: 0,
           opacity: 1,
           rotate: [0, 1, 0],
-          // transition: {
-          //     type: "spring",
-          //     duration: .5,
-          //     delay: 0.1
-          // }
+          transition: {
+              type: "spring",
+              duration: .3,
+          }
       }
   };
   
@@ -140,10 +138,10 @@
         x: 0,
         opacity: 1,
         rotate: [0, 10, 0],
-        // transition: {
-        //     type: "easeOut",
-        //     duration: .3
-        // }
+        transition: {
+            type: "easeOut",
+            duration: .3
+        }
     }
 };
 
@@ -155,9 +153,9 @@ export const textAboutAnimate = {
     onscreen: {
         x: 0,
         opacity: 1,
-        // transition: {
-        //     type: "easeOut",
-        //     duration: 0.3
-        // }
+        transition: {
+            type: "easeOut",
+            duration: 0.3
+        }
     }
 };
