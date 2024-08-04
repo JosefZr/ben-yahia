@@ -23,7 +23,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                         initial={"offscreen"}
                         whileInView={"onscreen"}
                         viewport={{ once: false, amount: 0.2 }}
-                        className='relative w-fit'
+                        className='header relative w-fit'
                     >
                         <picture>
                             <source srcSet={`${image}.webp`} type="image/webp" />
@@ -40,7 +40,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                     </motion.div>
                     <div className='absolute z-20 w-fit bottom-[-4%] left-[50%] transform -translate-x-1/2'>
                         <div className="bg-default-50 dark:bg-default-700 p-4 rounded-full border-5 border-default-100 dark:border-default-900 text-start">
-                            <motion.div className="w-10 h-10 fill-none text-start"
+                            <motion.div className=" header w-10 h-10 fill-none text-start"
                                 initial={"offscreen"}
                                 whileInView={"onscreen"}
                                 transition={{ staggerChildren: 0.5 }}
@@ -65,8 +65,8 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                         transition={{ staggerChildren: 0.3 }}
                         viewport={{ once: false, amount: 0.3 }}
                     >
-                        <motion.h1 variants={textAnimate(direction)} className='font-semibold text-3xl text-light-green capitalize'>{titre}</motion.h1>
-                        <motion.p variants={textAnimate(direction)} className='text-lg text-wrap text-default-600'>
+                        <motion.h1 variants={textAnimate(direction)} className='header font-semibold text-3xl text-light-green capitalize'>{titre}</motion.h1>
+                        <motion.p variants={textAnimate(direction)} className='header text-lg text-wrap text-default-600'>
                             {formatContent(content)}
                         </motion.p>
                     </motion.div>

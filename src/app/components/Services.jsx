@@ -38,7 +38,7 @@ export default function Services() {
                 ref={refView}
                 className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
             >
-                <motion.h1 variants={headerAnimate} className='capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
+                <motion.h1 variants={headerAnimate} className='header capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
                     {s("header.title")}
                 </motion.h1>
             </motion.div>

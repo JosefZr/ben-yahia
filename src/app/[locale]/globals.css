@@ -160,3 +160,8 @@ body {
     text-wrap: balance;
   }
 } */
+
+/* for the header animation transition */
+.header{
+  transition: all ease-out 0.3s;
+}
