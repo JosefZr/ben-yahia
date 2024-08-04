@@ -1,11 +1,9 @@
-import { Nunito_Sans } from '@next/font/google';
 import './globals.css';
 import ClientProviders from './ClientProviders'; // Adjust the path as necessary
 import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 
-// Font loader in module scope
-const nunitoSans = Nunito_Sans({ subsets: ['latin'] });
+import { nunitoSans } from '@/utils/font';
 
 export default async function RootLayout({ children, params: { locale } }) {
   const messages = await getMessages(locale);

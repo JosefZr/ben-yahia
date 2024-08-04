@@ -37,7 +37,6 @@ export default function Hero() {
               width={400}
               height={400}
               priority // Indique que cette image doit être chargée en priorité
-              loading="eager" // Demande au navigateur de charger cette image immédiatement
               quality={80} // Ajuste la qualité de l'image pour un meilleur compromis entre qualité et taille
               className='md:h-80 md:w-80 xl:h-100 xl:w-100 h-60 w-60 rounded-full object-cover shadow-xl'
             />

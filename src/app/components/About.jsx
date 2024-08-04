@@ -1,9 +1,7 @@
 "use client"
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform} from 'framer-motion';
-
 import { useTranslations } from 'next-intl';
- 
 import Image from 'next/image';
 import { useSectionInView } from '@/hooks/useSectionInView';
 import {textAboutAnimate, imageAnimate} from "../lib/Animation"
@@ -52,7 +50,7 @@ function About() {
                         alt='cabin'
                         width={400}
                         height={700}
-                        style={{  height: 'auto' }}
+                        style={{ width: 'auto', height: 'auto' }}
                         className=' rounded-xl'
                         />
                 </motion.div>

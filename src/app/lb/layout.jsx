@@ -1,9 +1,8 @@
-import { Nunito_Sans } from "@next/font/google";
 
 import "../[locale]/globals.css";
 import ClientProviders from "./ClientLbProviders";
 
-const nunitoSans = Nunito_Sans({ subsets: ['latin'] });
+import { nunitoSans } from "@/utils/font";
 
 
 export default async function RootLayout({ children }) {
