@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import AboutCards from './AboutCards';
 import { useSectionInView } from '@/hooks/useSectionInView';
-import { useScroll, useTransform, m, LazyMotion } from 'framer-motion';
+import { useScroll, useTransform, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { headerAnimate } from '../lib/Animation';
 import { useServices } from '../lib/data';
@@ -22,18 +22,15 @@ export default function Services() {
     const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
 
     const s = useTranslations('Services');
-    const loadFeatures = () =>
-        import("../../utils/features").then(res => res.default)
-      
+
     return (
-        <LazyMotion features={loadFeatures}>
-            <m.div
+        <motion.div
             ref={ref}
             id="services"
             style={{ scale: scalProgress, opacity: opacityProgress }}
             className='max-lg:mx-5 max-w-screen-lg mx-auto'
         >
-            <m.div
+            <motion.div
                 initial={"offscreen"}
                 whileInView={"onscreen"}
                 transition={{ staggerChildren: 0.2 }}
@@ -41,11 +38,11 @@ export default function Services() {
                 ref={refView}
                 className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
             >
-                <m.h1 variants={headerAnimate} className='capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
+                <motion.h1 variants={headerAnimate} className='capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
                     {s("header.title")}
-                </m.h1>
-            </m.div>
-            <m.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center'>
+                </motion.h1>
+            </motion.div>
+            <motion.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center'>
                 {services.map((service, index) => (
                     <AboutCards
                         key={index}
@@ -57,8 +54,7 @@ export default function Services() {
                         index={index}
                     />
                 ))}
-            </m.div>
-        </m.div>
-        </LazyMotion>
+            </motion.div>
+        </motion.div>
     );
 }

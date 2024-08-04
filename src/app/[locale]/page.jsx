@@ -2,7 +2,7 @@
 import React, { useEffect, useState,Suspense } from "react";
 import dynamic from "next/dynamic";
 
-import {m , AnimatePresence, LazyMotion } from "framer-motion";
+import { motion , AnimatePresence } from "framer-motion";
 import MyNavbar from "../components/Navbar";
 import Intro from "../components/Intro";
 import Loader from "../components/Loader";
@@ -13,9 +13,6 @@ import SectionDivider from "../components/SectionDivider";
 const About = dynamic(() => import('../components/About'));
 const AboutCopy = dynamic(() => import('../components/AboutCopy'));
 const Footer = dynamic(() => import('../components/Footer'));
-// Make sure to return the specific export containing the feature bundle.
-const loadFeatures = () =>
-  import("../../utils/features").then(res => res.default)
 
 export default function Home() {
   const [loading, setLoading] = useState(true)
@@ -25,7 +22,6 @@ export default function Home() {
     : document.querySelector("body").classList.add('loading');
   },[loading])
   return (
-    <LazyMotion features={loadFeatures}>
     <AnimatePresence>
     {loading ?(
       <Loader setLoading={setLoading }exit={{ opacity: 0, transition: { ease: "easeInOut", duration: 3.8 } }}/>
@@ -34,13 +30,11 @@ export default function Home() {
         {/* Background elements */}
         <div className="bg-[#dbd7fd] absolute top-[-6rem] -z-10 right-[1rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>
         <div className="bg-[#fbe2e3] absolute top-[10rem] -z-10 left-[-35rem] h-[31.25rem] w-[50.25rem] rounded-full blur-[10rem] sm:left-[-20rem] md:left-[-28rem] lg:left-[-28rem] xl:left-[5rem] 2xl:left-[50rem]"></div>
-        <LazyMotion features={loadFeatures}>
-          <m.div  initial={{ opacity: 0, y: -80 }}
-              animate={{opacity: 1, y:0}}
-              transition={{ ease:"easeInOut",duration:1, delay:.4}}>
-            <MyNavbar />
-          </m.div>
-        </LazyMotion>
+        <motion.div  initial={{ opacity: 0, y: -80 }}
+            animate={{opacity: 1, y:0}}
+            transition={{ ease:"easeInOut",duration:1, delay:.4}}>
+          <MyNavbar />
+        </motion.div>
         <Intro />
         <div className="relative z-20  overflow-x-clip">
           <div className="bg-[#fbe2e3] absolute top-1/4 -z-10 right-[11rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>
@@ -69,6 +63,5 @@ export default function Home() {
       </div>
     )}
     </AnimatePresence>
-    </LazyMotion>
   );
 }
