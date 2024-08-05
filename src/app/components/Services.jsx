@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from 'react';
 import AboutCards from './AboutCards';
 import { useSectionInView } from '@/hooks/useSectionInView';
-import { useScroll, useTransform, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useServices } from '../lib/data';
 
@@ -12,50 +11,34 @@ export default function Services() {
     const { ref: refView } = useSectionInView(r("services.name"), 0.1);
     const ref = useRef(null);
 
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["0 1", "0.4 1"]
-    });
-
-    const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
-    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
-
     const s = useTranslations('Services');
 
     useEffect(() => {
-        const handleScroll = () => {
-            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveals[i].getBoundingClientRect().top;
-                const revealPoint = 150;
-
-                if (revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('activation');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('activation');
                 } else {
-                    reveals[i].classList.remove('activation');
+                    entry.target.classList.remove('activation');
                 }
-            }
-        };
+            });
+        }, { threshold: 0.1 });
 
-        window.addEventListener('scroll', handleScroll);
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        reveals.forEach(reveal => observer.observe(reveal));
+
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            reveals.forEach(reveal => observer.unobserve(reveal));
         };
     }, []);
 
     return (
-        <motion.div
+        <div
             ref={ref}
             id="services"
-            style={{ scale: scaleProgress, opacity: opacityProgress }}
             className='max-lg:mx-5 max-w-screen-lg mx-auto'
         >
-            <motion.div
-                initial={"offscreen"}
-                whileInView={"onscreen"}
-                transition={{ staggerChildren: 0.2 }}
-                viewport={{ once: false, amount: 0.5 }}
+            <div
                 ref={refView}
                 className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
             >
@@ -63,7 +46,7 @@ export default function Services() {
                     className='reveal capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
                     {s("header.title")}
                 </h1>
-            </motion.div>
+            </div>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center'>
                 {services.map((service, index) => (
                     <div
@@ -81,6 +64,6 @@ export default function Services() {
                     </div>
                 ))}
             </div>
-        </motion.div>
+        </div>
     );
 }
