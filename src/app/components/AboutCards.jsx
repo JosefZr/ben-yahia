@@ -1,7 +1,5 @@
 import React, { memo } from 'react';
 import { Card, CardHeader, Image, CardFooter } from "@nextui-org/react";
-import { motion } from 'framer-motion';
-import { imageAnimate, iconAnimate, textAnimate } from "../lib/Animation";
 
 // eslint-disable-next-line react/display-name
 const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
@@ -32,13 +30,13 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                         </picture>
                     <div className='absolute z-20 w-fit bottom-[-4%] left-[50%] transform -translate-x-1/2'>
                         <div className="bg-default-50 dark:bg-default-700 p-4 rounded-full border-5 border-default-100 dark:border-default-900 text-start">
-                            <motion.div className="w-10 h-10 fill-none text-start"
+                            {/* <motion.div className="w-10 h-10 fill-none text-start"
                                 initial={"offscreen"}
                                 whileInView={"onscreen"}
                                 transition={{ staggerChildren: 0.5 }}
                                 viewport={{ once: false, amount: 0.5 }}
                                 variants={iconAnimate}
-                            >
+                            > */}
                                 <Image
                                     className='w-12 h-12'
                                     src={icon}
@@ -46,26 +44,26 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                     height={128}
                                     alt='external-orthodontic-dental-victoruler'
                                 />
-                            </motion.div>
+                            {/* </motion.div> */}
                         </div>
                     </div>
                 </CardHeader>
                 <CardFooter className='flex flex-col gap-3 text-center items-center h-[210px] overflow-y-auto p-5'>
-                    <motion.div
+                    {/* <motion.div
                         // initial={"offscreen"}
                         // whileInView={"onscreen"}
                         // transition={{ staggerChildren: 0.3 }}
                         // viewport={{ once: false, amount: 0.3 }}
-                    >
-                        <motion.h1 
+                    > */}
+                        <h1 
                             // variants={textAnimate(direction)} 
-                            className='font-semibold text-3xl text-light-green capitalize'>{titre}</motion.h1>
-                        <motion.p 
+                            className='font-semibold text-3xl text-light-green capitalize'>{titre}</h1>
+                        <p 
                             // variants={textAnimate(direction)} 
                             className='text-lg text-wrap text-default-600'>
                             {formatContent(content)}
-                        </motion.p>
-                    </motion.div>
+                        </p>
+                    {/* </motion.div> */}
                 </CardFooter>
             </Card>
         </div>
