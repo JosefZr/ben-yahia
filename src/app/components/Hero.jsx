@@ -4,12 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CustomButton from './Button';
 import { useSectionInView } from '@/hooks/useSectionInView';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useTranslations } from 'next-intl';
-import {slideInButtonsPlay,banner} from "../lib/Animation"
+import useReveal from '@/hooks/useReveal';
 export default function Hero() {
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const t = useTranslations('Index');
   const r = useTranslations('Navbar');
   const heroTitle = t('title');
@@ -21,7 +20,8 @@ export default function Hero() {
   ).reduce((prev, curr) => [prev, ' ', curr]);
 
   const { ref } = useSectionInView(r("home.name"), 0.5);
-
+  useReveal("vertical");
+  useReveal("horizontal");
   return (
     <div className='flex items-center justify-evenly flex-row-reverse max-md:flex-col max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto mt-20'>
       <div className='flex items-center justify-center' ref={ref}>
@@ -43,39 +43,41 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-      <motion.div className='flex flex-col items-start max-md:items-center gap-2 sm:max-w-[70%] mb-4' variants={banner}>
-        <motion.h1   
-          className='text-center max-sm:px-5 text-3xl min-[300px]:text-5xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[90%] md:text-left capitalize text-light-green'
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
+      <div className='flex flex-col items-start max-md:items-center gap-2 sm:max-w-[70%] mb-4' 
+      // variants={banner}
+      >
+        <h1   
+          className='hero-vertical text-center max-sm:px-5 text-3xl min-[300px]:text-5xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[90%] md:text-left capitalize text-light-green'
+          // initial={{ opacity: 0, y: 80 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
         >
           {styledHeroTitle}
-        </motion.h1>
-        <motion.p 
-          className='max-w-md max-sm:px-5 max-sm:text-center  md:text-left text-center xl:max-w-2xl lg:max-w-xl md:max-w-md text-xl dark:text-gray-50'
-          initial={{ opacity: 0, x: -80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
+        </h1>
+        <p 
+          className='hero-horizontal-left max-w-md max-sm:px-5 max-sm:text-center  md:text-left text-center xl:max-w-2xl lg:max-w-xl md:max-w-md text-xl dark:text-gray-50'
+          // initial={{ opacity: 0, x: -80 }}
+          // animate={{ opacity: 1, x: 0 }}
+          // transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
         >
           {t("subtitle")}
-        </motion.p>
+        </p>
         <div className='flex sm:flex-row flex-col items-center gap-2 sm:gap-8'>
-          <motion.div 
+          {/* <motion.div 
             variants={slideInButtonsPlay(0)}
             initial="initial"
             animate="animate"
             exit="exit"
-          >
+          > */}
             <CustomButton 
               as={Link} 
               href="#" 
               size="lg" 
-              className="rounded-3xl bg-light-green text-gray-100"
+              className="reveal-vertical rounded-3xl bg-light-green text-gray-100"
             >
               Invest in your smile - it`&lsquo;s worth it !
             </CustomButton>
-          </motion.div>
+          {/* </motion.div> */}
           {/* <motion.div 
             variants={slideInButtonsPlay(1)}
             initial="initial"
@@ -92,7 +94,7 @@ export default function Hero() {
             </Button>
           </motion.div> */}
         </div>
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+        {/* <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
           <ModalContent>
             {(onClose) => (
               <>
@@ -115,8 +117,8 @@ export default function Hero() {
               </>
             )}
           </ModalContent>
-        </Modal>
-      </motion.div>
+        </Modal> */}
+      </div>
     </div>
   );
 }

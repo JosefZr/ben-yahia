@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import AboutCards from './AboutCards';
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { useTranslations } from 'next-intl';
 import { useServices } from '../lib/data';
+import useReveal from '@/hooks/useReveal';
 
 export default function Services() {
     const services = useServices();
@@ -13,24 +14,8 @@ export default function Services() {
 
     const s = useTranslations('Services');
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('activation');
-                } else {
-                    entry.target.classList.remove('activation');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-        reveals.forEach(reveal => observer.observe(reveal));
-
-        return () => {
-            reveals.forEach(reveal => observer.unobserve(reveal));
-        };
-    }, []);
+    useReveal('vertical');
+    useReveal('horizontal');
 
     return (
         <div
@@ -43,7 +28,7 @@ export default function Services() {
                 className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
             >
                 <h1 
-                    className='reveal capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
+                    className='reveal-vertical capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
                     {s("header.title")}
                 </h1>
             </div>
@@ -51,7 +36,7 @@ export default function Services() {
                 {services.map((service, index) => (
                     <div
                         key={index}
-                        className={`about-card reveal-${index % 2 === 0 ? 'left' : 'right'}`}
+                        className={`about-card reveal-horizontal-${index % 2 === 0 ? 'left' : 'right'}`}
                     >
                         <AboutCards
                             titre={service.titre}

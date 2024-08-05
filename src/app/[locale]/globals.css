@@ -165,36 +165,84 @@ body {
 .header{
   transition: all ease-out 0.4s;
 }
-
-.reveal {
+.reveal-vertical {
   transform: translateY(50px);
   opacity: 0;
   transition: opacity 0.8s ease-out, transform 1s ease-out;
 }
 
-.reveal.activation {
-  transform: translateY(0) !important;
-  opacity: 1 !important;
+.reveal-vertical.activation {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.reveal-left {
+.reveal-horizontal-left {
   transform: translateX(-50px);
   opacity: 0;
   transition: opacity 0.8s ease-out, transform 1s ease-out;
 }
 
-.reveal-left.activation {
-  transform: translateX(0) !important;
-  opacity: 1 !important;
+.reveal-horizontal-left.activation {
+  transform: translateX(0);
+  opacity: 1;
 }
 
-.reveal-right {
+.reveal-horizontal-right {
   transform: translateX(50px);
   opacity: 0;
   transition: opacity 0.8s ease-out, transform 1s ease-out;
 }
 
-.reveal-right.activation {
-  transform: translateX(0) !important;
-  opacity: 1 !important;
+.reveal-horizontal-right.activation {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* for the hero section  */
+
+.hero-vertical {
+  transform: translateY(80px);
+  opacity: 0;
+  animation-delay: 0.4;
+  transition:  1s ease-in-out
+}
+
+.hero-vertical.activation {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hero-horizontal-left {
+  transform: translateX(-80px);
+  opacity: 0;
+  animation-delay: 0.4;
+  transition:  1s ease-in-out;
+}
+
+.hero-horizontal-left.activation {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.hero-horizontal-right {
+  transform: translateX(80px);
+  opacity: 0;
+  animation-delay: 0.4;
+  transition:  1s ease-in-out
+}
+
+.hero-horizontal-right.activation {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* for the navbar */
+.top-vertical{
+  transform: translateY(-50px);
+  opacity: 0;
+  animation-delay: 0.4;
+  transition:  1s ease-in-out
+}
+.top-vertical.activation {
+  transform: translateY(0);
+  opacity: 1;
 }

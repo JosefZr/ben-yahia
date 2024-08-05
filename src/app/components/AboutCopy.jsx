@@ -11,6 +11,7 @@ import { imageAnimate } from '../lib/Animation';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { handleEmailSubmit } from '../api/email/route';
+import useReveal from '@/hooks/useReveal';
 
 function AboutCopy() {
     const r = useTranslations('Navbar');
@@ -37,47 +38,32 @@ function AboutCopy() {
                 toast.error(error);
             }
     };
-
+    useReveal("horizontal")
+    useReveal("vertical")
     return (
         <motion.div 
             ref={ref}
             style={{ scale: scalProgress, opacity: opacityProgress }}
-            className='text-center scroll-mt-28 mx-auto rounded-3xl'
+            className='text-center scroll-mt-28 mx-auto  rounded-3xl'
             id='Contact'
         >
             <section ref={refView} className='max-w-5xl mx-auto '>
-                <motion.header  
-                    initial={"offscreen"}
-                    whileInView={"onscreen"}
-                    transition={{ staggerChildren: 0.5 }}
-                    viewport={{ once: false, amount: 0.3 }} 
-                    className='flex flex-col justify-center col-span-full text-left max-sm:text-center mx-10 pb-10 gap-5'
-                >
-                    <motion.h1 variants={headerAnimate} className='capitalize text-center font-bold md:text-6xl text-5xl whitespace-normal text-light-green'>
+                <header className='flex flex-col justify-center col-span-full text-left max-sm:text-center mx-10 pb-10 gap-5'>
+                    <h1 className='reveal-vertical capitalize text-center font-bold md:text-6xl text-5xl whitespace-normal text-light-green'>
                         {t("title")}
-                    </motion.h1>
-                </motion.header>
+                    </h1>
+                </header>
                 <div className='flex flex-row-reverse max-md:flex-col-reverse justify-center items-center max-md:gap-2 md:h-[450px] mx-5 max-md:mx-10 max-[440px]:mx-3'>
-                    <motion.iframe
+                    <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1399.4967976968865!2d4.743600647479474!3d36.07190868443337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128cbd8220c8e483%3A0xec384411432f8300!2sCabinet%20dentaire%20Dr.%20M.%20Benyahia!5e0!3m2!1sar!2sdz!4v1719099444995!5m2!1sar!2sdz"
                         width="600"
                         height="450"
-                        className='rounded-tr-2xl rounded-br-3xl w-[70%] sm:w-[600px] max-sm:w-full max-md:rounded-3xl'
+                        className='reveal-horizontal-right rounded-tr-2xl rounded-br-3xl w-[70%] sm:w-[600px] max-sm:w-full max-md:rounded-3xl'
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        initial="offscreen"
                         title="Carte de localisation du cabinet dentaire Dr. M. Benyahia" // Ajout du titre ici
-                        whileInView="onscreen"
-                        viewport={{ once: false, amount: 0.1 }}
-                        variants={imageAnimate('right')}
                     />
-                    <motion.div 
-                        className='flex flex-col justify-center gap-5 bg-default-200 rounded-bl-2xl rounded-tl-3xl max-md:rounded-3xl px-10 md:max-lg:px-3 h-full w-[40%] sm:w-[600px] max-sm:w-full  max-[500px]:px-5 max-md:py-5'
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: false, amount: 0.1 }}
-                        variants={imageAnimate('left')}
-                    >
+                    <div className='reveal-horizontal-left flex flex-col justify-center gap-5 bg-default-200 rounded-bl-2xl rounded-tl-3xl max-md:rounded-3xl px-10 md:max-lg:px-3 h-full w-[40%] sm:w-[600px] max-sm:w-full  max-[500px]:px-5 max-md:py-5'>
                         <div className='flex flex-col items-center justify-center text-center'>
                             <Image
                                 src="/logo/l7adj-2.webp"
@@ -124,7 +110,7 @@ function AboutCopy() {
                                 Envoyer un message
                             </CustomButton>
                         </form>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
         </motion.div>

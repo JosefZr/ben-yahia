@@ -16,18 +16,19 @@ import LocaleSwitcher from "./LocaleSwitcher.jsx";
 import { ThemeSwitcher } from "./ThemeSwitcher.jsx";
 import { useTranslations } from "next-intl";
 import CustomModal from "./CustomModal.jsx";
+import useReveal from "@/hooks/useReveal.jsx";
 
 const NavItem = styled.div`
   perspective: 120px;
   perspective-origin: bottom;
 `;
- 
 function MyNavbar() {
   const action = useTranslations("callAction");
   const links = useNavbarLinks();
   const [applyTransform, setApplyTransform] = useState(false);
   const [applyButton, setApplyButton] = useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  useReveal('vertival')
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,7 +48,7 @@ function MyNavbar() {
   const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed h-18">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className=" top-vertical fixed h-18">
       <NavbarContent justify="start">
         <AnimatePresence>
           <NavbarMenuToggle
@@ -72,13 +73,13 @@ function MyNavbar() {
       </NavbarContent>
       <NavbarContent className="hidden md:flex gap-2 items-center basis-full" justify="center">
         {links.map((link, i) => (
-          <motion.div
+          <div
             key={link.hash}
             className="text-nowrap text-lg font-semibold"
             initial="initial"
             animate="enter"
             exit="exit"
-            variants={prespective(i)}
+            // variants={prespective(i)}
           >
             <NavbarItem>
               <Link
@@ -93,7 +94,7 @@ function MyNavbar() {
                 {link.name}
               </Link>
             </NavbarItem>
-          </motion.div>
+          </div>
         ))}
       </NavbarContent>
       <NavbarContent justify="end" className="max-sm:hidden">
