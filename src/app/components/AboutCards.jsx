@@ -15,16 +15,9 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
     };
 
     return (
-        <motion.div className='w-full max-w-lg mx-auto'>
+        <div className='w-full max-w-lg mx-auto'>
             <Card className='flex flex-col items-center mx-auto rounded-xl justify-around w-full gap-2 pb-4 border-b-4 border-light-green' isPressable={true}>
                 <CardHeader className="relative p-5 justify-center flex-col w-full">
-                    <motion.div
-                        variants={imageAnimate(direction)}
-                        initial={"offscreen"}
-                        whileInView={"onscreen"}
-                        viewport={{ once: false, amount: 0.2 }}
-                        className='relative w-fit'
-                    >
                         <picture>
                             <source srcSet={`${image}.webp`} type="image/webp" />
                             <Image
@@ -37,7 +30,6 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                 loading="lazy"
                             />
                         </picture>
-                    </motion.div>
                     <div className='absolute z-20 w-fit bottom-[-4%] left-[50%] transform -translate-x-1/2'>
                         <div className="bg-default-50 dark:bg-default-700 p-4 rounded-full border-5 border-default-100 dark:border-default-900 text-start">
                             <motion.div className="w-10 h-10 fill-none text-start"
@@ -76,7 +68,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                     </motion.div>
                 </CardFooter>
             </Card>
-        </motion.div>
+        </div>
     );
 });
 export default AboutCards;

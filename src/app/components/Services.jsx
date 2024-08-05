@@ -1,10 +1,9 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import AboutCards from './AboutCards';
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { headerAnimate } from '../lib/Animation';
 import { useServices } from '../lib/data';
 
 export default function Services() {
@@ -18,16 +17,38 @@ export default function Services() {
         offset: ["0 1", "0.4 1"]
     });
 
-    const scalProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
+    const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
     const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
 
     const s = useTranslations('Services');
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveals[i].getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('activation');
+                } else {
+                    reveals[i].classList.remove('activation');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
         <motion.div
             ref={ref}
             id="services"
-            style={{ scale: scalProgress, opacity: opacityProgress }}
+            style={{ scale: scaleProgress, opacity: opacityProgress }}
             className='max-lg:mx-5 max-w-screen-lg mx-auto'
         >
             <motion.div
@@ -38,23 +59,28 @@ export default function Services() {
                 ref={refView}
                 className='flex flex-col justify-center col-span-full text-center max-sm:text-center mx-auto mb-14 gap-10'
             >
-                <motion.h1 variants={headerAnimate} className='capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
+                <h1 
+                    className='reveal capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>
                     {s("header.title")}
-                </motion.h1>
+                </h1>
             </motion.div>
-            <motion.div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 gap-10 justify-center'>
                 {services.map((service, index) => (
-                    <AboutCards
+                    <div
                         key={index}
-                        titre={service.titre}
-                        content={service.content}
-                        image={service.image}
-                        icon={service.icon}
-                        direction={service.direction}
-                        index={index}
-                    />
+                        className={`about-card reveal-${index % 2 === 0 ? 'left' : 'right'}`}
+                    >
+                        <AboutCards
+                            titre={service.titre}
+                            content={service.content}
+                            image={service.image}
+                            icon={service.icon}
+                            direction={service.direction}
+                            index={index}
+                        />
+                    </div>
                 ))}
-            </motion.div>
+            </div>
         </motion.div>
     );
 }

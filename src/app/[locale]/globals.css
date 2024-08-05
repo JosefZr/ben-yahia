@@ -165,3 +165,39 @@ body {
 .header{
   transition: all ease-out 0.4s;
 }
+
+.reveal {
+  position: relative !important;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: opacity 0.8s, transform 1s;
+}
+
+.reveal.activation {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.reveal-left {
+  position: relative !important;
+  transform: translateX(-100px);
+  opacity: 0;
+  transition: opacity 0.8s, transform 1s;
+}
+
+.reveal-left.activation {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
+
+.reveal-right {
+  position: relative !important;
+  transform: translateX(100px);
+  opacity: 0;
+  transition: opacity 0.8s, transform 1s;
+}
+
+.reveal-right.activation {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
