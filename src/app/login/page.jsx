@@ -46,7 +46,7 @@ export default function Login() {
                 <div className='flex flex-col justify-start items-center gap-3'>
                     <div className='  flex flex-row justify-start items-center font-extrabold text-md'>
                         <Image
-                            src="/logo/Remove background project.png"
+                            src="/logo/Remove background project.webp"
                             alt="Logo" 
                             width={80}
                             className=" min-w-10"

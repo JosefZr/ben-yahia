@@ -9,8 +9,7 @@ import SideBar from './components/SideBar';
 import Header from './components/Header';
 import ClientProviders from '../[locale]/ClientProviders';
 
-const nunitoSans = Nunito_Sans({ subsets: ['latin'] });
-
+import { nunitoSans } from '@/utils/font';
 export default function RootLayout({ children }) {
 
     const queryClient = new QueryClient({

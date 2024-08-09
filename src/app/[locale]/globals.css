@@ -246,3 +246,19 @@ body {
   transform: translateY(0);
   opacity: 1;
 }
+
+/* //for the date picker  */
+
+/* styles.css */
+.rounded-date-picker .MuiInputBase-root {
+  border-radius: 18px !important;
+  /* padding: 0 1px 0 0 !important; Adjust padding as needed */
+  /* text-align: center !important; */
+}
+
+.rounded-date-picker .MuiPickersPopper-root {
+  border-radius: 18px !important;
+  /* padding: 0 2px 0 0 !important; Adjust padding as needed */
+  /* text-align: center !important; */
+
+}

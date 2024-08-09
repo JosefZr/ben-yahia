@@ -5,6 +5,7 @@ import { getPatients } from "./apiPatinet";
 import TableUi from "../../global/TableUi";
 import Spinner from "@/app/components/Spinner";
 import Header from "@/app/components/Header";
+import PatientTable from "../../global/TableUi";
 
 
 export default function Patient() {
@@ -31,7 +32,7 @@ export default function Patient() {
             <Header title="All patients">All pateints</Header>
         </div>
         <div className="flex flex-col p-4">
-            <TableUi data={data} />
+            <PatientTable data={data} />
         </div>
         </>
     );

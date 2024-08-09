@@ -1,6 +1,4 @@
 "use client";
-import { Nunito_Sans } from "@next/font/google";
-
 import React from 'react';
 import TopBar from '../global/Topbar';
 import ClientProviders from '@/app/[locale]/ClientProviders';
@@ -8,7 +6,7 @@ import '../../[locale]/globals.css';
 import SideNav from "../global/nav-side";
 
 // Move the font loader to the module scope
-const nunitoSans = Nunito_Sans({ subsets: ['latin'] });
+import { nunitoSans } from '@/utils/font';
 
 export default function RootLayout({ children }) {
     return (

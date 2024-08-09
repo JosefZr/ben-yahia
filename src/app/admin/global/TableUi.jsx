@@ -12,10 +12,10 @@ import ConfirmDelete from "@/app/components/ConfirmDelete";
 import AddPatient from "../(root)/patient/AddPatient";
 
 const columns = [
-  { name: "ID", uid: "id" },
+  // { name: "ID", uid: "id" },
   { name: "PRENOM", uid: "name" },
   { name: "NUM", uid: "phone" },
-  { name: "ROLE", uid: "role" },
+  // { name: "ROLE", uid: "role" },
   { name: "AGE", uid: "age" },
   { name: "ACTIONS", uid: "actions" },
 ];
@@ -96,7 +96,7 @@ export default function TableUi({ data }) {
         </div>
       </div>
       <div className=" xl:w-2xl">
-      <Table aria-label="Example table with custom cells" className=" ">
+      <Table aria-label="Example table with custom cells">
         <TableHeader>
           {columns.map((column) => (
             <TableColumn
@@ -117,7 +117,7 @@ export default function TableUi({ data }) {
                       name={`${item.name} ${item.family_name}`}
                       avatar={item.avatar}
                       description={(
-                        <Link href={`mailto:${item.email}`} size="sm" isExternal > 
+                        <Link href={`mailto:${item.email}`} size="sm" isExternal className=" text-light-green"> 
                           {item.email}
                         </Link>
                       )}

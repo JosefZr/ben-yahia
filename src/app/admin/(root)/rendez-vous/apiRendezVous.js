@@ -1,9 +1,13 @@
 "use server" 
 import prisma from '@/app/lib/prisma';
 export async function getAppointment() {
-    try{
-        const appointments = await prisma.appointment.findMany();
-        console.log("back :" ,appointments)
+    try {
+        const appointments = await prisma.appointment.findMany({
+            include: {
+                user: true, // Include related user data
+            },
+        });
+        console.log("back :", appointments);
         return appointments;
     }catch(err){
         console.log("Error:", err);

@@ -10,11 +10,11 @@ import { Icon } from '@iconify/react';
 
 const SideNav = () => {
   return (
-    <div className="md:w-60 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex">
+    <div className="md:w-60 bg-default-50 h-screen flex-1 fixed border-r border-default-300 hidden md:flex">
       <div className="flex flex-col space-y-6 w-full">
         <Link
           href="/"
-          className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full"
+          className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-default-300 h-12 w-full"
         >
           <span className="h-7 w-7 bg-zinc-300 rounded-lg" />
           <span className="font-bold text-xl hidden md:flex">Logo</span>
@@ -45,8 +45,8 @@ const MenuItem = ({ item }) => {
         <>
           <button
             onClick={toggleSubMenu}
-            className={`flex flex-row items-center p-2 rounded-lg hover:bg-zinc-100 w-full justify-between ${
-              pathname.includes(item.url) ? 'bg-zinc-100' : ''
+            className={`flex flex-row items-center p-2 rounded-lg hover:bg-default-100 w-full justify-between ${
+              pathname.includes(item.url) ? 'bg-default-500' : ''
             }`}
           >
             <div className="flex flex-row space-x-4 items-center">
@@ -80,8 +80,8 @@ const MenuItem = ({ item }) => {
       ) : (
         <Link
           href={item.url}
-          className={`flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
-            item.url === pathname ? 'bg-zinc-100' : ''
+          className={`flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-default-200 ${
+            item.url === pathname ? 'bg-default-200' : ''
           }`}
         >
           {item.icon}
