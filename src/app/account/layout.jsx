@@ -1,12 +1,10 @@
 "use client";
-import { Nunito_Sans } from "@next/font/google";
 import React from 'react';
 import "../[locale]/globals.css"
 import ClientProviders from "../[locale]/ClientProviders";
 
 // Configure the font correctly
-const nunitoSans = Nunito_Sans({ subsets: ['latin'] });
-
+import { nunitoSans } from '@/utils/font';
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className="scroll-smooth relative" suppressHydrationWarning>
