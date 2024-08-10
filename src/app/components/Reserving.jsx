@@ -62,7 +62,6 @@ export default function Reserving() {
                         placeholder="Enter Your Name"
                         size='lg'
                         variant='faded'
-                        style={{ minHeight: '48px' }} // Consistent height
                     />
                     {/* {errors.name && <p className="text-red-500">{errors.name.message}</p>} */}
                 </div>
@@ -77,7 +76,6 @@ export default function Reserving() {
                         size='lg'
                         variant='faded'
                         autocomplete="email" // Adding autocomplete attribute
-                        style={{ minHeight: '48px' }} // Consistent height
                     />
                     {/* {errors.email && <p className="text-red-500">{errors.email.message}</p>} */}
                 </div>
@@ -91,7 +89,6 @@ export default function Reserving() {
                         size='sm'
                         radius='lg'
                         variant='faded'
-                        style={{ minHeight: '48px' }} // Consistent height
                     >
                         {services.map((service) => (
                             <SelectItem key={service.titre}>
@@ -108,7 +105,6 @@ export default function Reserving() {
                     color='primary'
                     // type="submit" 
                     onPress={onOpen}
-                    style={{ minHeight: '48px' }} // Consistent height
                 >
                     {action('text')}
                 </CustomButton>

@@ -60,15 +60,12 @@ function MyNavbar() {
       <NavbarContent justify={`${applyTransform ? "center" : "start"}`}>
         <NavbarBrand className="flex flex-row justify-center items-center font-extrabold text-md">
           <Image
-             src="/logo/Remove background project.webp"
-             alt="Logo"
-             width={80}
-             height={80}
-             className="min-w-10"
-             srcSet="/logo/Remove background project-80.webp 80w,
-                     /logo/Remove background project-160.webp 160w"
-             sizes="(max-width: 500px) 80px, 160px"
-          /> 
+            src="/logo/Remove background project.webp"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="min-w-10"
+          />
           <h1 className="md:max-[920px]:hidden max-[500px]:hidden">
             Light STOMATOLOGY
           </h1>
