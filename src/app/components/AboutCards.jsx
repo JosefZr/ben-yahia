@@ -24,27 +24,19 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                 width={500}
                                 height={500}
                                 className='object-cover w-full'
-                                priority={false} // Only use priority for critical images
-                                loading="lazy"
+                                loading="lazy" // Lazy loading for images
                             />
                         </picture>
                     <div className='absolute z-20 w-fit bottom-[-4%] left-[50%] transform -translate-x-1/2'>
                         <div className="bg-default-50 dark:bg-default-700 p-4 rounded-full border-5 border-default-100 dark:border-default-900 text-start">
-                            {/* <motion.div className="w-10 h-10 fill-none text-start"
-                                initial={"offscreen"}
-                                whileInView={"onscreen"}
-                                transition={{ staggerChildren: 0.5 }}
-                                viewport={{ once: false, amount: 0.5 }}
-                                variants={iconAnimate}
-                            > */}
                                 <Image
                                     className='w-12 h-12'
                                     src={icon}
                                     width={128}
                                     height={128}
                                     alt='external-orthodontic-dental-victoruler'
+                                    loading="lazy" // Lazy loading for icons
                                 />
-                            {/* </motion.div> */}
                         </div>
                     </div>
                 </CardHeader>

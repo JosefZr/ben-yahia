@@ -21,7 +21,7 @@ export default function Services() {
         <div
             ref={ref}
             id="services"
-            className='max-lg:mx-5 max-w-screen-lg mx-auto'
+            className='max-lg:mx-5 max-w-screen-lg mx-auto mb-20'
         >
             <div
                 ref={refView}

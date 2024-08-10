@@ -6,8 +6,6 @@ import { Input, Textarea } from "@nextui-org/react";
 import Image from 'next/image';
 import CustomButton from './Button';
 import { useTranslations } from 'next-intl';
-import { headerAnimate } from '../lib/Animation';
-import { imageAnimate } from '../lib/Animation';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { handleEmailSubmit } from '../api/email/route';
@@ -44,7 +42,7 @@ function AboutCopy() {
         <motion.div 
             ref={ref}
             style={{ scale: scalProgress, opacity: opacityProgress }}
-            className='text-center scroll-mt-28 mx-auto  rounded-3xl'
+            className='text-center scroll-mt-28 mx-auto  rounded-3xl mb-20'
             id='Contact'
         >
             <section ref={refView} className='max-w-5xl mx-auto '>

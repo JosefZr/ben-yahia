@@ -22,7 +22,7 @@ function About() {
 
     return (
         <motion.div 
-            className='text-center scroll-mt-28 max-sm:mx-0 mx-auto rounded-3xl'
+            className='text-center scroll-mt-28 max-sm:mx-0 mx-auto rounded-3xl mb-20'
             id='nous'
             ref={ref}
             style={{ scale: scalProgress, opacity: opacityProgress }}

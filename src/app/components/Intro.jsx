@@ -36,7 +36,7 @@ function Intro() {
         <motion.section
             style={applyTransform ? { opacity } : {}}
             ref={targetRef}
-            className="sm:h-screen sm:scroll-m-20 flex items-center justify-evenly flex-col"
+            className="sm:h-screen sm:scroll-m-20 flex items-center justify-evenly flex-col mb-20"
             id='accueil'
         >
             <motion.div 

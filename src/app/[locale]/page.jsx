@@ -30,34 +30,23 @@ export default function Home() {
         {/* Background elements */}
         <div className="bg-[#dbd7fd] absolute top-[-6rem] -z-10 right-[1rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>
         <div className="bg-[#fbe2e3] absolute top-[10rem] -z-10 left-[-35rem] h-[31.25rem] w-[50.25rem] rounded-full blur-[10rem] sm:left-[-20rem] md:left-[-28rem] lg:left-[-28rem] xl:left-[5rem] 2xl:left-[50rem]"></div>
-        {/* <div className=""
-            initial={{ opacity: 0, y: -80 }}
-            animate={{opacity: 1, y:0}}
-            transition={{ ease:"easeInOut",duration:1, delay:.4}}
-            > */}
           <MyNavbar />
-        {/* </div> */}
         <Intro />
         <div className="relative z-20  overflow-x-clip">
           <div className="bg-[#fbe2e3] absolute top-1/4 -z-10 right-[11rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>
           <div className="bg-[#dbd7fd] absolute top-1/4 -z-10 right-[-35rem] h-[31.25rem] w-[50.25rem] rounded-full blur-[10rem] sm:right-[-20rem] md:right-[-28rem] lg:right-[-28rem] xl:right-[5rem] 2xl:right-[-50rem]"></div>
-          <SectionDivider />
 
           <Services />
           <div className="bg-[#dbd7fd] absolute top-1/2 -z-10 right-[-50rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>
           <div className="bg-[#fbe2e3] absolute top-1/2 -z-10 left-[-50rem] h-[31.25rem] w-[50.25rem] rounded-full blur-[10rem] sm:left-[-20rem] md:left-[-28rem] lg:left-[-28rem] xl:left-[5rem] 2xl:left-[50rem]"></div>
-          <SectionDivider />
           <Suspense>
 
           <About />
 
           <div className="bg-[#dbd7fd] absolute top-3/4 -z-10 right-[1rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>
           <div className="bg-[#fbe2e3] absolute top-3/4 -z-10 left-[-35rem] h-[31.25rem] w-[50.25rem] rounded-full blur-[10rem] sm:left-[-20rem] md:left-[-28rem] lg:left-[-28rem] xl:left-[5rem] 2xl:left-[50rem]"></div>
-          {/* <SectionDivider /> */}
 
-          <SectionDivider />
           <AboutCopy />
-          <SectionDivider />
           <Footer />
 
         </Suspense>
