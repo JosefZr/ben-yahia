@@ -1,18 +1,15 @@
 "use client"
+import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import CustomButton from '../components/Button'
-
 import OpeningTimes from './components/OpeningTimes';
 import Explanation from './components/Explanation';
 import Footer from './components/Footer';
-import { formatISO } from 'date-fns';
 import "./style/calendar.css";
-import "../[locale]/globals.css"
+import "../[locale]/globals.css";
 import CalendarComponent2 from './components/CalendarComponent-v2';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
-import CalendarComponent from './components/CalendarComponent';
+import { Modal, ModalContent, ModalHeader, ModalBody, useDisclosure } from "@nextui-org/react";
 import { useDays } from '../lib/data';
-
 
 const ImageComp = styled.div`
     background-image: url("/pexels-goumbik-1419923.jpg");
@@ -26,16 +23,24 @@ const ImageComp = styled.div`
     border-radius: 20px;
 `;
 
-
 export default function User() {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const days = useDays();
+    const [userId, setUserId] = useState(null);
 
-    const userId = localStorage.getItem("id");
-        if (!userId) {
+    useEffect(() => {
+        const id = localStorage.getItem("id");
+        if (id) {
+            setUserId(id);
+        } else {
             console.error('User ID is missing');
-            return;
         }
+    }, []);
+
+    if (!userId) {
+        // Optionally, you could return null or some placeholder content while the user ID is being fetched.
+        return null;
+    }
 
     return (
         <div className='flex flex-auto flex-row'>
@@ -47,20 +52,19 @@ export default function User() {
                     </CustomButton>
                     <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='xl'>
                         <ModalContent>
-                        {(onClose) => (
-                            <>
-                            <ModalHeader className="flex flex-col gap-1 ">Modal Title</ModalHeader>
-                            <ModalBody className="flex flex-col gap-1">
-                                {/* <CalendarComponent days={days} closeDays={closeDays} /> */}
-                                <CalendarComponent2 days={days}  onCloseModal={onClose} userId={userId}/>
-                            </ModalBody>
-                            
-                            </>
-                        )}
+                            {(onClose) => (
+                                <>
+                                    <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                                    <ModalBody className="flex flex-col gap-1">
+                                        {/* <CalendarComponent days={days} closeDays={closeDays} /> */}
+                                        <CalendarComponent2 days={days} onCloseModal={onClose} userId={userId} />
+                                    </ModalBody>
+                                </>
+                            )}
                         </ModalContent>
                     </Modal>
                 </ImageComp>
-                <div className='flex xl:flex-row  flex-col-reverse gap-7 justify-between max-w-[1300px]'>
+                <div className='flex xl:flex-row flex-col-reverse gap-7 justify-between max-w-[1300px]'>
                     <Explanation />
                     <OpeningTimes />
                 </div>
