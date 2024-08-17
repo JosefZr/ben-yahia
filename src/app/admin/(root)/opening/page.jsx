@@ -1,189 +1,183 @@
-"use client"
-import { Button } from '@chakra-ui/react'
-import TimeSelector from '@/app/components/TimeSelector.jsx'
-import { Switch } from '@headlessui/react'
-import { formatISO } from 'date-fns'
-import {useEffect, useState } from 'react'
-import { Calendar } from 'react-calendar'
-import toast, { Toaster } from 'react-hot-toast'
-import  {capitalize, classNames, weekdayIndexToName} from "../../../user/utils/helpers.js" 
-import prisma from '@/app/lib/prisma.js'
-import '../../../user/style/calendar.css'
-import { useMutation, useQuery } from 'react-query'
-const closeDay  = [
-  formatISO(new Date(2024, 6, 30)), // Example closed day
-  // Add other closed days here
-];
-const openDay  = [
-  formatISO(new Date(2024, 7, 30)), // Example closed day
-  // Add other closed days here
-];
-export default function Opening(){
-    const [enabled, setEnabled] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [days, setDays] = useState([]);
-    const [isgetting, setIsgetting] = useState(false);
-    const [error, setError] = useState(null);
-  
-    const { data: fetchedDays, isLoading, error: queryError } = useQuery('days', async () => {
-      const response = await prisma.day.findMany();
-      if (response.length !== 7) {
-        throw new Error('Insert all days into database');
-      }
-      return response;
-    });
-  
-    useEffect(() => {
-      if (queryError) {
-        setError(queryError);
-      } else if (fetchedDays) {
-        setDays(fetchedDays);
-      }
-    }, [fetchedDays, queryError]);
+"use client";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { format, isSameDay, parseISO } from "date-fns";
+import { Button, Spinner } from "@nextui-org/react";
+import "../../../user/style/calendar.css";
+import useFetchClosedDays from "../../hooks/useFetchClosedDays";
+import useCreateClosedDay from "../../hooks/useCreateClosedDay";
 
+const Calendar = dynamic(() => import("react-calendar"), { ssr: false });
 
-  const [openingHrs, setOpeningHrs] = useState([
-    { name: 'sunday', openTime: days[0]?.openTime, closeTime: days[0]?.closeTime },
-    { name: 'monday', openTime: days[1]?.openTime, closeTime: days[1]?.closeTime },
-    { name: 'tuesday', openTime: days[2]?.openTime, closeTime: days[2]?.closeTime },
-    { name: 'wednesday', openTime: days[3]?.openTime, closeTime: days[3]?.closeTime },
-    { name: 'thursday', openTime: days[4]?.openTime, closeTime: days[4]?.closeTime },
-    { name: 'friday', openTime: days[5]?.openTime, closeTime: days[5]?.closeTime },
-    { name: 'saturday', openTime: days[6]?.openTime, closeTime: days[6]?.closeTime },
-  ]);
+export default function Opening() {
+  const [selectedDate, setSelectedDate] = useState(null);
 
-  const { mutate: saveOpeningHrs } = useMutation(
-    // changeOpeningHours,
-    {
-      onSuccess: () => toast.success('Opening hours saved'),
-      onError: () => toast.error('Something went wrong'),
+  const {fetchedClosedDays=[], isLoading, isError}= useFetchClosedDays();
+  const {saveCloseDay,isSaving}= useCreateClosedDay()
+
+  const tileClassName = ({ date, view }) => {
+    if (view === "month" && fetchedClosedDays.some((closedDay) => isSameDay(parseISO(closedDay.date), date))) {
+      return "closed-day";
     }
-  );
+    return null;
+  };
 
-  const { mutate: closeDayMutation } = useMutation(closeDay, {
-    onSuccess: () => refetch(), // Refetch data after successful close
-  });
-  const { mutate: openDayMutation } = useMutation(openDay, {
-    onSuccess: () => refetch(), // Refetch data after successful open
-  });
-  // const { data: closedDays, refetch } = useQuery('closedDays',getClosedDays);
-
-  const dayIsClosed = selectedDate && closedDays?.includes(formatISO(selectedDate));
-
-  function _changeTime(day) {
-    return function (time, type) {
-      const index = openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek));
-      const newOpeningHrs = [...openingHrs];
-      newOpeningHrs[index][type] = time;
-      setOpeningHrs(newOpeningHrs);
-    };
-  }
+  if (isError) return <p>Error fetching closed days.</p>;
 
   return (
-    <div className='mx-auto max-w-xl'>
+    <div className="mx-auto max-w-xl">
       <Toaster />
-      <div className='mt-6 flex justify-center gap-6'>
-        <p className={`${!enabled ? 'font-medium' : ''}`}>Opening times</p>
-        <Switch
-          checked={enabled}
-          onChange={setEnabled}
-          className={classNames(
-            enabled ? 'bg-indigo-600' : 'bg-gray-200',
-            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-          )}>
-          <span className='sr-only'>Use setting</span>
-          <span
-            aria-hidden='true'
-            className={classNames(
-              enabled ? 'translate-x-5' : 'translate-x-0',
-              'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-            )}
-          />
-        </Switch>
-        <p className={`${enabled ? 'font-medium' : ''}`}>Opening days</p>
-      </div>
-
-      {!enabled ? (
-  // Opening times options
-  <div className='my-12 flex flex-col gap-8'>
-    {days.map((day) => {
-      const changeTime = _changeTime(day);
-      return (
-        <div className='grid grid-cols-3 place-items-center' key={day.id}>
-          <h3 className='font-semibold'>{capitalize(weekdayIndexToName(day.dayOfWeek))}</h3>
-          <div className='mx-4'>
-            <TimeSelector
-              type='openTime'
-              changeTime={changeTime}
-              selected={
-                openingHrs[openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))]
-                  ?.openTime
-              }
-            />
-          </div>
-
-          <div className='mx-4'>
-            <TimeSelector
-              type='closeTime'
-              changeTime={changeTime}
-              selected={
-                openingHrs[openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))]
-                  ?.closeTime
-              }
-            />
-          </div>
+      {isLoading ? (
+        <div className="flex items-center justify-center h-screen">
+          <Spinner />
         </div>
-      );
-    })}
+      ) : (
+        <div className="mt-6 flex flex-col items-center gap-6">
+          <Calendar
+            minDate={new Date()}
+            className="REACT-CALENDAR p-2 bg-default-50 dark:bg-black-50 shadow-2xl shadow-default-300 dark:text-gray-300"
+            view="month"
+            onClickDay={(date) => setSelectedDate(format(date, "yyyy-MM-dd'T'HH:mm:ss'Z'"))}
+            tileDisabled={tileClassName}
+          />
+          <style jsx>{`
+            .react-calendar--doubleView {
+              @apply w-[700px];
+            }
+            .react-calendar--doubleView .react-calendar__viewContainer {
+              @apply flex -m-2;
+            }
+            .react-calendar--doubleView .react-calendar__viewContainer > * {
+              @apply w-[50%] m-2;
+            }
+            .react-calendar *,
+            .react-calendar *::before,
+            .react-calendar *::after {
+              @apply box-border;
+            }
 
-    <Button
-      onClick={() => {
-        const withId = openingHrs.map((day) => ({
-          ...day,
-          id: days[days.findIndex((d) => d.name === day.name)]?.id,
-        }));
+            /* Custom Navigation Styles */
+            @media screen and (max-width: 500px) {
+              .react-calendar__navigation__prev2-button,
+              .react-calendar__navigation__prev-button {
+                @apply hidden;
+              }
+              .react-calendar__navigation__label {
+                @apply pl-4 text-left;
+              }
+            }
 
-        saveOpeningHrs(withId);
-      }}
-      colorScheme='green'
-      variant='solid'>
-      Save
-    </Button>
-  </div>
-) : (
-  // Opening days options
-  <div className='mt-6 flex flex-col items-center gap-6'>
-    <Calendar
-      minDate={new Date()}
-      className='REACT-CALENDAR p-2'
-      view='month'
-      onClickDay={(date) => setSelectedDate(date)}
-      tileClassName={({ date }) => {
-        return closedDays?.includes(formatISO(date)) ? 'closed-day' : null
-      }}
-    />
+            .react-calendar button {
+              @apply m-0 border-0 outline-none;
+            }
+            .react-calendar button:enabled:hover {
+              @apply cursor-pointer;
+            }
+            .react-calendar__navigation {
+              @apply flex h-11 mb-4;
+            }
+            .react-calendar__navigation button {
+              @apply min-w-[44px] bg-none;
+            }
+            .react-calendar__navigation button:disabled {
+              @apply invisible bg-default-200 dark:bg-gray-600;
+            }
+            .react-calendar__navigation button:enabled:hover,
+            .react-calendar__navigation button:enabled:focus {
+              @apply bg-default-100 dark:bg-gray-700;
+            }
+            .react-calendar__month-view__weekdays {
+              @apply text-indigo-600 dark:text-indigo-300 text-center uppercase font-bold text-[0.8em];
+            }
+            .react-calendar__month-view__days__day {
+              @apply p-1.5 rounded-lg;
+            }
+            .react-calendar__navigation__label__labelText {
+              @apply font-medium text-[1.05em];
+            }
+            .react-calendar__navigation__label {
+              @apply pointer-events-none;
+            }
+            .react-calendar__navigation__arrow {
+              @apply bg-white dark:bg-gray-700 p-1.5 rounded-full text-[1.25em];
+            }
+            .react-calendar__navigation__arrow:hover {
+              @apply bg-gray-600 dark:bg-gray-500;
+            }
+            .react-calendar__month-view__weekdays__weekday {
+              @apply p-3;
+            }
+            .react-calendar__month-view__weekdays__weekday abbr {
+              @apply no-underline;
+            }
+            .react-calendar__month-view__weekNumbers .react-calendar__tile {
+              @apply flex items-center justify-center text-[0.75em] font-bold;
+            }
+            .react-calendar__month-view__days__day--neighboringMonth {
+              @apply text-default-400 dark:text-gray-500;
+            }
+            .react-calendar__year-view .react-calendar__tile,
+            .react-calendar__decade-view .react-calendar__tile,
+            .react-calendar__century-view .react-calendar__tile {
+              @apply p-8 py-2;
+            }
+            .react-calendar__tile {
+              @apply aspect-square max-w-full bg-none text-center;
+            }
+            .react-calendar__tile:disabled {
+              @apply bg-gray-200 dark:bg-red-600 text-gray-600 dark:text-gray-400 ;
+            }
+            .react-calendar__tile:enabled:hover,
+            .react-calendar__tile:enabled:focus {
+              @apply bg-indigo-50 dark:bg-gray-700;
+            }
+            .react-calendar__tile--now {
+              @apply rounded-lg border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-300;
+            }
+            .react-calendar__tile--now:enabled:hover,
+            .react-calendar__tile--now:enabled:focus {
+              @apply bg-default-50 dark:bg-gray-700;
+            }
+            .react-calendar__tile--hasActive {
+              @apply bg-default-400 dark:bg-gray-700;
+            }
+            .react-calendar__tile--hasActive:enabled:hover,
+            .react-calendar__tile--hasActive:enabled:focus {
+              @apply bg-default-300 dark:bg-gray-600;
+            }
+            .react-calendar__tile--active:enabled:hover,
+            .react-calendar__tile--active:enabled:focus {
+              @apply bg-default-600 text-default dark:bg-gray-600 dark:text-white;
+            }
+            .react-calendar--selectRange .react-calendar__tile--hover {
+              @apply bg-indigo-50 dark:bg-gray-700;
+            }
 
-    <Button
-      onClick={() => {
-        if (dayIsClosed) openDay({ date: selectedDate })
-        else if (selectedDate) closeDay({ date: selectedDate })
-      }}
-      disabled={!selectedDate}
-      // isLoading={isLoading}
-      colorScheme='green'
-      variant='solid'>
-      {dayIsClosed ? 'Open shop this day' : 'Close shop this day'}
-    </Button>
-  </div>
-)}
+            .closed-day {
+              @apply bg-red-600 text-white rounded-lg;
+            }
+          `}</style>
+          <Button
+            onClick={() => {
+              if (selectedDate) {
+                const isAlreadyClosed = fetchedClosedDays.some(closedDay =>
+                  isSameDay(parseISO(closedDay.date), parseISO(selectedDate))
+                );
+                if (!isAlreadyClosed) {
+                  saveCloseDay(selectedDate);
+                } else {
+                  toast.error("This date is already marked as closed.");
+                }
+              }
+            }}
+            disabled={!selectedDate || isSaving}
+            color="primary"
+          >
+            {isSaving ? "Saving..." : "Save Selected Date"}
+          </Button>
+        </div>
+      )}
     </div>
-  )
+  );
 }
-
-// export async function getServerSideProps() {
-//   const days = await prisma.day.findMany()
-
-//   if (!(days.length === 7)) throw new Error('Insert all days into database')
-
-//   return { props: { days } }
-// }

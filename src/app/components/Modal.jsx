@@ -6,7 +6,7 @@ import { HiXMark } from "react-icons/hi2";
 
 const ModalContext = createContext()
 
-export default function Modal({children}){
+export default function MyModal({children}){
     const [openName, setopenName] = useState('')
     const close = ()=>setopenName("");
     const open = setopenName;
@@ -44,5 +44,5 @@ function Window({ children,name }) {
     );
 }
 
-Modal.Open = Open;
-Modal.Window = Window;
+MyModal.Open = Open;
+MyModal.Window = Window;

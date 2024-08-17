@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import HeroLb from "./components/HeroLb";
 import LbNavbar from "./components/LbNavbar";
 import LbLoader from "./components/LbLoader";
@@ -21,8 +21,6 @@ export default function Lb() {
       document.querySelector('body').classList.remove('loading');
     }
   }, [loading]);
-
- 
   return (
     <AnimatePresence>
       {loading ? (
@@ -36,14 +34,12 @@ export default function Lb() {
       ) : (
         <div className="relative min-h-screen overflow-hidden bg-[#F3EEF3]">
           {/* Background elements */}
+
           <LbNavbar />
           <HeroLb />
           <Visitors/>
-          <SectionDivider />
           <Features />
-          <SectionDivider />
           <Convincing />
-          <SectionDivider />
           <InfiniteScroll />
           <HorizontalScroll />
         </div>

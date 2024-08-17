@@ -1,30 +1,16 @@
 import React, { useState, useMemo, useCallback, useContext } from "react";
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Button,
-  Tooltip,
-  Pagination,
-  User,
-  Link,
-  TextField,
-} from "@nextui-org/react";
-import { DeleteIcon } from "./DeleteIcon";
-import { EyeIcon } from "./EyeIcon";
-import { EditIcon } from "./EditIcon";
-import Modal from "@/app/components/Modal";
-import ConfirmDelete from "@/app/components/ConfirmDelete";
+import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Button,Tooltip,Pagination,User,Link, DropdownTrigger, DropdownMenu, DropdownItem, Dropdown, useDisclosure} from "@nextui-org/react";
+
 import { FilterContext } from "@/context/filterContext";
 import { format, addDays } from "date-fns";
-import { useMutation, useQueryClient } from "react-query";
-import { deleteAppointment } from "../(root)/rendez-vous/apiRendezVous";
-import toast from "react-hot-toast";
 import SearchInput from "./SearchInput";
 import MuiDatePicker from "./MuiDatePicker";
+import SearchUserSelect from "./SearchUserSelect";
+import Modal from "@/app/components/Modal";
+import UserCell from "./UserCell";
+import StatusCell from "./StatusCell";
+import ActionsCell from "./ActionCell";
+import TableFooterPagination from "./TableFooterPagination";
 
 const columns = [
   { name: "NOM", uid: "userName" },
@@ -35,25 +21,14 @@ const columns = [
 ];
 
 export default function AppointmentTable({ data }) {
-  const queryClient = useQueryClient();
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: (id) => deleteAppointment(id),
-    onSuccess: () => {
-      toast.success("Appointment has been deleted");
-      queryClient.invalidateQueries({
-        queryKey: ["appointment"],
-      });
-    },
-    onError: (err) => toast.error(err.message),
-  });
+
 
   const [filter] = useContext(FilterContext);
-
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedDate, setSelectedDate] = useState(null);
-
+  const [sortOrder, setSortOrder] = useState("");
   const filteredItems = useMemo(() => {
     let items = filter
       ? data.filter((appointment) => appointment.status === filter)
@@ -64,6 +39,12 @@ export default function AppointmentTable({ data }) {
       items = items.filter(
         (item) => format(new Date(item.date), "yyyy-MM-dd") === formattedDate
       );
+    }
+    // for the selecting option by the date of reservation
+    if (sortOrder === "firstToLast") {
+      items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    } else if (sortOrder === "lastToFirst") {
+      items = items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
 
     if (!filterValue) return items;
@@ -85,7 +66,7 @@ export default function AppointmentTable({ data }) {
           val.toLowerCase().includes(lowerCaseFilterValue)
       )
     );
-  }, [data, filter, filterValue, selectedDate]);
+  }, [data, filter, filterValue, selectedDate,sortOrder]);
 
   const pages = useMemo(() => Math.ceil(filteredItems.length / rowsPerPage), [
     filteredItems,
@@ -108,35 +89,63 @@ export default function AppointmentTable({ data }) {
     setPage(1);
   }, []);
 
-  const filterTomorrowAppointments = () => {
-    const tomorrow = addDays(new Date(), 1);
-    setSelectedDate(tomorrow);
+  const handleDateFilterChange = (e) => {
+    const value = e.target.value;
+    switch (value) {
+      case "tomorrow":
+        setSelectedDate(addDays(new Date(), 1));
+        break;
+      case "today":
+        setSelectedDate(addDays(new Date(), 0));
+        break;
+      case "yesterday":
+        setSelectedDate(addDays(new Date(), -1));
+        break;
+      case "none":
+      default:
+        setSelectedDate(null);
+    }
   };
-  const filterTodayAppointments = () => {
-    const tomorrow = addDays(new Date(),0);
-    setSelectedDate(tomorrow);
+  const handleSortOrderChange = (e) => {
+    setSortOrder(e.target.value);
   };
-  const filterYesterdayAppointments = () => {
-    const tomorrow = addDays(new Date(),-1);
-    setSelectedDate(tomorrow);
-  };
+
 
   return (
     <>
         <div className="flex flex-col justify-center gap-4">
             <div className="flex justify-between gap-3 items-end">
-            <SearchInput
-                value={filterValue}
-                onChange={onSearchChange}
-                onClear={() => setFilterValue("")}
-            />
-             <div className=" flex flex-row items-center gap-3 ">
-                <Button onClick={filterTomorrowAppointments} size="lg" className="bg-default-100">Tomorrow</Button>
-                <Button onClick={filterTodayAppointments}    size="lg" className="bg-default-100">Todays</Button>
-                <Button onClick={filterYesterdayAppointments}size="lg" className="bg-default-100">Yesterday</Button>
+            <div className=" flex flex-row max-[1120px]:flex-col gap-4 w-full">
+              <div className=" flex flex-row justify-around gap-3 max-[350px]:flex-wrap">
+                <SearchInput
+                    value={filterValue}
+                    onChange={onSearchChange}
+                    onClear={() => setFilterValue("")}
+                />
+                <SearchUserSelect />
+              </div>
+              <div className=" flex flex-row justify-around gap-3 max-[500px]:flex-wrap max-[500px]:justify-start ">
+                <select
+                    onChange={handleDateFilterChange}
+                    className="bg-default-100 px-5 max-[400px]:w-full py-[15.5px] border dark:border-default-100 rounded-2xl"
+                  >
+                    <option value="none">None</option>
+                    <option value="today">Today</option>
+                    <option value="tomorrow">Tomorrow</option>
+                    <option value="yesterday">Yesterday</option>
+                  </select>
+                <MuiDatePicker value={selectedDate} onChange={setSelectedDate} />
+                <div className="w-full sm:max-w-[250px]">
+                <select
+                  onChange={handleSortOrderChange}
+                  className="bg-default-100 max-[400px]:w-full px-5 py-[15.5px] rounded-2xl border dark:border-default-100"
+                >
+                  <option value="firstToLast">First to Last Reserved</option>
+                  <option value="lastToFirst">Last to First Reserved</option>
+                </select>
+              </div>
             </div>
-            <MuiDatePicker value={selectedDate} onChange={setSelectedDate} />
-           
+            </div>
 
             </div>
             <div className="flex justify-between items-center">
@@ -157,7 +166,7 @@ export default function AppointmentTable({ data }) {
             </div>
         </div>
         <div className="xl:w-2xl">
-            <Table aria-label="Example table with custom cells">
+          <Table aria-label="Example table with custom cells">
             <TableHeader>
                 {columns.map((column) => (
                 <TableColumn
@@ -174,46 +183,7 @@ export default function AppointmentTable({ data }) {
                     {columns.map((column) => (
                     <TableCell key={column.uid}>
                         {column.uid === "actions" ? (
-                        <div className="relative flex items-center w-fit">
-                            <Tooltip content="Details">
-                            <Button variant="light" isIconOnly>
-                                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                <EyeIcon />
-                                </span>
-                            </Button>
-                            </Tooltip>
-                            <Modal>
-                            <Modal.Open opens="delete">
-                                <Button isIconOnly variant="light">
-                                <Tooltip color="danger" content="Delete user">
-                                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                                    <DeleteIcon />
-                                    </span>
-                                </Tooltip>
-                                </Button>
-                            </Modal.Open>
-                            <Modal.Window name="delete">
-                                <ConfirmDelete
-                                onConfirm={() => mutate(item.id)}
-                                resourceName="appointment"
-                                disabled={isDeleting}
-                                />
-                            </Modal.Window>
-                            </Modal>
-                            <Button
-                            variant="light"
-                            isIconOnly
-                            onClick={() => {
-                                // Handle edit action here
-                            }}
-                            >
-                            <Tooltip content="Modifier">
-                                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                <EditIcon />
-                                </span>
-                            </Tooltip>
-                            </Button>
-                        </div>
+                          <ActionsCell user={item.id}/>
                         ) : column.uid === "date" ? (
                         <div className="flex flex-col font-semibold">
                             <div className="leading-6">
@@ -222,34 +192,9 @@ export default function AppointmentTable({ data }) {
                             <div className="text-default-400">{item.time}</div>
                         </div>
                         ) : column.uid === "userName" ? (
-                        <User
-                            className="font-semibold leading-6 text-2xl"
-                            name={`${item.user.name} ${item.user.family_name}`}
-                            avatar={item.user.avatar}
-                            size="md"
-                            description={
-                            <Link
-                                href={`mailto:${item.user.email}`}
-                                size="md"
-                                isExternal
-                                className="text-light-green font-semibold"
-                            >
-                                {item.user.email}
-                            </Link>
-                            }
-                        />
+                          <UserCell user={item.user}/>
                         ) : column.uid === "status" ? (
-                        <div
-                            className={`${
-                            item.status === "en_attent"
-                                ? "bg-default-200"
-                                : item.status === "confermer"
-                                ? "bg-success-50"
-                                : "bg-danger-50"
-                            } text-center rounded-3xl px-[1.2rem] py-[0.4rem] font-semibold`}
-                        >
-                            {item.status}
-                        </div>
+                          <StatusCell status={item.status}/>
                         ) : column.uid === "phone" ? (
                         <div>{item.user.phone}</div>
                         ) : (
@@ -262,20 +207,7 @@ export default function AppointmentTable({ data }) {
             </TableBody>
             </Table>
         </div>
-        <div className="py-2 px-2 flex justify-center items-center">
-            <Pagination
-            showControls
-            classNames={{
-                cursor: "bg-[#19592A] text-background",
-            }}
-            page={page}
-            total={pages}
-            variant="flat"
-            onChange={setPage}
-            isCompact
-            showShadow
-            />
-        </div>
+          <TableFooterPagination page={page} pages={pages} setPage={setPage} />
         </>
     );
 }

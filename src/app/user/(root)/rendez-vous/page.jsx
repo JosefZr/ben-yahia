@@ -40,7 +40,7 @@ export default function Rendez() {
       setUserId(id);
     }
   }, []);
-
+ 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["appointments", userId],
     queryFn: () => getAppointments({ userId }),

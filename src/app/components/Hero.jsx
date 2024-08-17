@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <div className='flex items-center justify-evenly flex-row-reverse max-md:flex-col max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto mt-20'>
       <div className='flex items-center justify-center' ref={ref}>
-        <motion.div className="">
+        <motion.div>
           <motion.div 
             className="relative" 
             layoutId='main-image-1' 
@@ -46,8 +46,7 @@ export default function Hero() {
       <div className='flex flex-col items-start max-md:items-center gap-2 sm:max-w-[70%] mb-4' 
       // variants={banner}
       >
-        <h1   
-          className='hero-vertical text-center max-sm:px-5 text-3xl min-[300px]:text-5xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[90%] md:text-left capitalize text-light-green'
+        <h1 className='hero-vertical text-center max-sm:px-5 text-3xl min-[300px]:text-5xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[90%] md:text-left capitalize text-light-green'
           // initial={{ opacity: 0, y: 80 }}
           // animate={{ opacity: 1, y: 0 }}
           // transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}

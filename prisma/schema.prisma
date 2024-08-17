@@ -54,9 +54,9 @@ model Day{
   openTime String
   closeTime String
 }
-model CloseDay{
-  id String @id @default(cuid())
-  date DateTime @unique
+model ClosedDay{
+  id Int @id @default(autoincrement())
+  date DateTime 
 }
 model Appointment {
   id        Int      @id @default(autoincrement())
@@ -67,6 +67,8 @@ model Appointment {
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
   createdAt DateTime @default(now())
+  isCancelled Boolean @default(false)
+  cancelNote String @default("")
 
   @@index([userId])
 }

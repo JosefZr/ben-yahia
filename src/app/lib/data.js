@@ -17,7 +17,7 @@ export const footer = [
     },
     {
         name: "email",
-        content: "example@example.example",
+        content: "ex@ex.ex",
         icon: <MdOutlineEmail />
     },
     {
@@ -213,4 +213,16 @@ export const useLbNavbarLinks = () => {
         name:"Natural-Looking"
       }
     ]
+  }
+
+  export const useDays = ()=>{
+    return [
+      { dayOfWeek: 0, openTime: '08:00', closeTime: '18:00' }, // Sunday
+      { dayOfWeek: 1, openTime: '08:00', closeTime: '18:00' }, // Monday
+      { dayOfWeek: 2, openTime: '08:00', closeTime: '18:00' }, // Tuesday
+      { dayOfWeek: 3, openTime: '08:00', closeTime: '18:00' }, // Wednesday
+      { dayOfWeek: 4, openTime: '08:00', closeTime: '18:00' }, // Thursday
+      { dayOfWeek: 5, openTime: '08:00', closeTime: '18:00' }, // Friday
+      { dayOfWeek: 6, openTime: '08:00', closeTime: '18:00' }, // Saturday
+  ];
   }

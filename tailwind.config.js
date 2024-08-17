@@ -22,6 +22,11 @@ export const theme = {
     boxShadow: {
       'moon': 'inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb',
     },
+    backgroundImage: {
+      appointments: "url('/appointment/appointments-bg.png')",
+      pending: "url('/appointment/pending-bg.png')",
+      cancelled: "url('/appointment/cancelled-bg.png')",
+    },
     screens: {
       'xs': '320px',
       

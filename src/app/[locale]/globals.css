@@ -251,14 +251,52 @@ body {
 
 /* styles.css */
 .rounded-date-picker .MuiInputBase-root {
-  border-radius: 18px !important;
-  /* padding: 0 1px 0 0 !important; Adjust padding as needed */
-  /* text-align: center !important; */
+  border-radius: 16px !important;
 }
 
 .rounded-date-picker .MuiPickersPopper-root {
-  border-radius: 18px !important;
-  /* padding: 0 2px 0 0 !important; Adjust padding as needed */
-  /* text-align: center !important; */
 
+}
+
+
+/* for the stepper  */
+
+.stepper{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.step{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  
+}
+
+.step-number{
+  font-size: 14px;
+}
+.active .step-number{
+  background-color: rgb(51, 51, 255) !important;
+  color: #fff !important;
+}
+.complete .step-number{
+  background-color:var(--light-green) !important;
+  color: #fff;
+}
+.progress-bar{
+  position: absolute;
+  top: 25%;
+  left: 0;
+  height: 4px;
+  background-color: #ccc;
+}
+.progress{
+  height: 100%;
+  background-color: green;
+  transition:0.2s ease;
 }

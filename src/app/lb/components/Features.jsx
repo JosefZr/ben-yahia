@@ -2,9 +2,10 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { textAboutAnimate, slideInButtonsPlay, imageAnimate } from "../../lib/Animation";
+import { slideInButtonsPlay } from "../../lib/Animation";
 import { uselbFeaturs } from "@/app/lib/data";
 import { useSectionInView } from '@/hooks/useSectionInView';
+import useReveal from '@/hooks/useReveal';
 
 function Features() {
     const features = uselbFeaturs();
@@ -16,54 +17,33 @@ function Features() {
     });
     const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
     const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+    useReveal("horizontal")
+    useReveal("vertical")
 
     return (
         <motion.div 
-            className='text-center scroll-mt-28 max-w-[1300px] max-sm:mx-0  mx-auto rounded-3xl'
+            className='text-center scroll-mt-28 max-w-[1300px] max-sm:mx-0  mx-auto rounded-3xl mb-20'
             id='features'
             ref={refView}
             style={{ scale: scaleProgress, opacity: opacityProgress }}
         >
-            <motion.section 
-                className='bg-transparent flex lg:flex-row flex-col justify-center gap-10 max-sm:mx-3 mx-auto  md:py-10 pb-10 items-start max-xl:items-center rounded-xl'
-            >
-                <motion.div  
-                    initial="offscreen" 
-                    whileInView="onscreen" 
-                    transition={{ staggerChildren: 1 }} 
-                    viewport={{ once: false, amount: 0.3 }}
-                    className='flex items-center flex-col gap-10'
-                >
-                    <motion.h1 variants={textAboutAnimate} className='lg:hidden capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-purple'>Let me update you with some features about dental</motion.h1>
-                    <motion.div  
-                        
-                        initial={"offscreen"} 
-                        whileInView={"onscreen"} 
-                        transition={{ staggerChildren: 1 }} 
-                        viewport={{ once: false, amount: 0.3 }}
-                        variants={imageAnimate('left')}
-                        className=' flex items-center flex-col gap-10'
-                >
-                    <Image  
-                        src="/lb/pic1.webp"
-                        alt='cabin'
-                        width={500}
-                        height={500}
-                        quality={90}
-                        style={{ height: 'auto' }}
-                        className='rounded-xl'
-                    />
-                </motion.div>
-                    
-                </motion.div>
-                <motion.div 
-                    className='flex flex-col max-lg:text-center text-start gap-10 px-4 max-xl:w-full w-[50%] pt-5 max-[450px]:px-0'   
-                    initial="offscreen" 
-                    whileInView="onscreen" 
-                    transition={{ staggerChildren: 0.5 }} 
-                    viewport={{ once: false, amount: 0.5 }}
-                >
-                    <motion.h1 variants={textAboutAnimate} className='max-lg:hidden relative capitalize font-bold sm:text-6xl text-5xl whitespace-normal text-light-purple'>Let me update you with some features about dental</motion.h1>
+            <section className='bg-transparent flex lg:flex-row flex-col justify-center gap-10 max-sm:mx-3 mx-auto  md:py-10 pb-10 items-start max-xl:items-center rounded-xl'>
+                <div className='flex items-center flex-col gap-10'>
+                    <h1 className='reveal-vertical lg:hidden capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-purple'>Let me update you with some features about dental</h1>
+                    <div className=' flex items-center flex-col gap-10'>
+                        <Image  
+                            src="/lb/pic1.webp"
+                            alt='cabin'
+                            width={500}
+                            height={500}
+                            quality={90}
+                            style={{ height: 'auto' }}
+                            className='reveal-horizontal-left rounded-xl'
+                        />
+                    </div>  
+                </div>
+                <div className='flex flex-col max-lg:text-center text-start gap-10 px-4 max-xl:w-full w-[50%] pt-5 max-[450px]:px-0'>
+                    <h1 className='reveal-horizontal-right max-lg:hidden relative capitalize font-bold sm:text-6xl text-5xl whitespace-normal text-light-purple'>Let me update you with some features about dental</h1>
                     <motion.div
                         initial="initial"
                         whileInView="animate"
@@ -88,8 +68,8 @@ function Features() {
                             </motion.h2>
                         ))}
                     </motion.div>
-                </motion.div>
-            </motion.section>
+                </div>
+            </section>
         </motion.div>
     );
 }

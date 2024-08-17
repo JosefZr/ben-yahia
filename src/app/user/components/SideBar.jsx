@@ -42,7 +42,7 @@ export default function SideBar() {
     const [selected, setSelected] = useState("accueil");
 
 return (
-    <div className="flex h-screen flex-col justify-between border-e dark:border-[#18181B] bg-white dark:bg-black">
+    <div className="max-[550px]:hidden flex h-screen flex-col justify-between border-e dark:border-[#18181B] bg-white dark:bg-black">
     <nav className="px-4 py-6 ">
         <ul className="mt-6 space-y-1">
             {sideData.map((nav)=>{

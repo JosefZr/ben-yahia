@@ -27,7 +27,7 @@ function About() {
             ref={ref}
             style={{ scale: scalProgress, opacity: opacityProgress }}
         >
-            <motion.section 
+            <section 
                 ref={refView}
                 className='bg-transparent flex xl:flex-row flex-col justify-center gap-10 max-sm:mx-5 mx-auto md:px-10 md:py-10 pb-10 items-start max-xl:items-center  rounded-xl'
                 >
@@ -46,7 +46,7 @@ function About() {
                     <h1 className='reveal-horizontal-right max-xl:hidden relative capitalize  font-bold sm:text-7xl text-5xl whitespace-normal text-light-green'>{t('title')} </h1>
                     <h2 className='reveal-horizontal-right text-2xl max-sm:text-lg capitalize text-default-700 text-bold-green leading-10 '>{t("description")}</h2>
                 </div>
-            </motion.section>
+            </section>
         </motion.div>
     )
 }

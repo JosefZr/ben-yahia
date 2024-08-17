@@ -10,8 +10,8 @@ const nextConfig = {
         'subdomain',
         'files.stripe.com',] ,// Add the required hostnamesz here
         formats: ['image/avif', 'image/webp'], // Optional: specify formats
-    }
-    
+    },
+
 };
 
 

@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
             
             <ClientProviders>
 
-                <div className='flex flex-row justify-between '>
+                <div className='flex flex-row justify-center '>
                     <SideBar />
                     <main className='flex flex-col w-full mx-10'>
                         <Header/>

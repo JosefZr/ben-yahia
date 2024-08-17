@@ -6,9 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import MyNavbar from "../components/Navbar";
 import Intro from "../components/Intro";
 import Loader from "../components/Loader";
-// import Services from "../components/Services";
 
-import SectionDivider from "../components/SectionDivider";
 import Services from "../components/Services";
 const About = dynamic(() => import('../components/About'));
 const AboutCopy = dynamic(() => import('../components/AboutCopy'));

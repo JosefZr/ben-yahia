@@ -26,10 +26,36 @@ export async function getUserWithAppointmentId(userId) {
     }
 }
 export async function deleteAppointment(id){
+    if (!id) {
+        throw new Error("Appointment ID is required");
+    }
     let res=await  prisma.appointment.delete({where:{id}});
     if (res) {
         return `User with id ${id} deleted.`;
     } else {
         throw new Error(`Couldn't delete user with id ${id}.`);
+    }
+}
+export async function addCancelReason(reason, id) {
+    try {
+        if (!id) {
+            throw new Error("Reason and ID are required.");
+        }
+        if(!reason ){
+            throw new Error("Reason is required");
+        }
+
+        const result = await prisma.appointment.update({
+            where: { id: id },
+            data: {
+                cancelNote: reason,
+                status: "annuler",
+                isCancelled:true
+            },
+        });
+
+        return result;
+    } catch (err) {
+        throw err;
     }
 }

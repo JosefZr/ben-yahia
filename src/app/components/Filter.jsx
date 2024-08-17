@@ -6,9 +6,9 @@ const FilterButton = styled.button`
   background-color: white;
   border: none;
   border-radius: 8px;
-  font-weight: 500;
-  font-size: 1rem;
-  padding: 0.44rem 0.8rem;
+  font-weight: 400;
+  font-size:0.9rem;
+  padding: 0.2rem 0.4rem;
   transition: all 0.3s;
 
   ${(props) =>
@@ -51,7 +51,7 @@ export default function Filter() {
   }
 
   return (
-    <div className="border-solid border-1 border-gray-150 bg-white dark:bg-[#242428] dark:border-gray-900 shadow-lg rounded-xl p-2 flex gap-2">
+    <div className="border-solid border-1 border-gray-150 bg-white dark:bg-[#242428] dark:border-gray-900 shadow-lg rounded-xl p-1 flex gap-1">
       <FilterButton
         active={currentFilter === "en_attent"}
         onClick={() => handleClick("en_attent")}
