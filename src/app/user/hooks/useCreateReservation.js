@@ -9,7 +9,7 @@ export default function useCreateReservation(onCloseModal) {
         mutationFn: createReservation,
         queryKey: ["patients","appointment"],
         onSuccess: async () => {
-            await queryClient.invalidateQueries('appointment');
+            await queryClient.invalidateQueries( ["patients","appointment"],);
             toast.success('Reservation is set correctly');
             if (onCloseModal) onCloseModal();
         },

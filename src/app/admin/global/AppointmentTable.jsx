@@ -6,7 +6,6 @@ import { format, addDays } from "date-fns";
 import SearchInput from "./SearchInput";
 import MuiDatePicker from "./MuiDatePicker";
 import SearchUserSelect from "./SearchUserSelect";
-import Modal from "@/app/components/Modal";
 import UserCell from "./UserCell";
 import StatusCell from "./StatusCell";
 import ActionsCell from "./ActionCell";
@@ -183,10 +182,10 @@ export default function AppointmentTable({ data }) {
                     {columns.map((column) => (
                     <TableCell key={column.uid}>
                         {column.uid === "actions" ? (
-                          <ActionsCell user={item.id}/>
+                          <ActionsCell user={item}/>
                         ) : column.uid === "date" ? (
                         <div className="flex flex-col font-semibold">
-                            <div className="leading-6">
+                            <div className="leading-6 text-nowrap">
                             {format(new Date(item.date), "yyyy-MM-dd")}
                             </div>
                             <div className="text-default-400">{item.time}</div>

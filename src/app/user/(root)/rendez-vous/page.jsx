@@ -9,7 +9,8 @@ import { Card, CardHeader, CardBody, CardFooter, Image } from '@nextui-org/react
 import CustomButton from '@/app/components/Button';
 import ConfirmDelete from '@/app/components/ConfirmDelete';
 import Modal from '@/app/components/Modal';
-import { deleteAppointment, getAppointments } from '../../api/appointment';
+import { deleteAppointment } from '../../api/appointment';
+import useFetchAppointmentById from '../../hooks/useFetchAppointmentsById';
 
 const menuAppointmentPage = [
   { name: "tous les rendez-vous" },
@@ -18,16 +19,17 @@ const menuAppointmentPage = [
 
 export default function Rendez() {
   const [active, setActive] = useState("rendez-vous à venir");
-  const [appointments, setAppointment] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const queryClient = useQueryClient();
 
-  const { isLoading: isDeleting, mutate: deleteAppoin,} = useMutation({
-    mutationFn: (id) => deleteAppointment(id),
+  const { isLoading: isDeleting, mutate: deleteAppoin } = useMutation(deleteAppointment, {
     onSuccess: (res) => {
       toast.success(res);
-      queryClient.invalidateQueries({ queryKey: ["appointments"] });
+      queryClient.invalidateQueries(["appointment", userId]); // Make sure this matches your useFetchAppointmentById query key
+      queryClient.refetchQueries(["appointment", userId]); 
+      setIsModalOpen(false);  // Close the modal after successful deletion
     },
     onError: (err) => {
       toast.error(err.message);
@@ -40,18 +42,14 @@ export default function Rendez() {
       setUserId(id);
     }
   }, []);
- 
-  const { isLoading, isError, data, error } = useQuery({
-    queryKey: ["appointments", userId],
-    queryFn: () => getAppointments({ userId }),
-    enabled: !!userId,
-    onSuccess: (data) => {
-      setAppointment(data);
-    },
-  });
 
+  const { appointments, isLoading, isError, error } = useFetchAppointmentById(userId); // Use the custom hook
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
+
+  const handleDeleteAppointment = (appointmentId) => {
+    deleteAppoin(appointmentId);
+  };
 
   return (
     <div className="max-w-4xl mx-auto flex flex-col gap-5">
@@ -107,17 +105,21 @@ export default function Rendez() {
               </CardBody>
 
               <CardFooter className="flex items-start justify-center">
-                <Modal>
+                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                   <Modal.Open opens="cancel">
-                    <CustomButton color='primary' variant="shadow" className="w-[90%] rounded-2xl">
+                    <CustomButton
+                      color='primary'
+                      variant="shadow"
+                      className="w-[90%] rounded-2xl"
+                      onClick={() => setIsModalOpen(true)}
+                    >
                       Cancel
                     </CustomButton>
                   </Modal.Open>
                   <Modal.Window name="cancel">
                     <ConfirmDelete
-                      onConfirm={() => 
-                        deleteAppoin(appointment.id)}
-                      resourceName='appointment'
+                      onConfirm={() => handleDeleteAppointment(appointment.id)}
+                      resourceName={appointment.id}
                       disabled={isDeleting}
                     />
                   </Modal.Window>
@@ -169,31 +171,24 @@ export default function Rendez() {
                     </h1>
                   </div>
                   <div className="flex flex-row items-center justify-between">
-                  <h3>description: </h3>
-                  <h1 className="justify-end font-semibold px-2">{appointment.note}</h1>
-                </div>
+                    <h3>description: </h3>
+                    <h1 className="justify-end font-semibold px-2">{appointment.note}</h1>
+                  </div>
                 </CardBody>
 
                 <CardFooter className="flex items-start justify-center">
-                  <Modal>
+                  <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                     <Modal.Open opens="cancel">
-                      <CustomButton color='warning'>
+                      <CustomButton
+                        color='warning'
+                        onClick={() => setIsModalOpen(true)}
+                      >
                         Cancel
                       </CustomButton>
                     </Modal.Open>
                     <Modal.Window name="cancel">
                       <ConfirmDelete
-                        onConfirm={() => {
-                          deleteAppoin(appointment.id, {
-                            onSuccess: () => {
-                              toast.success("Appointment deleted successfully");
-                              queryClient.invalidateQueries('appointments');
-                            },
-                            onError: (error) => {
-                              toast.error(error.message);
-                            }
-                          });
-                        }}
+                        onConfirm={() => handleDeleteAppointment(appointment.id)}
                         resourceName='appointment'
                         disabled={isDeleting}
                       />

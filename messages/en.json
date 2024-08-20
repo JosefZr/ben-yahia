@@ -39,6 +39,10 @@
         "title":"Braces And Aligners",
         "description":"Achieve the smile you've always dreamed of with our custom braces and aligners. We offer a range of options to fit your needs and budget, so you can straighten your teeth with confidence."
       },
+      "screw":{
+        "title":"Tads",
+        "description":"OrthAnchor for cortical anchorage in orthodontics"
+      },
       "Crown":{
         "title":"Dental Crown",
         "description":"Restore Your Smile with a Natural-Looking Crown. Improved Appearance. Enhanced StrengthProtection. Long-Lasting"
@@ -72,15 +76,23 @@
         "description":"Wave goodbye to your shy back-of-the-mouth tooth with a gentle tug! It's like the tooth fairy's grown-up cousin doing the magic."
       },
       "Denture":{
-        "title":"Full Denture China Dental Lab Dental  Outsourcing",
+        "title":"prosthodontics",
         "description":"Dentures are like dress-up for your mouth, giving you a full set of dazzling pretend teeth for a winning smile!"
+      },
+      "minor":{
+        "title":"Minor Surgery",
+        "description":"Need a minor dental procedure? We're here to help! Our clinic offers a variety of small surgeries, performed with the utmost precision and care, ensuring your comfort and optimal results."
+      },
+      "gumy":{
+        "title":"Gingivectomy",
+        "description":"Need a minor dental procedure? We're here to help! Our clinic offers a variety of small surgeries, performed with the utmost precision and care, ensuring your comfort and optimal results."
       },
       "header":{
         "title":"High quality services for you "
       }
     },
     "About":{
-      "title":"Meet our leader of the Team" ,
+      "title":"Meet our Main Dr" ,
       "description":"Dr.M.BENYAHIA is an orthodontist with extensive experience in endodontic care, offering a range of basic dental treatments and surgeries. With over 24 years in the field, he is a seasoned dentist providing comprehensive oral healthcare services."
     },
     "Email":{

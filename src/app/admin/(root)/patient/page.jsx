@@ -1,9 +1,8 @@
 "use client"
-import { useState } from "react";
 import Header from "@/app/components/Header";
 import PatientTable from "../../global/TableUi";
 import useFetchUsers from "../../hooks/useFetchUsers";
-import { Spinner } from "@nextui-org/react";
+import CustomSpinner from "@/app/components/CustomSpinner";
 
 
 export default function Patient() {
@@ -13,9 +12,7 @@ export default function Patient() {
     return ( 
         <>
         {isLoading ? (
-            <div className="flex items-center justify-center h-screen">
-                <Spinner />
-            </div>
+            <CustomSpinner/>
         ):(
         <>
             <div className="flex flex-row items-center justify-between p-4">

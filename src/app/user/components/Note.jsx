@@ -7,7 +7,7 @@ const Note = React.memo(function NoteComponent({ value, onChange }) {
       value={value}
       onChange={onChange}
       className='w-full p-2 border rounded'
-      placeholder='Dites-nous votre objectif ici'
+      placeholder='ex: Annual mothly chack-up'
       rows={4}
     />
   );

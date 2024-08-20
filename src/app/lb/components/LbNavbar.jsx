@@ -53,7 +53,7 @@ function LbNavbar() {
                 layoutId='main-image-1'
             >
                 <Image
-                src="/logo/lb-small.webp"
+                src="/lb/lb-small.png"
                 alt='White and Black Simple Illustration Dental Clinic Logo'
                 width={70}
                 height={50}

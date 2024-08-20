@@ -59,3 +59,23 @@ export async function addCancelReason(reason, id) {
         throw err;
     }
 }
+export async function AddingTime(id, time){
+    try{
+        if(!time){
+            throw new Error("Time is required");
+        }
+        if(!id){
+            throw new Error("ID is required");
+        }
+        const result = await prisma.appointment.update({
+            where:{id:id},
+            data:{
+                time:time,
+                status:"confirmed"
+            }
+        })
+        return result
+    }catch(err){
+        throw err
+    }
+}

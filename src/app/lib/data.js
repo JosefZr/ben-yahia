@@ -60,7 +60,7 @@ export const useServices =()=>{
         {
             titre: t("Implant.title"),
             content: t('Implant.description'),
-            image: '/services/implant.webp',
+            image: '/services/implant.jpg',
             icon: "https://img.icons8.com/?size=100&id=GSlkzWZjhPmT&format=png&color=214030",
             direction: "left"
         },
@@ -68,6 +68,13 @@ export const useServices =()=>{
             titre: t("Braces.title"),
             content: t('Braces.description'),
             image: "/services/braces.webp",
+            icon: "https://img.icons8.com/?size=100&id=ZDLptEjyNsEC&format=png&color=214030",
+            direction: "right"
+        },
+        {
+            titre: t("screw.title"),
+            content: t('screw.description'),
+            image: "/services/tads.jpg",
             icon: "https://img.icons8.com/?size=100&id=ZDLptEjyNsEC&format=png&color=214030",
             direction: "right"
         },
@@ -127,13 +134,27 @@ export const useServices =()=>{
             icon: "https://img.icons8.com/?size=100&id=eAO25vPIMU17&format=png&color=214030",
             direction: "right"
         },
-        {
-            titre: t("Denture.title"),
-            content: t('Denture.description'),
-            image: "/services/dentures.webp",
-            icon: "https://img.icons8.com/?size=100&id=wpfUlRXFcAiU&format=png&color=214030",
-            direction: "left"
-        },
+      {
+        titre: t("gumy.title"),
+        content: t('gumy.description'),
+        image: "/services/gumy.jpg",
+        icon: "https://img.icons8.com/?size=100&id=wpfUlRXFcAiU&format=png&color=214030",
+        direction: "left"
+    },
+    {
+      titre: t("minor.title"),
+      content: t('minor.description'),
+      image: "/services/minor.jpg",
+      icon: "https://img.icons8.com/?size=100&id=wpfUlRXFcAiU&format=png&color=214030",
+      direction: "right"
+  },
+  {
+    titre: t("Denture.title"),
+    content: t('Denture.description'),
+    image: "/services/dentures.webp",
+    icon: "https://img.icons8.com/?size=100&id=wpfUlRXFcAiU&format=png&color=214030",
+    direction: "left"
+},
     ];
 
 }

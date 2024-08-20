@@ -59,8 +59,8 @@ export default function Filter() {
         En_attent
       </FilterButton>
       <FilterButton
-        active={currentFilter === "confermer"}
-        onClick={() => handleClick("confermer")}
+        active={currentFilter === "confermed"}
+        onClick={() => handleClick("confirmed")}
       >
         Confermer
       </FilterButton>

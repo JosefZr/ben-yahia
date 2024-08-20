@@ -1,15 +1,9 @@
 import React, { useState, useMemo, useCallback } from "react";
-import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Button,Tooltip,Input,Pagination,User,Link
-} from "@nextui-org/react";
+import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Input,Pagination,User,Link} from "@nextui-org/react";
 import { IoSearch } from "react-icons/io5";
-import { DeleteIcon } from "./DeleteIcon";
-import { EyeIcon } from "./EyeIcon";
-import { EditIcon } from "./EditIcon";
-import CreatePatientForm from "@/app/admin/global/CreatePatientForm";
-import { useDeletePatient } from "./useDeletePatient";
-import Modal from "@/app/components/Modal";
-import ConfirmDelete from "@/app/components/ConfirmDelete";
+
 import AddPatient from "../(root)/patient/AddPatient";
+import PatientActionCell from "./PatientActionCell";
 
 const columns = [
   // { name: "ID", uid: "id" },
@@ -24,9 +18,6 @@ export default function TableUi({ data }) {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [showForm, setShowForm] = useState(false);
-  const [selectedPatientId, setSelectedPatientId] = useState();
-  const { isDeleting, deletePatient } = useDeletePatient();
 
   const filteredItems = useMemo(() => {
     if (!filterValue) return data;
@@ -123,54 +114,7 @@ export default function TableUi({ data }) {
                       )}
                     />
                   ) : column.uid === "actions" ? (
-                    <div className="relative flex items-center w-fit">
-                      <Tooltip content="Details">
-                        <Button variant="light" isIconOnly>
-                          <span className="text-lg  text-default-400 cursor-pointer active:opacity-50">
-                            <EyeIcon />
-                          </span>
-                        </Button>
-                      </Tooltip>
-                      <Modal>
-                        <Modal.Open opens="delete">
-                          <Button isIconOnly variant="light">
-                            <Tooltip color="danger" content="Delete user">
-                              <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                                <DeleteIcon />
-                              </span>
-                            </Tooltip>
-                          </Button>
-                        </Modal.Open>
-                        <Modal.Window name="delete">
-                          <ConfirmDelete
-                            onConfirm={() => deletePatient(item.id)}
-                            resourceName={item.name}
-                            disabled={isDeleting}
-                          />
-                        </Modal.Window>
-                      </Modal>
-                      <Modal>
-                        <Modal.Open opens="edit">
-                        <Button
-                          variant="light"
-                          isIconOnly
-                          // onClick={() => {
-                          //   setSelectedPatientId(item.id);
-                          // }}
-                        >
-                          <Tooltip content="Modifier">
-                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                          </Tooltip>
-                        </Button>
-                        </Modal.Open>
-                        <Modal.Window name="edit">
-                          <CreatePatientForm patientToEdit={item}/>
-                        </Modal.Window>
-                      </Modal>
-                      
-                    </div>
+                    <PatientActionCell user={item}/>
                   ) : (
                     item[column.uid]
                   )}

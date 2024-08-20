@@ -74,7 +74,11 @@ export default function Signup() {
                         <div className='flex flex-row justify-between gap-3'>
                             <div className='flex flex-col gap-3 w-full'>
                                 <Input
-                                    {...register("age", { required: "Age is required", pattern: { value: /^[0-9]+$/, message: "Invalid age" } })}
+                                    {...register("age", { 
+                                        required: "Age is required", 
+                                        min: { value: 6, message: "Age must be at least 6 years old" }, 
+                                        max: { value: 100, message: "Age must be less than 100 years old" } 
+                                    })}
                                     id='age'
                                     variant='flat'
                                     size='md'
@@ -87,7 +91,13 @@ export default function Signup() {
                             </div>
                             <div className='flex flex-col gap-3 w-full'>
                                 <Input
-                                    {...register("phone", { required: "Phone number is required", pattern: { value: /^[0-9]+$/, message: "Invalid phone number" } })}
+                                    {...register("phone", { 
+                                        required: "Phone number is required", 
+                                        pattern: { 
+                                            value: /^(06|05|07)[0-9]{8}$/, 
+                                            message: "Invalid phone number, ex: 06-00-00-00-00, 05-00-00-00-00, or 07-00-00-00-00s" 
+                                        }
+                                    })}
                                     id='phone'
                                     variant='flat'
                                     size='md'

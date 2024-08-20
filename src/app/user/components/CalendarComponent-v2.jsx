@@ -11,21 +11,22 @@ import Note from './Note';
 import useFetchClosedDays from '@/app/admin/hooks/useFetchClosedDays';
 import useCreateReservation from '../hooks/useCreateReservation';
 import useGetAppointmentsByDate from '../hooks/useGetAppointments';
+import AdditionalNote from './AdditionalNote';
 
-export default function CalendarComponent2({ days = [], onCloseModal,userId }) {
+export default function CalendarComponent2({ days = [], onCloseModal, userId }) {
     const [date, setDate] = useState({
         justDate: null,
         time: null,
     });
     const [note, setNote] = useState('');
+    const [additionalNote, setAdditionalNote] = useState('');
     const [reservedTimes, setReservedTimes] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
     const { fetchedClosedDays = [], isLoading, isError } = useFetchClosedDays();
 
     const tileClassName = useCallback(({ date: tileDate, view }) => {
-        const minDate = new Date(); // Define the minimum date
+        const minDate = new Date();
         if (view === 'month') {
-            // Style for selected date
             if (date.justDate && isSameDay(tileDate, date.justDate)) {
                 return 'bg-light-green text-white rounded-xl';
             }
@@ -33,7 +34,7 @@ export default function CalendarComponent2({ days = [], onCloseModal,userId }) {
                 tileDate < minDate ||
                 fetchedClosedDays.some((closedDay) => isSameDay(parseISO(closedDay.date), tileDate))
             ) {
-                return 'bg-default-200 text-default-700 cursor-not-allowed'; // Style for dates before minDate and closed dates
+                return 'bg-default-200 text-default-700 cursor-not-allowed';
             }
             return 'hover:bg-default-200 hover:text-default-700 rounded-xl';
         }
@@ -44,9 +45,13 @@ export default function CalendarComponent2({ days = [], onCloseModal,userId }) {
         setNote(e.target.value);
     }, []);
 
-    const {mutate: createReservationMutate,isLoading:isCreating} = useCreateReservation(onCloseModal) 
+    const handleAdditionalNoteChange = useCallback((e) => {
+        setAdditionalNote(e.target.value);
+    }, []);
 
-    const { isGetting, getAppointmentsTimes } = useGetAppointmentsByDate(setReservedTimes)
+    const { mutate: createReservationMutate, isLoading: isCreating } = useCreateReservation(onCloseModal);
+
+    const { isGetting, getAppointmentsTimes } = useGetAppointmentsByDate(setReservedTimes);
 
     useEffect(() => {
         if (date.justDate) {
@@ -56,11 +61,10 @@ export default function CalendarComponent2({ days = [], onCloseModal,userId }) {
     }, [date.justDate, getAppointmentsTimes]);
 
     const handleCreateReservation = () => {
-
         const { justDate, time } = date;
         if (justDate && time) {
             const formattedDate = format(justDate, 'yyyy-MM-dd');
-            createReservationMutate({ date: formattedDate, time, userId: parseInt(userId), note });
+            createReservationMutate({ date: formattedDate, time, userId: parseInt(userId), note, additionalNote });
         } else {
             toast.error('Please select both date and time');
         }
@@ -135,7 +139,11 @@ export default function CalendarComponent2({ days = [], onCloseModal,userId }) {
                     <Note
                         value={note}
                         onChange={handleNoteChange}
-                    />                
+                    />    
+                    <AdditionalNote
+                        value={additionalNote}
+                        onChange={handleAdditionalNoteChange}
+                    />            
                 </div>
             )}
 

@@ -1,7 +1,7 @@
 {
     "Index": {
-      "title": " Souriez tant que vous avez encore de dents",
-      "subtitle": "Prendre soin de sa santé buccodentaire signifie bien plus qu’un simple sourire éclatant ! Il s'agit de garder des dents fortes, des gencives saines et de prévenir les problèmes avant qu'ils ne surviennent. De petites mesures comme se brosser les dents et utiliser régulièrement la soie dentaire, "
+      "title": " Souriez tant que vous avez encore des dents",
+      "subtitle": "Prendre soin de sa santé buccodentaire signifie bien plus qu’un simple sourire éclatant ! "
     },
     "callAction":{
       "text":"Prendre Rendez-vous"
@@ -39,29 +39,33 @@
         "title":"Appareils orthodontiques et aligneurs",
         "description":"Obtenez le sourire dont vous avez toujours rêvé avec nos appareils orthodontiques et aligneurs personnalisés. Nous proposons une gamme d'options adaptées à vos besoins et à votre budget, afin que vous puissiez redresser vos dents en toute confiance."
       },
+      "screw":{
+        "title":"Tad",
+        "description":"Petit dispositif orthodontique temporaire qui aide à déplacer les dents avec précision, améliorant l'efficacité des traitements."
+      },
       "Crown":{
         "title":"Couronne dentaire",
-        "description":"Une couronne dentaire désigne une prothèse dentaire fixe destinée à restaurer une dent abîmée. Épousant la forme d’une coquille, la couronne dentaire vient envelopper la dent abîmée (dévitalisée, malformée, cassée) afin de lui redonner tout son aspect fonctionnel et esthétique."
+        "description":"Restaure et protège une dent abîmée en recouvrant sa surface avec une couronne solide et naturelle, assurant à la fois fonctionnalité et esthétique."
       },
       "Filling":{
-        "title":"plombage dentaire",
-        "description":"Considérez une obturation dentaire comme une petite cape de super-héros pour votre dent. Il intervient pour réparer les bobos et garder votre sourire super fort !"
+        "title":"Soins dentaires",
+        "description":"Répare les petites imperfections et protège vos dents pour un sourire éclatant et sain."
       },
       "Bridges":{
-        "title":"Ponts dentaires",
-        "description":"sont des prothèses fixes qui comblent le vide créé par une ou plusieurs dents manquantes. Ancrés à vos dents naturelles ou à vos implants dentaires, les ponts offrent une solution naturelle et durable pour compléter votre sourire."
+        "title":"bridge",
+        "description":"Sont des prothèses fixes qui comblent le vide créé par une ou plusieurs dents manquantes."
       },
       "Check":{
-        "title":"contrôle dentaire de routine",
-        "description":"Retrouvez un sourire radieux et une santé durable grâce à nos examens dentaires complets – votre passerelle vers les soins préventifs et le bien-être bucco-dentaire."
+        "title":"Consultation",
+        "description":"Un examen approfondi pour évaluer votre santé bucco-dentaire et planifier des soins personnalisés."
       },
       "Whitening":{
-        "title":"blanchissement dentaire",
+        "title":"blanchiment",
         "description":"Obtenez un sourire plus éclatant grâce à notre nettoyage facile des dents. C'est rapide, sûr et ça fait briller vos dents !"
       },
       "Scaling":{
-        "title":"Mise à l'échelle et polissage",
-        "description":"Gardez votre sourire sain et éclatant grâce à notre service de nettoyage en douceur et de brillance de vos dents."
+        "title":"Détartrage et polissage",
+        "description":"Ce soin préventif contribue à la santé des gencives et à l'éclat naturel de vos dents.    "
       },
       "Root":{
         "title":"Traitement canalaire",
@@ -69,11 +73,19 @@
       },
       "Wisdom":{
         "title":"Extraction des dents de sagesse",
-        "description":"Dites adieu à votre timide dent du fond de la bouche en tirant doucement ! C'est comme si le cousin adulte de la fée des dents faisait de la magie."
+        "description":"Procédure visant à retirer les dents de sagesse pour prévenir les douleurs, infections, ou problèmes orthodontiques."
       },
       "Denture":{
-        "title":"Prothèse complète",
-        "description":"Les prothèses dentaires sont comme un habillage pour votre bouche, vous offrant un ensemble complet de fausses dents éblouissantes pour un sourire gagnant !"
+        "title":"Prothèse dentaire",
+        "description":"Remplace les dents manquantes avec des prothèses sur mesure, offrant confort et restauration du sourire."
+      },
+      "minor":{
+        "title":"Chirurgie légère",
+        "description":"Interventions chirurgicales peu invasives pour traiter des conditions bucco-dentaires spécifiques, assurant un rétablissement rapide et confortable."
+      },
+      "gumy":{
+        "title":"Gingivectomy",
+        "description":"Obtenez un sourire plus équilibré. Gardez vos gencives en bonne santé : il est plus facile de les garder propres !Évitez les problèmes plus tard : nous pouvons résoudre tous les problèmes de gencive avant qu’ils ne s’aggravent."
       },
       "header":{
         "title":"Services de haute qualité  pour vous "
@@ -81,7 +93,7 @@
     },
     "About":{
       "title":"Rencontrez notre chef d'équipe" ,
-      "description":"Le Dr M. BENYAHIA est un orthodontiste possédant une vaste expérience en soins endodontiques, offrant une gamme de traitements dentaires de base et de chirurgies. Avec plus de 24 ans d'expérience dans le domaine, il est un dentiste chevronné fournissant des services complets de soins bucco-dentaires."
+      "description":"Dr M. BENYAHIA Est Un Orthodontiste Possédant Une Vaste Expérience En Soins Endodontiques, Offrant Une Gamme De Traitements Dentaires De Base Et De Chirurgies. Avec Plus De 24 Ans D'expérience."
     },
     "Email":{
       "title":"un service exceptionnel exige des patients exceptionnels.",

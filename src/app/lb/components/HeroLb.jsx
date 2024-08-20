@@ -50,7 +50,7 @@ function HeroLb() {
         <div className='flex items-center justify-between flex-row gap-5 max-md:flex-col xl:max-w-6xl max-[500px]:mx-1 mx-10 mt-20 max-sm:mt-28'>
           <div className='flex items-center justify-center'>
                 <Image
-                  src="/purple.webp"
+                  src="/purple.jpg"
                   alt='White and Black Simple Illustration Dental Clinic Logo'
                   width={400}
                   height={700}
