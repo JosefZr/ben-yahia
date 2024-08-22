@@ -1,7 +1,8 @@
+"use client"
 import React from 'react'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import { navList } from '@/app/lib/data'
+// import { navList } from '@/app/lib/data'
 import useScroll from '../hooks/use-scroll'
 import { cn } from '@/lib/utils';
 

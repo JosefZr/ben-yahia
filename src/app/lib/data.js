@@ -53,6 +53,72 @@ export const useNavbarLinks = () => {
     }
   ];
 };
+export const service = ()=>{
+  return[
+    {
+      name: "Implant dentaire",
+    },
+    {
+      name: "Appareils orthodontiques et aligneurs",
+    },
+    {
+      name: "Tad",
+    },
+    {
+      name: "Couronne dentaire",
+    },
+    {
+      name: "Soins dentaires",
+    },
+    {
+      name: "bridge",
+    },
+    {
+      name: "Consultation",
+    },
+    {
+      name: "Détartrage et polissage",
+    },
+    {
+      name: "blanchiment",
+    },
+    {
+      name: "Traitement canalaire",
+    },
+    {
+      name: "Extraction des dents de sagesse",
+    },
+    {
+      name: "Prothèse dentaire",
+    },
+    {
+      name: "Chirurgie légère",
+    },
+    {
+      name: "Gingivectomy",
+    },
+  ]
+}
+export const maladie=()=>{
+  return [
+    { name:"pas de maladie"},
+    { name: "Grippe", description: "Infection virale aiguë qui affecte les voies respiratoires." },
+    { name: "Rhume", description: "Infection virale bénigne des voies respiratoires supérieures." },
+    { name: "Diabète", description: "Maladie métabolique caractérisée par une hyperglycémie chronique." },
+    { name: "Hypertension artérielle", description: "Élévation persistante de la pression artérielle." },
+    { name: "Asthme", description: "Affection respiratoire chronique causant une inflammation des voies respiratoires." },
+    { name: "Bronchite", description: "Inflammation des bronches, généralement causée par une infection virale ou bactérienne." },
+    { name: "Eczéma", description: "Affection cutanée provoquant des démangeaisons et des éruptions cutanées." },
+    { name: "Rhinite allergique", description: "Réaction allergique causant des symptômes nasaux comme le nez qui coule et les éternuements." },
+    { name: "Sinusite", description: "Inflammation des sinus, souvent à la suite d'une infection virale ou bactérienne." },
+    { name: "Cancer", description: "Groupe de maladies caractérisées par la croissance incontrôlée des cellules." },
+    { name: "Insomnie", description: "Trouble du sommeil caractérisé par une difficulté à s'endormir ou à rester endormi." },
+    { name: "Migraine", description: "Type de mal de tête sévère souvent accompagné de nausées et de sensibilité à la lumière." },
+    { name: "Arthrite", description: "Inflammation des articulations, pouvant causer douleur et raideur." },
+    { name: "Gastro-entérite", description: "Inflammation de l'estomac et de l'intestin, souvent causée par une infection virale ou bactérienne." },
+    { name: "Hépatite", description: "Inflammation du foie, souvent causée par une infection virale ou des substances toxiques." }
+  ];
+}
 // for the  services 
 export const useServices =()=>{
     const t = useTranslations('Services');

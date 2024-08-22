@@ -40,7 +40,7 @@ function HeroLb() {
     <motion.section
       style={applyTransform ? { opacity } : {}}
       ref={targetRef}
-      className="sm:h-screen sm:scroll-m-20 flex items-center justify-evenly flex-col mb-32"
+      className="sm:h-screen sm:scroll-m-20 flex items-center justify-evenly flex-col mb-40"
       id='accueil'
     > 
       <motion.div 
@@ -56,7 +56,7 @@ function HeroLb() {
                   height={700}
                   quality={90}
                   priority
-                  className='hero-horizontal-left rounded-xl object-cover shadow-xl'
+                  className='hero-horizontal-left rounded-xl object-cover shadow-xl pointer-events-none'
                 />
               </div>
           <div className='flex flex-col items-start max-md:items-center gap-4 mb-4'>

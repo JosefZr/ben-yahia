@@ -57,7 +57,7 @@ function LbNavbar() {
                 alt='White and Black Simple Illustration Dental Clinic Logo'
                 width={70}
                 height={50}
-                className=' rounded-full '
+                className=' rounded-full pointer-events-none '
                 />
             </motion.div>
             </motion.div>

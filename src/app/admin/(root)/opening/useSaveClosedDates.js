@@ -15,6 +15,23 @@ export async function addCloseDay(date) {
     return { error: 'Failed to save the date' };
   }
 }
+export async function deleteCloseDay(id) {
+  if (!id) {
+    throw new Error("ID is required to delete a closed day");
+  }
+  try {
+    const deletedDay = await prisma.closedDay.delete({
+      where: {
+        id: id,
+      },
+    });
+    return { success: true };
+  } catch (err) {
+    console.error("Failed to delete the date:", err);
+    return { error: 'Failed to delete the date' };
+  }
+}
+
 
 export async function fetchClosedDays() {
   try {

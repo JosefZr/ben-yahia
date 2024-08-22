@@ -63,7 +63,7 @@ const LbLoader = ({ setLoading }) => {
               alt="Loading Image" 
               width={400} 
               height={400} 
-              className=" rounded-full"/>
+              className=" rounded-full pointer-events-none"/>
           </motion.div>
         </motion.div>
       </motion.div>

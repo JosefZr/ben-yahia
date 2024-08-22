@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Autocomplete, AutocompleteItem, Avatar, Button, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
 import useFetchUsers from "../hooks/useFetchUsers";
 import { IoSearch } from "react-icons/io5";
-import CalendarComponent2 from "@/app/user/components/CalendarComponent-v2";
 import { useDays } from "@/app/lib/data";
 import "../../user/style/calendar.css"
+import CalendarComponent3 from "@/app/user/components/CalendarComponent-v3";
+import CalendarComponent4 from "@/app/user/components/CalendarComponent-v4";
 export default function SearchUserSelect() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { isLoading, isError, data: patients, error } = useFetchUsers();
@@ -77,21 +78,14 @@ export default function SearchUserSelect() {
                             textValue={`${patient.name} ${patient.email}`}
                         >
                             <div className="relative flex justify-between items-center">
-                                <div className="flex gap-2 items-center">
+                                <Button className="flex items-center gap-2 bg-default-50 w-full justify-start" 
+                                    onPress={() => handleUserClick(patient.id)}
+                                    >
                                     <Avatar alt={patient.name} className="flex-shrink-0" size="sm" />
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col items-start ">
                                         <span className="text-small">{patient.name}</span>
                                         <span className="text-tiny text-default-400">{patient.email}</span>
                                     </div>
-                                </div>
-                                <Button
-                                    className="border-small mr-0.5 font-medium "
-                                    radius="full"
-                                    size="sm"
-                                    variant="bordered"
-                                    onPress={() => handleUserClick(patient.id)}
-                                >
-                                    Add
                                 </Button>
                             </div>
                         </AutocompleteItem>
@@ -108,7 +102,7 @@ export default function SearchUserSelect() {
                         <>
                             <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
                             <ModalBody className="flex flex-col gap-1">
-                                <CalendarComponent2
+                                <CalendarComponent4
                                     days={days}
                                     onCloseModal={onClose}
                                     userId={selectedUserId} // Pass the selected user ID here

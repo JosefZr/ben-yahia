@@ -12,6 +12,7 @@ export default async function RootLayout({ children, params: { locale } }) {
     <html lang={locale} className="scroll-smooth relative" suppressHydrationWarning>
       <head>
         <title>Light Stomatology</title>
+        <link rel='icon' href='../favicon.ico' className=' rounded-full'/>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Bienvenue sur le site de Light Stomatology. Nous offrons des soins dentaires complets et de qualité pour toute la famille. Découvrez nos services, prenez rendez-vous en ligne, et restez informé des dernières actualités dentaires." />

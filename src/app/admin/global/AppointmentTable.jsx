@@ -195,7 +195,7 @@ export default function AppointmentTable({ data }) {
                         ) : column.uid === "status" ? (
                           <StatusCell status={item.status}/>
                         ) : column.uid === "phone" ? (
-                        <div>{item.user.phone}</div>
+                        <div className="text-nowrap font-semibold">{(item.user.phone).replace(/(\d{2})(?=\d)/g, '$1 ').trim()}</div>
                         ) : (
                         item[column.uid]
                         )}

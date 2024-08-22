@@ -39,7 +39,7 @@ function About() {
                         width={350}
                         height={600}
                         style={{ width: 'auto', height: 'auto' }}
-                        className='reveal-horizontal-left rounded-xl'
+                        className='pointer-events-none reveal-horizontal-left rounded-xl'
                         />
                     </div>
                 <div className='flex flex-col max-xl:text-center text-start gap-10 px-4 max-xl:w-full w-[50%] pt-5'>

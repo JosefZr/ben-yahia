@@ -43,7 +43,7 @@ function CheckoutStepper({ stepsConfig = [], currentStep, setCurrentStep }) {
 
   return (
     <>
-      <div className="w-[90%] relative flex justify-between items-center mb-[20px]">
+      <div className="w-[95%] relative flex justify-between items-center mb-[20px]">
         {stepsConfig.map((step, index) => (
           <div
             key={step.name}
@@ -63,7 +63,7 @@ function CheckoutStepper({ stepsConfig = [], currentStep, setCurrentStep }) {
           </div>
         ))}
         <div
-          className="absolute h-[6px] bg-default-200 top-1/4 left-0"
+          className="absolute h-[6px] bg-default-200 top-1/4 left-2"
           style={{
             width: `calc(100% - ${margins.marginLeft + margins.marginRight}px)`,
             marginLeft: margins.marginLeft,

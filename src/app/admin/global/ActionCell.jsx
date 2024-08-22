@@ -168,10 +168,10 @@ export default function ActionsCell({ user }) {
                 </ol>
               </div>
 
-              <div className="text-xl border-t-1 border-b-1 py-5 pl-5 flex flex-row items-center font-semibold">
+              <div className="text-lg font-normal text-default-600 border-y-1 border-default-100 py-5 pl-5 flex flex-row items-center">
                 Requested Appointment Date :
-                <div className="flex flex-row items-top gap-2 pl-3">
-                  <IoIosCalendar className="text-default-600 text-2xl font-bold" />
+                <div className="flex flex-row items-center gap-2 pl-3">
+                  <IoIosCalendar className="text-default-600 text-xl font-bold" />
                   {new Date(user.date).toLocaleDateString()}
                 </div>
               </div>

@@ -34,7 +34,7 @@ function Convincing() {
                             height={500}
                             quality={90}
                             style={{ height: 'auto' }}
-                            className='reveal-horizontal-left rounded-xl'
+                            className='reveal-horizontal-left rounded-xl pointer-events-none'
                         />
                     </div>
                 <div className='flex flex-col max-xl:text-center text-start gap-5 max-xl:w-full w-[50%] pt-5'   >

@@ -38,15 +38,15 @@ export default function Hero() {
               height={400}
               priority // Indique que cette image doit être chargée en priorité
               quality={80} // Ajuste la qualité de l'image pour un meilleur compromis entre qualité et taille
-              className='md:h-80 md:w-80 xl:h-100 xl:w-100 h-60 w-60 rounded-full object-cover shadow-xl'
+              className='md:h-80 md:w-80 xl:h-100 xl:w-100 h-60 w-60 rounded-full object-cover shadow-xl pointer-events-none'
             />
           </motion.div>
         </motion.div>
       </div>
-      <div className='flex flex-col items-start max-md:items-center gap-2 sm:max-w-[70%] mb-4' 
+      <div className='flex flex-col items-start max-md:items-center gap-5 sm:max-w-[80%] mb-4' 
       // variants={banner}
       >
-        <h1 className='hero-vertical text-center max-sm:px-5 text-3xl min-[300px]:text-5xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[90%] md:text-left capitalize text-light-green'
+        <h1 className='hero-vertical text-center max-sm:px-5 text-3xl min-[300px]:text-4xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[95%] md:text-left capitalize text-light-green'
           // initial={{ opacity: 0, y: 80 }}
           // animate={{ opacity: 1, y: 0 }}
           // transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}

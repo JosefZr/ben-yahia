@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import toast from 'react-hot-toast';
-import {updateSetting } from '@/app/services/apiSettings';
+import { updateSetting } from '@/app/services/apiSettings';
 
 export default function useUpdateSettings(id) {
     const queryClient = useQueryClient();
@@ -14,4 +14,3 @@ export default function useUpdateSettings(id) {
     });
     return { isUpdating, updateSettings };
 }
-

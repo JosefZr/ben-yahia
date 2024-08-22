@@ -70,7 +70,7 @@ function AboutCopy() {
                                 style={{ width: 'auto', height: 'auto' }}
                                 quality={90}
                                 alt='assistant'
-                                className='rounded-full'
+                                className='rounded-full pointer-events-none'
                             />
                             <h1 className='font-medium text-xl'>{t("question")}</h1>
                         </div>

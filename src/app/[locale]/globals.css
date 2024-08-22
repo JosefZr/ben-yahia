@@ -14,6 +14,13 @@
   --success:#17c964
 
 }
+body{
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+  
+}
 /* bitton */
 .button {
   --width: 120px;

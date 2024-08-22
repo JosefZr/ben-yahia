@@ -51,6 +51,7 @@ export default function InfiniteScroll() {
                                             height={600}
                                             alt='invitation for dental students'
                                             quality={90}
+                                            className=' pointer-events-none'
                                         />
                                     </ModalBody>
                                     <ModalFooter>

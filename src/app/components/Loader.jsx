@@ -25,7 +25,7 @@ const Loader = ({ setLoading }) => {
     <div
     >
       <motion.div
-        className="loader-inner"
+        className="loader-inner pointer-events-none"
         variants={container}
         onAnimationComplete={() => setLoading(false)}
         initial="hidden"

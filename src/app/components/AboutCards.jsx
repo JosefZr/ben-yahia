@@ -23,7 +23,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                 alt='service image'
                                 width={500}
                                 height={500}
-                                className='object-cover w-full'
+                                className='object-cover w-full pointer-events-none'
                                 priority={false} // Only use priority for critical images
                                 loading="lazy"
                             />
@@ -38,7 +38,7 @@ const AboutCards = memo(({ titre, content, image, icon, direction }) =>{
                                 variants={iconAnimate}
                             > */}
                                 <Image
-                                    className='w-12 h-12'
+                                    className='w-12 h-12 pointer-events-none'
                                     src={icon}
                                     width={128}
                                     height={128}

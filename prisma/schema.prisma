@@ -36,24 +36,27 @@ model User{
   sex String @default("Male")
   appointments Appointment[]
 }
-model Settings{
+model Settings {
   id Int @id @default(autoincrement())
   maxAppointmentPerDay Int
-  samedi String
-  dimanche String
-  lundi String
-  mardi String
-  mercredi String
-  jeudi String
-  vendredi String
+  days DaySettings[]
+
+  @@index([id])
 }
-model Day{
-  id String @id @default(cuid())
-  name String
+
+model DaySettings {
+  id Int @id @default(autoincrement())
   dayOfWeek Int
   openTime String
   closeTime String
+  settingsId Int
+  settings Settings @relation(fields: [settingsId], references: [id])
+
+  @@index([settingsId])
+  @@index([dayOfWeek])
 }
+
+
 model ClosedDay{
   id Int @id @default(autoincrement())
   date DateTime 
@@ -67,6 +70,7 @@ model Appointment {
   status    Status    @default(en_attent)
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
+  painLevel String  @default("")
   createdAt DateTime @default(now())
   isCancelled Boolean @default(false)
   cancelNote String @default("")

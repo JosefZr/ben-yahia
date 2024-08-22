@@ -64,7 +64,7 @@ function MyNavbar() {
             alt="Logo"
             width={80}
             height={80}
-            className="min-w-10"
+            className="min-w-10 pointer-events-none"
           />
           <h1 className="md:max-[920px]:hidden max-[500px]:hidden">
             Light STOMATOLOGY

@@ -22,7 +22,7 @@ function Features() {
 
     return (
         <motion.div 
-            className='text-center scroll-mt-28 max-w-[1300px] max-sm:mx-0  mx-auto rounded-3xl mb-20'
+            className='text-center scroll-mt-28 max-w-[1300px] max-sm:mx-0  mx-auto rounded-3xl mb-20 '
             id='features'
             ref={refView}
             style={{ scale: scaleProgress, opacity: opacityProgress }}
@@ -38,7 +38,7 @@ function Features() {
                             height={500}
                             quality={90}
                             style={{ height: 'auto' }}
-                            className='reveal-horizontal-left rounded-xl'
+                            className='reveal-horizontal-left rounded-xl pointer-events-none'
                         />
                     </div>  
                 </div>
