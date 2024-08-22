@@ -15,28 +15,25 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loading
-      ? document.querySelector('body').classList.add('loading')
-      : document.querySelector("body").classList.remove('loading');
-    
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', (event) => event.preventDefault());
-
-    // Disable key presses for Print Screen (PrtSc) and other common screenshot keys
+    const handleContextMenu = (event) => event.preventDefault();
     const handleKeydown = (event) => {
-      if (event.key === 'PrintScreen') {
+      if (event.key === 'PrintScreen' || (event.ctrlKey && event.key === 'p')) {
         event.preventDefault();
-        alert("Screenshot is disabled on this website!");
-      }
-      if (event.ctrlKey && event.key === 'p') {
-        event.preventDefault();
-        alert("Printing and screenshots are disabled on this website!");
+        alert("Screenshots and printing are disabled on this website!");
       }
     };
+
+    if (loading) {
+      document.querySelector('body').classList.add('loading');
+    } else {
+      document.querySelector('body').classList.remove('loading');
+    }
+    
+    document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('keydown', handleKeydown);
 
     return () => {
-      document.removeEventListener('contextmenu', (event) => event.preventDefault());
+      document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('keydown', handleKeydown);
     };
   }, [loading]);
@@ -44,11 +41,14 @@ export default function Home() {
   return (
     <AnimatePresence>
       {loading ? (
-        <Loader setLoading={setLoading} exit={{ opacity: 0, transition: { ease: "easeInOut", duration: 3.8 } }}/>
+        <Loader 
+          setLoading={setLoading} 
+          exit={{ opacity: 0, transition: { ease: "easeInOut", duration: 3.8 } }}
+        />
       ) : (
         <div className="relative min-h-screen overflow-hidden">
           {/* Transparent overlay to interfere with screenshots */}
-          <div className="screenshot-protection absolute inset-0 z-50 pointer-events-none"></div>
+          <div className="screenshot-protection fixed inset-0 z-50 pointer-events-none "></div>
 
           {/* Background elements */}
           <div className="bg-[#dbd7fd] absolute top-[-6rem] -z-10 right-[1rem] h-[31.25rem] w-[68.75rem] rounded-full blur-[10rem]"></div>

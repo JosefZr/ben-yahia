@@ -21,6 +21,29 @@ body{
     -moz-user-select: none;
   
 }
+.screenshot-protection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.001); /* Very faint overlay */
+}
+.watermark {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  opacity: 0.2;
+  font-size: 2rem;
+  color: red;
+  z-index: 9999;
+}
+.obfuscate-text {
+  transform: rotate(180deg);
+  direction: rtl;
+}
+
 /* bitton */
 .button {
   --width: 120px;
