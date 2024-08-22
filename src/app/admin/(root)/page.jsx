@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from '../../components/Header';
 import DashboardFilter from '../global/DashboardFilter';
 import DashboardLayout from '../global/DashboardLayout';
@@ -11,7 +11,9 @@ export default function Home() {
         <div className=' flex flex-col m-5'>
         <div className='flex justify-between items-center'>
             <Header title='Dashboard' />
-            <DashboardFilter/>
+            <Suspense fallback={<div>Loading filters...</div>}>
+            <DashboardFilter />
+          </Suspense>
         </div>
         <DashboardLayout/>
         </div> 
