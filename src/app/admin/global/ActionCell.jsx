@@ -12,6 +12,8 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 import ConfirmDelete from "@/app/components/ConfirmDelete";
 import { DeleteIcon } from "./DeleteIcon";
@@ -38,6 +40,9 @@ export default function ActionsCell({ user }) {
   const { isAddingTime, time } = useAddingTime();
   const [cancelReason, setCancelReason] = useState(""); // Store the cancellation reason
   const [selectedTime, setSelectedTime] = useState("08:00"); // Store the selected time
+  const [selectedType, setSelectType] = useState(""); // Store the selected time
+
+  const [slectedDuration, setSelectedDuration]= useState("")
 
   const handleCancelAppointment = () => {
     canceling({ reason: cancelReason, id: user.id }); // Pass the reason and user ID
@@ -49,7 +54,7 @@ export default function ActionsCell({ user }) {
       console.error("Selected time is required");
       return;
     }
-    time({ id: user.id, time: selectedTime.toString(), }); // Ensure time is passed as a string
+    time({ id: user.id, time: selectedTime.toString(), selectedType}); // Ensure time is passed as a string
     onSchedulOpenChange(false); // Close the modal after confirming
   };
 
@@ -176,17 +181,34 @@ export default function ActionsCell({ user }) {
                 </div>
               </div>
 
-              <div className="my-10">
-                <h3 className="text-lg font-semibold text-default-700 mb-2">
-                  Set Appointment Time:
-                </h3>
-                <div className="flex space-x-4">
-                  <input
-                    type="time"
-                    className="p-2 border border-default-300 rounded-xl focus:ring-default-500 focus:border-default-500"
-                    defaultValue={selectedTime}
-                    onChange={e => setSelectedTime(e.target.value)}
-                  />
+              <div className="my-10 flex flex-row">
+                <div>
+                  <h3 className="text-lg font-semibold text-default-700 mb-2">
+                    Set Appointment Time:
+                  </h3>
+                  <div className="flex space-x-4">
+                    <input
+                      type="time"
+                      className="p-2 border border-default-300 rounded-xl focus:ring-default-500 focus:border-default-500"
+                      defaultValue={selectedTime}
+                      onChange={e => setSelectedTime(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-default-700 mb-2">
+                    Set Appointment Time:
+                  </h3>
+                  <Select
+                    onSelect={(e)=>setSelectType(e.target.value)}
+                    label="selectioner le type de RDV"
+
+                  >
+                    
+                    <SelectItem value="controle">controle</SelectItem>
+                    <SelectItem value="rdv">Rendez-vous</SelectItem>
+
+                  </Select>
                 </div>
               </div>
 

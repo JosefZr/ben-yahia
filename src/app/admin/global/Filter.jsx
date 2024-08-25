@@ -1,13 +1,14 @@
 "use client";
 import React from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import styled, { css } from "styled-components";
+
 const FilterButton = styled.button`
   background-color: white;
   border: none;
   border-radius: 8px;
   font-weight: 400;
-  font-size:0.9rem;
+  font-size: 0.9rem;
   padding: 0.2rem 0.4rem;
   transition: all 0.3s;
 
@@ -41,16 +42,18 @@ const FilterButton = styled.button`
       `}
   }
 `;
+
 function Filter({ filterField, options }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
   function handleClick(value) {
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set(filterField, value);
 
-    // Update the URL with new search params
-    window.history.replaceState(null, "", `?${newSearchParams.toString()}`);
+    // Update the URL with the new search params using Next.js router
+    router.replace(`?${newSearchParams.toString()}`);
   }
 
   return (

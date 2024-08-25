@@ -33,15 +33,15 @@
     {
       "Implant":{
         "title":"Implant dentaire",
-        "description":" Améliorez votre santé bucco-dentaire. Aspect naturel. Soyez fier de votre sourire. Une solution permanente"
+        "description":"une solution permanente qui préserve vos dents naturelles."
       },
       "Braces":{
         "title":"Appareils orthodontiques et aligneurs",
-        "description":"Obtenez le sourire dont vous avez toujours rêvé avec nos appareils orthodontiques et aligneurs personnalisés. Nous proposons une gamme d'options adaptées à vos besoins et à votre budget, afin que vous puissiez redresser vos dents en toute confiance."
+        "description":"Obtenez le sourire dont vous avez toujours rêvé avec nos appareils orthodontiques et aligneurs personnalisés."
       },
       "screw":{
         "title":"Tad",
-        "description":"Petit dispositif orthodontique temporaire qui aide à déplacer les dents avec précision, améliorant l'efficacité des traitements."
+        "description":"Petit dispositif orthodontique temporaire qui sert d'ancrage pour déplacer les dents avec précision."
       },
       "Crown":{
         "title":"Couronne dentaire",
@@ -53,19 +53,19 @@
       },
       "Bridges":{
         "title":"bridge",
-        "description":"Sont des prothèses fixes qui comblent le vide créé par une ou plusieurs dents manquantes."
+        "description":"est une prothèse fixe qui comble le vide creé par une ou plusieurs dents manquantes."
       },
       "Check":{
         "title":"Consultation",
-        "description":"Un examen approfondi pour évaluer votre santé bucco-dentaire et planifier des soins personnalisés."
-      },
-      "Whitening":{
-        "title":"blanchiment",
-        "description":"Obtenez un sourire plus éclatant grâce à notre nettoyage facile des dents. C'est rapide, sûr et ça fait briller vos dents !"
+        "description":"Un examen minicieux pour évaluer votre santé bucco-dentaire et planifier des soins personnalisés."
       },
       "Scaling":{
         "title":"Détartrage et polissage",
-        "description":"Ce soin préventif contribue à la santé des gencives et à l'éclat naturel de vos dents.    "
+        "description":"éliminent les dépôts de tartre et les taches sur vos dents, prévenant les maladies de gencive."
+      },
+      "Whitening":{
+        "title":"blanchiment",
+        "description":"Le blanchiment après un détartrage amplifie l'éclat des dents et embellit votre sourire."
       },
       "Root":{
         "title":"Traitement canalaire",
@@ -76,15 +76,15 @@
         "description":"Procédure visant à retirer les dents de sagesse pour prévenir les douleurs, infections, ou problèmes orthodontiques."
       },
       "Denture":{
-        "title":"Prothèse dentaire",
+        "title":"Prothèse dentaire amovible ",
         "description":"Remplace les dents manquantes avec des prothèses sur mesure, offrant confort et restauration du sourire."
       },
       "minor":{
-        "title":"Chirurgie légère",
+        "title":"petite Chirurgie ",
         "description":"Interventions chirurgicales peu invasives pour traiter des conditions bucco-dentaires spécifiques, assurant un rétablissement rapide et confortable."
       },
       "gumy":{
-        "title":"Gingivectomy",
+        "title":"Gingivectomie",
         "description":"Obtenez un sourire plus équilibré. Gardez vos gencives en bonne santé : il est plus facile de les garder propres !Évitez les problèmes plus tard : nous pouvons résoudre tous les problèmes de gencive avant qu’ils ne s’aggravent."
       },
       "header":{

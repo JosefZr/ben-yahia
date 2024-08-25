@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 export default function useAddingTime(){
     const queryClient = useQueryClient();
     const {isLoading:isAddingTime, mutate:time,isError}= useMutation({
-        mutationFn:async ({id,time})=>{
-            const result = await AddingTime(id,time)
+        mutationFn:async ({id,time,type})=>{
+            const result = await AddingTime(id,time,type)
             if (result.error) {
                 throw new Error(result.error);
             }

@@ -43,7 +43,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-      <div className='flex flex-col items-start max-md:items-center gap-5 sm:max-w-[80%] mb-4' 
+      <div className='flex flex-col items-start max-md:items-center gap-5 sm:max-w-[70%] mb-4' 
       // variants={banner}
       >
         <h1 className='hero-vertical text-center max-sm:px-5 text-3xl min-[300px]:text-4xl sm:text-7xl xl:text-8xl lg:text-8xl font-medium sm:max-w-[95%] md:text-left capitalize text-light-green'
@@ -53,14 +53,8 @@ export default function Hero() {
         >
           {styledHeroTitle}
         </h1>
-        <p 
-          className='hero-horizontal-left max-w-md max-sm:px-5 max-sm:text-center  md:text-left text-center xl:max-w-2xl lg:max-w-xl md:max-w-md text-xl dark:text-gray-50'
-          // initial={{ opacity: 0, x: -80 }}
-          // animate={{ opacity: 1, x: 0 }}
-          // transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
-        >
-          {t("subtitle")}
-        </p>
+        
+        
         <div className='flex sm:flex-row flex-col items-center gap-2 sm:gap-8'>
           {/* <motion.div 
             variants={slideInButtonsPlay(0)}

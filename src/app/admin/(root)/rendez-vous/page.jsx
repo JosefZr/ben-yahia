@@ -21,7 +21,7 @@ export default function RenderVous() {
             :(
                 <FilterProvider>
             <div className="flex flex-col">
-                <div className="flex flex-row items-center justify-between p-4">
+                <div className="flex flex-row max-sm:flex-col items-center justify-between p-4">
                     <h1 className="text-3xl font-semibold">Tous les rendez-vous</h1>
                     <PatientTableOpertations />
                 </div>

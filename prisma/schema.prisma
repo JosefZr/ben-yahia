@@ -65,6 +65,7 @@ model Appointment {
   id        Int      @id @default(autoincrement())
   date      DateTime
   time      String
+  duration       Int @default(0)    // Duration in minutes
   note      String  @default("douleur")
   additinalNote String @default("")
   status    Status    @default(en_attent)
@@ -74,6 +75,7 @@ model Appointment {
   createdAt DateTime @default(now())
   isCancelled Boolean @default(false)
   cancelNote String @default("")
+  type String @default("")
 
   @@index([userId])
 }

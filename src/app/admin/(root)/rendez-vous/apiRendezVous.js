@@ -59,7 +59,7 @@ export async function addCancelReason(reason, id) {
         throw err;
     }
 }
-export async function AddingTime(id, time){
+export async function AddingTime(id, time,type){
     try{
         if(!time){
             throw new Error("Time is required");
@@ -71,7 +71,8 @@ export async function AddingTime(id, time){
             where:{id:id},
             data:{
                 time:time,
-                status:"confirmed"
+                status:"confirmed",
+                type:type
             }
         })
         return result
@@ -79,3 +80,5 @@ export async function AddingTime(id, time){
         throw err
     }
 }
+
+

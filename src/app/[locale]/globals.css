@@ -330,3 +330,46 @@ body {
   background-color: green;
   transition:0.2s ease;
 }
+
+/* for the tables */
+.bordered-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.bordered-table th,
+.bordered-table td {
+  border: 1px solid black;
+}
+
+.bordered-table th {
+  border-bottom: 1px solid black;
+}
+
+/* Optional: Add some padding to cells for better spacing */
+.bordered-table th,
+.bordered-table td {
+  padding: 12px;
+}
+
+/* Optional: Round the corners of the table */
+.bordered-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bordered-table th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.bordered-table th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.bordered-table tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.bordered-table tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}

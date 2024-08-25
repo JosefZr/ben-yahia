@@ -29,7 +29,7 @@ function Features() {
         >
             <section className='bg-transparent flex lg:flex-row flex-col justify-center gap-10 max-sm:mx-3 mx-auto  md:py-10 pb-10 items-start max-xl:items-center rounded-xl'>
                 <div className='flex items-center flex-col gap-10'>
-                    <h1 className='reveal-vertical lg:hidden capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-purple'>Let me update you with some features about dental</h1>
+                    <h1 className='reveal-vertical lg:hidden capitalize font-bold sm:text-7xl text-5xl whitespace-normal text-light-purple'>Why choose implants over other solutions❓</h1>
                     <div className=' flex items-center flex-col gap-10'>
                         <Image  
                             src="/lb/pic1.webp"
@@ -43,7 +43,7 @@ function Features() {
                     </div>  
                 </div>
                 <div className='flex flex-col max-lg:text-center text-start gap-10 px-4 max-xl:w-full w-[50%] pt-5 max-[450px]:px-0'>
-                    <h1 className='reveal-horizontal-right max-lg:hidden relative capitalize font-bold sm:text-6xl text-5xl whitespace-normal text-light-purple'>Let me update you with some features about dental</h1>
+                    <h1 className='reveal-horizontal-right max-lg:hidden relative capitalize font-bold sm:text-6xl text-5xl whitespace-normal text-light-purple'>Why choose implants over other solutions❓</h1>
                     <motion.div
                         initial="initial"
                         whileInView="animate"
