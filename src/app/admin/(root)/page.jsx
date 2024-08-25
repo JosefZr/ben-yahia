@@ -15,7 +15,9 @@ export default function Home() {
             <DashboardFilter />
           </Suspense>
         </div>
-        <DashboardLayout/>
+        <Suspense fallback={<div>Loading filters...</div>}>
+          <DashboardLayout/>
+        </Suspense>
         </div> 
     </div>
   );
