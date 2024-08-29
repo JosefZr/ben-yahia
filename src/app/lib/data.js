@@ -226,7 +226,18 @@ export const useServices =()=>{
     ];
 
 }
-
+export const useAbout=()=>{
+  return[
+    {image:"/about/1.avif"},
+    {image:"/about/2.avif"},
+    {image:"/about/3.avif"},
+    {image:"/about/4.avif"},
+    {image:"/about/5.avif"},
+    {image:"/about/6.avif"},
+    {image:"/about/7.avif"},
+    {image:"/about/8.avif"},
+  ]
+}
 //for the side bar admin
 import { IoHomeOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
